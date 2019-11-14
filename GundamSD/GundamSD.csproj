@@ -41,7 +41,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\AnimationManager.cs" />
+    <Compile Include="Interfaces\IAnimation.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Models\ISprite.cs" />
+    <Compile Include="Models\Sprite.cs" />
+    <Compile Include="Models\ZetaGundam.cs" />
+    <Compile Include="Movement\IInput.cs" />
+    <Compile Include="Movement\IMover.cs" />
+    <Compile Include="Movement\Input.cs" />
+    <Compile Include="Movement\Mover.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

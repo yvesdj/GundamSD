@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GundamSD.Models;
+using GundamSD.Movement;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace GundamSD
 {
@@ -11,6 +14,8 @@ namespace GundamSD
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private List<Sprite> _sprites;
 
         public Game1()
         {
@@ -40,6 +45,31 @@ namespace GundamSD
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            var texture = Content.Load<Texture2D>("Models/ZetaGundam");
+            IAnimation WalkRight = Factory.CreateAnimation();
+            WalkRight.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkRight");
+            WalkRight.FrameCount = 4;
+            IAnimation WalkLeft = Factory.CreateAnimation();
+            WalkLeft.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkLeft");
+            WalkLeft.FrameCount = 4;
+
+            Dictionary<string, IAnimation> animations = new Dictionary<string, IAnimation>()
+            {
+                { "WalkRight", WalkRight },
+                { "WalkLeft", WalkLeft }
+            };
+
+            _sprites = new List<Sprite>()
+            {
+                new Sprite(animations)
+                {
+                    Position = new Vector2(100,100),
+                    Inputs = Factory.CreateInput()
+                }
+            };
+
+            
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -59,8 +89,13 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            foreach (var sprite in _sprites)
+            {
+                
+                sprite.Update(gameTime, _sprites);
+            }
+
+            
 
             // TODO: Add your update logic here
 
@@ -74,6 +109,15 @@ namespace GundamSD
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+
+            foreach (var sprite in _sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
+
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 

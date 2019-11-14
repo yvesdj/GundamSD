@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    public class AnimationManager
+    public class AnimationManager : IAnimationManager
     {
         private IAnimation _animation;
         private float _timer;

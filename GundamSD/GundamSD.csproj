@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\AnimationManager.cs" />
+    <Compile Include="Animations\IAnimationManager.cs" />
     <Compile Include="Interfaces\IAnimation.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />

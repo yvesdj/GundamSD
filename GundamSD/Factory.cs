@@ -1,4 +1,5 @@
-﻿using GundamSD.Models;
+﻿using GundamSD.Animations;
+using GundamSD.Models;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,9 +22,14 @@ namespace GundamSD
             return new Input();
         }
 
-        public static IMover CreateMover(Sprite sprite)
+        public static IMover CreateMover(ISprite sprite)
         {
             return new Mover(sprite);
+        }
+
+        public static IAnimationManager CreateAnimationManager(IAnimation animation)
+        {
+            return new AnimationManager(animation);
         }
     }
 }

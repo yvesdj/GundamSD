@@ -15,7 +15,7 @@ namespace GundamSD.Models
 {
     public class Sprite : ISprite
     {
-        protected AnimationManager _animationManager;
+        protected IAnimationManager _animationManager;
         protected Dictionary<string, IAnimation> _animations;
 
         private Texture2D _texture;
@@ -58,7 +58,7 @@ namespace GundamSD.Models
         public Sprite(Dictionary<string, IAnimation> animations)
         {
             _animations = animations;
-            _animationManager = new AnimationManager(_animations.First().Value);
+            _animationManager = Factory.CreateAnimationManager(_animations.First().Value); 
             Speed = 2f;
             Mover = Factory.CreateMover(this);
         }

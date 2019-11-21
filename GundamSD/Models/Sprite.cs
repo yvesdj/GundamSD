@@ -63,7 +63,7 @@ namespace GundamSD.Models
             Mover = Factory.CreateMover(this);
         }
 
-        public void Update(GameTime gameTime, List<Sprite> sprites)
+        public void Update(GameTime gameTime, List<ISprite> sprites)
         {
             Mover.Move();
 
@@ -96,24 +96,6 @@ namespace GundamSD.Models
                 _animationManager.Draw(spriteBatch);
             else throw new Exception("this ni goe");
         }
-
-        //private void Move()
-        //{
-        //    Speed = 0.2f;
-        //    if (Inputs == null)
-        //    {
-        //        return;
-        //    }
-
-        //    if (Keyboard.GetState().IsKeyDown(Inputs.Up))
-        //        _velocity.Y = -Speed;
-        //    else if (Keyboard.GetState().IsKeyDown(Inputs.Down))
-        //        _velocity.Y = Speed;
-        //    else if (Keyboard.GetState().IsKeyDown(Inputs.Left))
-        //        _velocity.X = -Speed;
-        //    else if (Keyboard.GetState().IsKeyDown(Inputs.Right))
-        //        _velocity.X = Speed;
-        //}
     }
 
 }

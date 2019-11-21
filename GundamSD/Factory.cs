@@ -12,6 +12,16 @@ namespace GundamSD
 {
     public static class Factory
     {
+        public static ISprite CreateSprite(Dictionary<string, IAnimation> animations)
+        {
+            return new Sprite(animations);
+        }
+
+        public static IAnimationManager CreateAnimationManager(IAnimation animation)
+        {
+            return new AnimationManager(animation);
+        }
+
         public static IAnimation CreateAnimation()
         {
             return new Animation();
@@ -25,11 +35,6 @@ namespace GundamSD
         public static IMover CreateMover(ISprite sprite)
         {
             return new Mover(sprite);
-        }
-
-        public static IAnimationManager CreateAnimationManager(IAnimation animation)
-        {
-            return new AnimationManager(animation);
         }
     }
 }

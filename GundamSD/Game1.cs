@@ -15,7 +15,7 @@ namespace GundamSD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private List<Sprite> _sprites;
+        private List<ISprite> _sprites;
 
         public Game1()
         {
@@ -59,16 +59,23 @@ namespace GundamSD
                 { "WalkLeft", WalkLeft }
             };
 
-            _sprites = new List<Sprite>()
+            //_sprites = new List<Sprite>()
+            //{
+            //    new Sprite(animations)
+            //    //ISprite sprite1 = Factory.CreateSprite(animations)
+
+            //    {
+            //        Position = new Vector2(100,100),
+            //        Inputs = Factory.CreateInput()
+            //    }
+            //};
+
+            _sprites = new List<ISprite>
             {
-                new Sprite(animations)
-                {
-                    Position = new Vector2(100,100),
-                    Inputs = Factory.CreateInput()
-                }
+                Factory.CreateSprite(animations)
             };
 
-            
+
 
             // TODO: use this.Content to load your game content here
         }

@@ -12,9 +12,9 @@ namespace GundamSD
 {
     public static class Factory
     {
-        public static ISprite CreateSprite(Dictionary<string, IAnimation> animations)
+        public static ISprite CreateSprite(Dictionary<string, IAnimation> animations, bool isPlayer)
         {
-            return new Sprite(animations);
+            return new Sprite(animations, isPlayer);
         }
 
         public static IAnimationManager CreateAnimationManager(IAnimation animation)

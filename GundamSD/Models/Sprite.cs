@@ -55,12 +55,16 @@ namespace GundamSD.Models
             Speed = 0.2f;
         }
 
-        public Sprite(Dictionary<string, IAnimation> animations)
+        public Sprite(Dictionary<string, IAnimation> animations, bool isPlayer)
         {
             _animations = animations;
             _animationManager = Factory.CreateAnimationManager(_animations.First().Value); 
             Speed = 2f;
             Mover = Factory.CreateMover(this);
+            if (isPlayer)
+            {
+                Inputs = Factory.CreateInput();
+            }
         }
 
         public void Update(GameTime gameTime, List<ISprite> sprites)

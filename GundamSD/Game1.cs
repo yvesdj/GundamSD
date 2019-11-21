@@ -72,7 +72,7 @@ namespace GundamSD
 
             _sprites = new List<ISprite>
             {
-                Factory.CreateSprite(animations)
+                Factory.CreateSprite(animations, true)
             };
 
 

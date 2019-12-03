@@ -26,6 +26,88 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/tutorialBackground.jpg
 
+#begin maps/SDGundamMap.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:maps/SDGundamMap.tmx
+
+#begin maps/Tilesets/bulkhead-walls-files/bulkhead-wallsx1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/bulkhead-wallsx1.png
+
+#begin maps/Tilesets/bulkhead-walls-files/bulkhead-wallsx3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/bulkhead-wallsx3.png
+
+#begin maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-back.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-back.png
+
+#begin maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-pipes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-pipes.png
+
+#begin maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-platform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-platform.png
+
+#begin maps/Tilesets/bulkhead-walls-files/layers/cols.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Tilesets/bulkhead-walls-files/layers/cols.png
+
+#begin maps/Tilesets/Industrial/industrial.v1_32.tsx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:maps/Tilesets/Industrial/industrial.v1_32.tsx
+
 #begin Models/WonderSwan WSC - SD Gundam Operation UC - Zeta Gundam.png
 /importer:TextureImporter
 /processor:TextureProcessor

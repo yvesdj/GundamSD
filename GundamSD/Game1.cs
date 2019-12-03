@@ -3,6 +3,8 @@ using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Graphics;
 using System.Collections.Generic;
 
 namespace GundamSD
@@ -16,6 +18,9 @@ namespace GundamSD
         SpriteBatch spriteBatch;
 
         private List<ISprite> _sprites;
+
+        private TiledMap tutorialMap;
+        private TiledMapRenderer mapRenderer;
 
         public Game1()
         {
@@ -34,6 +39,9 @@ namespace GundamSD
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            tutorialMap = Content.Load<TiledMap>("maps/SDGundamMap2");
+            mapRenderer = new TiledMapRenderer(GraphicsDevice);
         }
 
         /// <summary>
@@ -102,7 +110,7 @@ namespace GundamSD
                 sprite.Update(gameTime, _sprites);
             }
 
-            
+            mapRenderer.Update(tutorialMap, gameTime);
 
             // TODO: Add your update logic here
 

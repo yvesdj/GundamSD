@@ -43,7 +43,7 @@
 /processor:TiledMapProcessor
 /build:maps/TutorialMap.tmx
 
-#begin Models/ZetaGundam_Atlas.png
+#begin Models/ZetaGundam_Atlas_64.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -53,7 +53,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Models/ZetaGundam_Atlas.png
+/build:Models/ZetaGundam_Atlas_64.png
 
 #begin Models/ZetaGundam_Jump.png
 /importer:TextureImporter

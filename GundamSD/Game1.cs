@@ -1,4 +1,5 @@
-﻿using GundamSD.Models;
+﻿using GundamSD.Animations;
+using GundamSD.Models;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,9 @@ namespace GundamSD
         private TiledMap tutorialMap;
         private TiledMapRenderer mapRenderer;
 
+        //AtlasTest
+        private AnimationAtlas _animatedAtlas;
+        //END AtlasTest
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -57,7 +61,10 @@ namespace GundamSD
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
+            //AtlasTest
+            Texture2D zetaAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
+            _animatedAtlas = new AnimationAtlas(zetaAtlas, 10, 10);
+            //END AtlasTest
 
             //var texture = Content.Load<Texture2D>("Models/ZetaGundam");
             IAnimation WalkRight = Factory.CreateAnimation();
@@ -116,6 +123,10 @@ namespace GundamSD
                 sprite.Update(gameTime, _sprites);
             }
 
+            //AtlasTest
+            _animatedAtlas.Update();
+            //END AtlasTest
+
             mapRenderer.Update(tutorialMap, gameTime);
             
             
@@ -140,7 +151,11 @@ namespace GundamSD
                 sprite.Draw(spriteBatch);
             }
 
-            
+            //AtlasTest
+            _animatedAtlas.Draw(spriteBatch, new Vector2(800,400));
+            //END AtlasTest
+
+
             mapRenderer.Draw(tutorialMap);
 
             spriteBatch.End();

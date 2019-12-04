@@ -19,7 +19,6 @@ namespace GundamSD
 
         private List<ISprite> _sprites;
 
-        private Texture2D tutorialbackground;
         private TiledMap tutorialMap;
         private TiledMapRenderer mapRenderer;
 
@@ -58,9 +57,9 @@ namespace GundamSD
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            tutorialbackground = Content.Load<Texture2D>("Backgrounds/tutorialBackground");
+            
 
-            var texture = Content.Load<Texture2D>("Models/ZetaGundam");
+            //var texture = Content.Load<Texture2D>("Models/ZetaGundam");
             IAnimation WalkRight = Factory.CreateAnimation();
             WalkRight.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkRight");
             WalkRight.FrameCount = 4;
@@ -135,7 +134,7 @@ namespace GundamSD
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            //spriteBatch.Draw(tutorialbackground, new Rectangle(0, 0, 1600, 800), Color.White);
+            
             foreach (var sprite in _sprites)
             {
                 sprite.Draw(spriteBatch);

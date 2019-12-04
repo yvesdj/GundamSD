@@ -19,6 +19,7 @@ namespace GundamSD
 
         private List<ISprite> _sprites;
 
+        private Texture2D tutorialbackground;
         private TiledMap tutorialMap;
         private TiledMapRenderer mapRenderer;
 
@@ -26,6 +27,9 @@ namespace GundamSD
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 800;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -40,8 +44,9 @@ namespace GundamSD
 
             base.Initialize();
 
-            tutorialMap = Content.Load<TiledMap>("maps/SDGundamMap2");
+            tutorialMap = Content.Load<TiledMap>("maps/TutorialMap");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
+
         }
 
         /// <summary>
@@ -52,6 +57,8 @@ namespace GundamSD
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            tutorialbackground = Content.Load<Texture2D>("Backgrounds/tutorialBackground");
 
             var texture = Content.Load<Texture2D>("Models/ZetaGundam");
             IAnimation WalkRight = Factory.CreateAnimation();
@@ -111,6 +118,8 @@ namespace GundamSD
             }
 
             mapRenderer.Update(tutorialMap, gameTime);
+            
+            
 
             // TODO: Add your update logic here
 
@@ -126,11 +135,14 @@ namespace GundamSD
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
+            //spriteBatch.Draw(tutorialbackground, new Rectangle(0, 0, 1600, 800), Color.White);
             foreach (var sprite in _sprites)
             {
                 sprite.Draw(spriteBatch);
             }
+
+            
+            mapRenderer.Draw(tutorialMap);
 
             spriteBatch.End();
 

@@ -25,6 +25,7 @@ namespace GundamSD
 
         //AtlasTest
         private AnimationAtlas _animatedAtlas;
+        private AnimationAtlasManager _atlasManager;
         //END AtlasTest
         public Game1()
         {
@@ -50,13 +51,17 @@ namespace GundamSD
             tutorialMap = Content.Load<TiledMap>("maps/TutorialMap");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
 
+            //AtlasTest
+            _atlasManager = new AnimationAtlasManager(_animatedAtlas);
+            //END AtlasTest
+
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
+    /// <summary>
+    /// LoadContent will be called once per game and is the place to load
+    /// all of your content.
+    /// </summary>
+    protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -124,7 +129,8 @@ namespace GundamSD
             }
 
             //AtlasTest
-            _animatedAtlas.Update();
+            //_animatedAtlas.Update();
+            _atlasManager.Update(gameTime, 0.2f);
             //END AtlasTest
 
             mapRenderer.Update(tutorialMap, gameTime);
@@ -152,7 +158,7 @@ namespace GundamSD
             }
 
             //AtlasTest
-            _animatedAtlas.Draw(spriteBatch, new Vector2(800,400));
+            _atlasManager.Draw(spriteBatch);
             //END AtlasTest
 
 

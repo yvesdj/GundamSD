@@ -16,6 +16,7 @@ namespace GundamSD.Models
     public class Sprite : ISprite
     {
         protected IAnimationManager _animationManager;
+        //protected AnimationAtlasManager _atlasManager;
         protected Dictionary<string, IAnimation> _animations;
 
         private Texture2D _texture;
@@ -30,6 +31,11 @@ namespace GundamSD.Models
 
                 if (_animationManager != null)
                     _animationManager.Position = _position;
+
+                //if (_atlasManager != null)
+                //{
+                //    _atlasManager.Position = _position;
+                //}
             }
         }
 

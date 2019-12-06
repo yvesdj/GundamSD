@@ -8,13 +8,24 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    class AnimationAtlas
+    public class AnimationAtlas
     {
         public Texture2D Texture { get; set; }
+        public int FrameWidth => Texture.Width / Columns;
+        public int FrameHeight => Texture.Height / Rows;
         public int Rows { get; set; }
         public int Columns { get; set; }
         private int _currentFrame;
-        private int _totalFrames;
+
+        public int CurrentFrame
+        {
+            get { return _currentFrame; }
+            set { _currentFrame = value; }
+        }
+
+        private readonly int _totalFrames;
+
+        public int TotalFrames => _totalFrames;
 
         public AnimationAtlas(Texture2D texture, int rows, int columns)
         {
@@ -25,28 +36,26 @@ namespace GundamSD.Animations
             _totalFrames = Rows * Columns;
         }
 
-        public void Update()
-        {
-            _currentFrame++;
-            if (_currentFrame == _totalFrames)
-            {
-                _currentFrame = 0;
-            }
-        }
+        //public void Update()
+        //{
+        //    _currentFrame++;
+        //    if (_currentFrame == _totalFrames)
+        //    {
+        //        _currentFrame = 0;
+        //    }
+        //}
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
-            int row = (int)((float)_currentFrame / (float)Columns);
-            int column = _currentFrame % Columns;
+        //public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        //{
+            //int row = (_currentFrame / Columns);
+            //int column = _currentFrame % Columns;
 
-            Rectangle whatToDraw = new Rectangle(width * column, height * row, width, height);
-            Rectangle whereToDraw = new Rectangle((int)location.X, (int)location.Y, width, height);
+            //Rectangle whatToDraw = new Rectangle(FrameWidth * column, FrameHeight * row, FrameWidth, FrameHeight);
+            //Rectangle whereToDraw = new Rectangle((int)location.X, (int)location.Y, FrameWidth, FrameHeight);
 
-            
-            spriteBatch.Draw(Texture, whereToDraw, whatToDraw, Color.White);
-            
-        }
+
+            //spriteBatch.Draw(Texture, whereToDraw, whatToDraw, Color.White);
+
+        //}
     }
 }

@@ -18,7 +18,7 @@ namespace GundamSD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private List<ISprite> _sprites;
+        //private List<ISprite> _sprites;
 
         private TiledMap tutorialMap;
         private TiledMapRenderer mapRenderer;
@@ -26,6 +26,7 @@ namespace GundamSD
         //AtlasTest
         private AnimationAtlas _animatedAtlas;
         private AnimationAtlasManager _atlasManager;
+        private AnimationAtlasAction _action;
         //END AtlasTest
         public Game1()
         {
@@ -52,7 +53,8 @@ namespace GundamSD
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
 
             //AtlasTest
-            _atlasManager = new AnimationAtlasManager(_animatedAtlas);
+            _action = new AnimationAtlasAction(_animatedAtlas, 30, 38, "WalkRight");
+            _atlasManager = new AnimationAtlasManager(_animatedAtlas, _action);
             //END AtlasTest
 
         }
@@ -72,34 +74,23 @@ namespace GundamSD
             //END AtlasTest
 
             //var texture = Content.Load<Texture2D>("Models/ZetaGundam");
-            IAnimation WalkRight = Factory.CreateAnimation();
-            WalkRight.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkRight");
-            WalkRight.FrameCount = 4;
-            IAnimation WalkLeft = Factory.CreateAnimation();
-            WalkLeft.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkLeft");
-            WalkLeft.FrameCount = 4;
+            //IAnimation WalkRight = Factory.CreateAnimation();
+            //WalkRight.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkRight");
+            //WalkRight.FrameCount = 4;
+            //IAnimation WalkLeft = Factory.CreateAnimation();
+            //WalkLeft.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkLeft");
+            //WalkLeft.FrameCount = 4;
 
-            Dictionary<string, IAnimation> animations = new Dictionary<string, IAnimation>()
-            {
-                { "WalkRight", WalkRight },
-                { "WalkLeft", WalkLeft }
-            };
-
-            //_sprites = new List<Sprite>()
+            //Dictionary<string, IAnimation> animations = new Dictionary<string, IAnimation>()
             //{
-            //    new Sprite(animations)
-            //    //ISprite sprite1 = Factory.CreateSprite(animations)
-
-            //    {
-            //        Position = new Vector2(100,100),
-            //        Inputs = Factory.CreateInput()
-            //    }
+            //    { "WalkRight", WalkRight },
+            //    { "WalkLeft", WalkLeft }
             //};
 
-            _sprites = new List<ISprite>
-            {
-                Factory.CreateSprite(animations, true)
-            };
+            //_sprites = new List<ISprite>
+            //{
+            //    Factory.CreateSprite(animations, true)
+            //};
 
 
 
@@ -122,15 +113,16 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            foreach (var sprite in _sprites)
-            {
-                
-                sprite.Update(gameTime, _sprites);
-            }
+            //foreach (var sprite in _sprites)
+            //{
+
+            //    sprite.Update(gameTime, _sprites);
+            //}
 
             //AtlasTest
             //_animatedAtlas.Update();
-            _atlasManager.Update(gameTime, 0.2f);
+            _atlasManager.Play(_action);
+            _atlasManager.Update(gameTime);
             //END AtlasTest
 
             mapRenderer.Update(tutorialMap, gameTime);
@@ -151,11 +143,11 @@ namespace GundamSD
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            
-            foreach (var sprite in _sprites)
-            {
-                sprite.Draw(spriteBatch);
-            }
+
+            //foreach (var sprite in _sprites)
+            //{
+            //    sprite.Draw(spriteBatch);
+            //}
 
             //AtlasTest
             _atlasManager.Draw(spriteBatch);

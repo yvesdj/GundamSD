@@ -16,7 +16,7 @@ namespace GundamSD.Models
     public class Sprite : ISprite
     {
         protected IAnimationManager _animationManager;
-        //protected AnimationAtlasManager _atlasManager;
+        protected AnimationAtlasManager _atlasManager;
         protected Dictionary<string, IAnimation> _animations;
 
         private Texture2D _texture;
@@ -29,13 +29,13 @@ namespace GundamSD.Models
             {
                 _position = value;
 
-                if (_animationManager != null)
-                    _animationManager.Position = _position;
+                //if (_animationManager != null)
+                //    _animationManager.Position = _position;
 
-                //if (_atlasManager != null)
-                //{
-                //    _atlasManager.Position = _position;
-                //}
+                if (_atlasManager != null)
+                {
+                    _atlasManager.Position = _position;
+                }
             }
         }
 
@@ -55,11 +55,11 @@ namespace GundamSD.Models
 
         public IMover Mover;
 
-        public Sprite(Texture2D texture)
-        {
-            _texture = texture;
-            Speed = 0.2f;
-        }
+        //public Sprite(Texture2D texture)
+        //{
+        //    _texture = texture;
+        //    Speed = 0.2f;
+        //}
 
         public Sprite(Dictionary<string, IAnimation> animations, bool isPlayer)
         {

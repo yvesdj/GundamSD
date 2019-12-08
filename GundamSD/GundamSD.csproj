@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\AnimationAtlas.cs" />
+    <Compile Include="Animations\AnimationAtlasAction.cs" />
     <Compile Include="Animations\AnimationAtlasManager.cs" />
     <Compile Include="Animations\AnimationManager.cs" />
     <Compile Include="Animations\IAnimationManager.cs" />
@@ -52,7 +53,6 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Models\ISprite.cs" />
     <Compile Include="Models\Sprite.cs" />
-    <Compile Include="Models\ZetaGundam.cs" />
     <Compile Include="Movement\IInput.cs" />
     <Compile Include="Movement\IMover.cs" />
     <Compile Include="Movement\Input.cs" />

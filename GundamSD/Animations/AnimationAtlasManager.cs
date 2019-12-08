@@ -22,6 +22,7 @@ namespace GundamSD.Animations
             _atlas = atlas;
             _action = action;
             _currentFrame = _action.StartFrame;
+            _frameSpeed = 0.15f;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -55,7 +56,7 @@ namespace GundamSD.Animations
         public void Update(GameTime gameTime)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _frameSpeed = 0.15f;
+            
 
             if (_timer > _frameSpeed)
             {

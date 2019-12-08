@@ -18,13 +18,13 @@ namespace GundamSD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //private List<ISprite> _sprites;
+        private List<ISprite> _sprites;
 
         private TiledMap tutorialMap;
         private TiledMapRenderer mapRenderer;
 
         //AtlasTest
-        private AnimationAtlas _animatedAtlas;
+        private AnimationAtlas _atlas;
         private AnimationAtlasManager _atlasManager;
         private AnimationAtlasAction _action;
         //END AtlasTest
@@ -53,8 +53,9 @@ namespace GundamSD
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
 
             //AtlasTest
-            _action = new AnimationAtlasAction(_animatedAtlas, 30, 38, "WalkRight");
-            _atlasManager = new AnimationAtlasManager(_animatedAtlas, _action);
+            
+            _action = new AnimationAtlasAction(30, 38);
+            _atlasManager = new AnimationAtlasManager(_atlas, _action);
             //END AtlasTest
 
         }
@@ -70,7 +71,7 @@ namespace GundamSD
 
             //AtlasTest
             Texture2D zetaAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            _animatedAtlas = new AnimationAtlas(zetaAtlas, 10, 10);
+            _atlas = new AnimationAtlas(zetaAtlas, 10, 10);
             //END AtlasTest
 
             //var texture = Content.Load<Texture2D>("Models/ZetaGundam");
@@ -91,6 +92,20 @@ namespace GundamSD
             //{
             //    Factory.CreateSprite(animations, true)
             //};
+
+            AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 4);
+            AnimationAtlasAction Jump = new AnimationAtlasAction(6, 8);
+
+            Dictionary<string, AnimationAtlasAction> actions = new Dictionary<string, AnimationAtlasAction>()
+            {
+                { "WalkRight", WalkRight },
+                { "Jump", Jump }
+            };
+
+            _sprites = new List<ISprite>
+            {
+                Factory.CreateSprite(_atlas, actions, true)
+            };
 
 
 
@@ -113,11 +128,11 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //foreach (var sprite in _sprites)
-            //{
+            foreach (var sprite in _sprites)
+            {
 
-            //    sprite.Update(gameTime, _sprites);
-            //}
+                sprite.Update(gameTime, _sprites);
+            }
 
             //AtlasTest
             //_animatedAtlas.Update();
@@ -144,10 +159,10 @@ namespace GundamSD
 
             spriteBatch.Begin();
 
-            //foreach (var sprite in _sprites)
-            //{
-            //    sprite.Draw(spriteBatch);
-            //}
+            foreach (var sprite in _sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
 
             //AtlasTest
             _atlasManager.Draw(spriteBatch);

@@ -8,17 +8,17 @@ namespace GundamSD.Animations
 {
     public class AnimationAtlasAction
     {
-        private AnimationAtlas _atlas;
+        
         public int StartFrame { get; set; }
         public int EndFrame { get; set; }
-        public string ActionName { get; set; }
+        
 
-        public AnimationAtlasAction(AnimationAtlas atlas, int startFrame, int endFrame, string actionName)
+        public AnimationAtlasAction(int startFrame, int endFrame)
         {
-            _atlas = atlas;
+            
             StartFrame = startFrame;
             EndFrame = endFrame;
-            ActionName = actionName;
+            
         }
     }
 }

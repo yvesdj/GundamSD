@@ -15,13 +15,6 @@ namespace GundamSD.Animations
         public int FrameHeight => Texture.Height / Rows;
         public int Rows { get; set; }
         public int Columns { get; set; }
-        //private int _currentFrame;
-
-        //public int CurrentFrame
-        //{
-        //    get { return _currentFrame; }
-        //    set { _currentFrame = value; }
-        //}
 
         private readonly int _totalFrames;
 

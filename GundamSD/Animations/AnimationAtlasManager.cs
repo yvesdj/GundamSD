@@ -20,8 +20,8 @@ namespace GundamSD.Animations
         public AnimationAtlasManager(AnimationAtlas atlas, AnimationAtlasAction action)
         {
             _atlas = atlas;
-            _action = action;
-            _currentFrame = _action.StartFrame;
+            //_action = action;
+            //_currentFrame = _action.StartFrame;
             _frameSpeed = 0.15f;
         }
 

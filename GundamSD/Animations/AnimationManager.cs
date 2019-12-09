@@ -27,6 +27,7 @@ namespace GundamSD.Animations
                                 Color.White);
         }
 
+
         public void Play(IAnimation animation)
         {
             if (_animation == animation) return;
@@ -35,6 +36,7 @@ namespace GundamSD.Animations
             _animation.CurrentFrame = 0;
             _timer = 0;
         }
+
 
         public void Stop()
         {

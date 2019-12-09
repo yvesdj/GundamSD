@@ -93,13 +93,15 @@ namespace GundamSD
             //    Factory.CreateSprite(animations, true)
             //};
 
-            AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 4);
-            AnimationAtlasAction Jump = new AnimationAtlasAction(6, 8);
+            AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 3);
+            AnimationAtlasAction Jump = new AnimationAtlasAction(5, 7);
+            AnimationAtlasAction Attack = new AnimationAtlasAction(30, 38);
 
             Dictionary<string, AnimationAtlasAction> actions = new Dictionary<string, AnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },
-                { "Jump", Jump }
+                { "Jump", Jump },
+                { "Attack", Attack },
             };
 
             _sprites = new List<ISprite>

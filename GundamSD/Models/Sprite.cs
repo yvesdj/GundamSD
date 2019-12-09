@@ -97,7 +97,7 @@ namespace GundamSD.Models
         {
             Mover.Move();
 
-            SetAnimation();
+            SetAnimation();//animationmanager
 
             //_animationManager.Update(gameTime);
             _atlasManager.Update(gameTime);
@@ -108,14 +108,17 @@ namespace GundamSD.Models
 
         protected void SetAnimation()
         {
-            if (_velocity.X > 0)
+            if (Keyboard.GetState().IsKeyDown(Inputs.Attack))
+                _atlasManager.Play(_actions["Attack"]);
+            else if(_velocity.X > 0)
                 _atlasManager.Play(_actions["WalkRight"]);
             else if (_velocity.X < 0)
-                /*_atlasManager.Play(_actions["WalkLeft"])*/;
-            //else if (Velocity.Y > 0)
-            //    _animationManager.Play(_animations["WalkDown"]);
+                _atlasManager.Play(_actions["WalkRight"]);
+            else if (Velocity.Y > 0)
+                _atlasManager.Play(_actions["WalkRight"]);
             else if (Velocity.Y < 0)
                 _atlasManager.Play(_actions["Jump"]);
+            
             else _atlasManager.Stop();
         }
 

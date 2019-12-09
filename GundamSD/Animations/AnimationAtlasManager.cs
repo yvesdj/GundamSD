@@ -15,6 +15,7 @@ namespace GundamSD.Animations
         private float _timer;
         private float _frameSpeed;
         private int _currentFrame;
+        
         public Vector2 Position { get; set; }
 
         public AnimationAtlasManager(AnimationAtlas atlas, AnimationAtlasAction action)
@@ -64,7 +65,16 @@ namespace GundamSD.Animations
                 _currentFrame++;
 
                 if (_currentFrame > _action.EndFrame) //action start frame >= action total frames
-                    _currentFrame = _action.StartFrame; //action start frame
+                {
+                    if (_action.ShouldHold)
+                    {
+                        _currentFrame = _action.EndFrame;
+                    } else
+                    {
+                        _currentFrame = _action.StartFrame; //action start frame
+                    }
+                    
+                }
             }
         }
     }

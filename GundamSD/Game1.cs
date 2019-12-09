@@ -20,8 +20,8 @@ namespace GundamSD
 
         private List<ISprite> _sprites;
 
-        private TiledMap tutorialMap;
-        private TiledMapRenderer mapRenderer;
+        //private TiledMap tutorialMap;
+        //private TiledMapRenderer mapRenderer;
 
         //AtlasTest
         private AnimationAtlas _atlas;
@@ -49,8 +49,8 @@ namespace GundamSD
 
             base.Initialize();
 
-            tutorialMap = Content.Load<TiledMap>("maps/TutorialMap");
-            mapRenderer = new TiledMapRenderer(GraphicsDevice);
+            //tutorialMap = Content.Load<TiledMap>("maps/TutorialMap");
+            //mapRenderer = new TiledMapRenderer(GraphicsDevice);
 
             //AtlasTest
             
@@ -94,7 +94,7 @@ namespace GundamSD
             //};
 
             AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 3);
-            AnimationAtlasAction Jump = new AnimationAtlasAction(5, 7);
+            AnimationAtlasAction Jump = new AnimationAtlasAction(5, 7, true);
             AnimationAtlasAction Attack = new AnimationAtlasAction(30, 38);
 
             Dictionary<string, AnimationAtlasAction> actions = new Dictionary<string, AnimationAtlasAction>()
@@ -142,7 +142,7 @@ namespace GundamSD
             _atlasManager.Update(gameTime);
             //END AtlasTest
 
-            mapRenderer.Update(tutorialMap, gameTime);
+            //mapRenderer.Update(tutorialMap, gameTime);
             
             
 
@@ -171,7 +171,7 @@ namespace GundamSD
             //END AtlasTest
 
 
-            mapRenderer.Draw(tutorialMap);
+            //mapRenderer.Draw(tutorialMap);
 
             spriteBatch.End();
 

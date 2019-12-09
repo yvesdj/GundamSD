@@ -11,7 +11,8 @@ namespace GundamSD.Animations
         
         public int StartFrame { get; set; }
         public int EndFrame { get; set; }
-        
+        public bool ShouldHold { get; set; }
+
 
         public AnimationAtlasAction(int startFrame, int endFrame)
         {
@@ -19,6 +20,15 @@ namespace GundamSD.Animations
             StartFrame = startFrame;
             EndFrame = endFrame;
             
+        }
+
+        public AnimationAtlasAction(int startFrame, int endFrame, bool shouldHold)
+        {
+
+            StartFrame = startFrame;
+            EndFrame = endFrame;
+            ShouldHold = shouldHold;
+
         }
     }
 }

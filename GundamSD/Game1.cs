@@ -1,4 +1,5 @@
 ﻿using GundamSD.Animations;
+using GundamSD.Maps;
 using GundamSD.Models;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
@@ -6,7 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Graphics;
+using System;
 using System.Collections.Generic;
+using TiledSharp;
 
 namespace GundamSD
 {
@@ -19,6 +22,17 @@ namespace GundamSD
         SpriteBatch spriteBatch;
 
         private List<ISprite> _sprites;
+
+        ////TiledSharp Test
+        private TmxMap _tutorialMap;
+        private Texture2D _tileset;
+        private MapManager _mapManager;
+
+        //int tileWidth;
+        //int tileHeight;
+        //int tilesetTilesWide;
+        //int tilesetTilesHigh;
+        //END TiledSharp Test
 
         //private TiledMap tutorialMap;
         //private TiledMapRenderer mapRenderer;
@@ -69,29 +83,23 @@ namespace GundamSD
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //TiledSharp Test
+            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
+            _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+
+            _mapManager = new MapManager(_tutorialMap, _tileset);
+
+            //tileWidth = _tutorialMap.Tilesets[0].TileWidth;
+            //tileHeight = _tutorialMap.Tilesets[0].TileHeight;
+
+            //tilesetTilesWide = _tileset.Width / tileWidth;
+            //tilesetTilesHigh = _tileset.Height / tileHeight;
+            //END TiledSharp Test
+
             //AtlasTest
             Texture2D zetaAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
             _atlas = new AnimationAtlas(zetaAtlas, 10, 10);
             //END AtlasTest
-
-            //var texture = Content.Load<Texture2D>("Models/ZetaGundam");
-            //IAnimation WalkRight = Factory.CreateAnimation();
-            //WalkRight.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkRight");
-            //WalkRight.FrameCount = 4;
-            //IAnimation WalkLeft = Factory.CreateAnimation();
-            //WalkLeft.Texture = Content.Load<Texture2D>("Models/ZetaGundam_WalkLeft");
-            //WalkLeft.FrameCount = 4;
-
-            //Dictionary<string, IAnimation> animations = new Dictionary<string, IAnimation>()
-            //{
-            //    { "WalkRight", WalkRight },
-            //    { "WalkLeft", WalkLeft }
-            //};
-
-            //_sprites = new List<ISprite>
-            //{
-            //    Factory.CreateSprite(animations, true)
-            //};
 
             AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 3);
             AnimationAtlasAction Jump = new AnimationAtlasAction(5, 7, true);
@@ -157,9 +165,35 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
+            //TiledSharp Test
+            _mapManager.DrawMap(spriteBatch);
+            //for (var i = 0; i < _tutorialMap.Layers[0].Tiles.Count; i++)
+            //{
+            //    int gid = _tutorialMap.Layers[0].Tiles[i].Gid;
+
+            //    // Empty tile, do nothing
+            //    if (gid == 0)
+            //    {
+
+            //    }
+            //    else
+            //    {
+            //        int tileFrame = gid - 1;
+            //        int column = tileFrame % tilesetTilesWide;
+            //        int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+
+            //        float x = (i % _tutorialMap.Width) * _tutorialMap.TileWidth;
+            //        float y = (float)Math.Floor(i / (double)_tutorialMap.Width) * _tutorialMap.TileHeight;
+
+            //        Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+
+            //        spriteBatch.Draw(_tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White);
+            //    }
+            //}
+            //END TiledSharp Test
 
             foreach (var sprite in _sprites)
             {

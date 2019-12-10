@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\IAnimation.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Maps\MapManager.cs" />
     <Compile Include="Models\ISprite.cs" />
     <Compile Include="Models\Sprite.cs" />
     <Compile Include="Movement\IInput.cs" />
@@ -78,6 +79,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TiledSharp, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TiledSharp.1.0.1\lib\netstandard2.0\TiledSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
@@ -86,6 +91,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="Maps\Tiled\TutorialMap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\Tiled\TutorialMap.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

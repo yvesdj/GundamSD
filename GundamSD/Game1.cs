@@ -27,11 +27,6 @@ namespace GundamSD
         private TmxMap _tutorialMap;
         private Texture2D _tileset;
         private MapManager _mapManager;
-
-        //int tileWidth;
-        //int tileHeight;
-        //int tilesetTilesWide;
-        //int tilesetTilesHigh;
         //END TiledSharp Test
 
         //private TiledMap tutorialMap;
@@ -39,8 +34,8 @@ namespace GundamSD
 
         //AtlasTest
         private AnimationAtlas _atlas;
-        private AnimationAtlasManager _atlasManager;
-        private AnimationAtlasAction _action;
+        
+        
         //END AtlasTest
         public Game1()
         {
@@ -62,16 +57,6 @@ namespace GundamSD
             // TODO: Add your initialization logic here
 
             base.Initialize();
-
-            //tutorialMap = Content.Load<TiledMap>("maps/TutorialMap");
-            //mapRenderer = new TiledMapRenderer(GraphicsDevice);
-
-            //AtlasTest
-            
-            _action = new AnimationAtlasAction(30, 38);
-            _atlasManager = new AnimationAtlasManager(_atlas, _action);
-            //END AtlasTest
-
         }
 
     /// <summary>
@@ -88,12 +73,7 @@ namespace GundamSD
             _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
 
             _mapManager = new MapManager(_tutorialMap, _tileset);
-
-            //tileWidth = _tutorialMap.Tilesets[0].TileWidth;
-            //tileHeight = _tutorialMap.Tilesets[0].TileHeight;
-
-            //tilesetTilesWide = _tileset.Width / tileWidth;
-            //tilesetTilesHigh = _tileset.Height / tileHeight;
+            Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
             //END TiledSharp Test
 
             //AtlasTest
@@ -114,7 +94,7 @@ namespace GundamSD
 
             _sprites = new List<ISprite>
             {
-                Factory.CreateSprite(_atlas, actions, true)
+                Factory.CreateSprite(_atlas, actions, true, spawnPoint)
             };
 
 
@@ -144,16 +124,6 @@ namespace GundamSD
                 sprite.Update(gameTime, _sprites);
             }
 
-            //AtlasTest
-            //_animatedAtlas.Update();
-            _atlasManager.Play(_action);
-            _atlasManager.Update(gameTime);
-            //END AtlasTest
-
-            //mapRenderer.Update(tutorialMap, gameTime);
-            
-            
-
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -169,43 +139,21 @@ namespace GundamSD
 
             spriteBatch.Begin();
             //TiledSharp Test
-            _mapManager.DrawMap(spriteBatch);
-            //for (var i = 0; i < _tutorialMap.Layers[0].Tiles.Count; i++)
-            //{
-            //    int gid = _tutorialMap.Layers[0].Tiles[i].Gid;
-
-            //    // Empty tile, do nothing
-            //    if (gid == 0)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        int tileFrame = gid - 1;
-            //        int column = tileFrame % tilesetTilesWide;
-            //        int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-
-            //        float x = (i % _tutorialMap.Width) * _tutorialMap.TileWidth;
-            //        float y = (float)Math.Floor(i / (double)_tutorialMap.Width) * _tutorialMap.TileHeight;
-
-            //        Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-
-            //        spriteBatch.Draw(_tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White);
-            //    }
-            //}
-            //END TiledSharp Test
+            _mapManager.DrawLayer(spriteBatch, "BackgroundWall");
+            _mapManager.DrawLayer(spriteBatch, "BackgroundStuff");
+            _mapManager.DrawLayer(spriteBatch, "Walkable");
 
             foreach (var sprite in _sprites)
             {
                 sprite.Draw(spriteBatch);
             }
 
-            //AtlasTest
-            _atlasManager.Draw(spriteBatch);
-            //END AtlasTest
+            _mapManager.DrawLayer(spriteBatch, "Foreground");
+            //END TiledSharp Test
 
+            
 
-            //mapRenderer.Draw(tutorialMap);
+            
 
             spriteBatch.End();
 

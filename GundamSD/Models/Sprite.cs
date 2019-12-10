@@ -26,7 +26,7 @@ namespace GundamSD.Models
         protected Dictionary<string, AnimationAtlasAction> _actions;
 
 
-        
+        //private Vector2 _spawnPoint;
         private Vector2 _position;
 
         public Vector2 Position
@@ -80,12 +80,13 @@ namespace GundamSD.Models
         //    }
         //}
 
-        public Sprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, bool isPlayer)
+        public Sprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, bool isPlayer, Vector2 spawnPoint)
         {
             _atlas = atlas;                
             _actions = actions;
             _atlasManager = new AnimationAtlasManager(atlas, _actions.First().Value);
-            Speed = 2f;
+            Position = spawnPoint;
+            Speed = 3f;
             Mover = Factory.CreateMover(this);
             if (isPlayer)
             {

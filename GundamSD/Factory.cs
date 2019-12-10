@@ -1,6 +1,7 @@
 ﻿using GundamSD.Animations;
 using GundamSD.Models;
 using GundamSD.Movement;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace GundamSD
 {
     public static class Factory
     {
-        public static ISprite CreateSprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, bool isPlayer)
+        public static ISprite CreateSprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, bool isPlayer, Vector2 spawnPoint)
         {
-            return new Sprite(atlas, actions, isPlayer);
+            return new Sprite(atlas, actions, isPlayer, spawnPoint);
         }
 
         public static IAnimationManager CreateAnimationManager(IAnimation animation)

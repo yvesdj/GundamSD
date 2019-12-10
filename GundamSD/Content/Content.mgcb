@@ -38,11 +38,6 @@
 /processorParam:TextureFormat=Color
 /build:maps/Tilesets/Industrial/industrial.v1_32.png
 
-#begin maps/TutorialMap.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:maps/TutorialMap.tmx
-
 #begin Models/ZetaGundam_Atlas_64.png
 /importer:TextureImporter
 /processor:TextureProcessor

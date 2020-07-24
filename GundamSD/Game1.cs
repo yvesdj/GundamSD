@@ -82,11 +82,11 @@ namespace GundamSD
             _atlas = new AnimationAtlas(playerAtlas, 10, 10);
             //END AtlasTest
 
-            AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 3);
-            AnimationAtlasAction Jump = new AnimationAtlasAction(5, 7, true);
-            AnimationAtlasAction Attack = new AnimationAtlasAction(30, 38);
+            IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
+            IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
+            IAnimationAtlasAction Attack = Factory.CreateAnimAtlasAction(30, 38, false);
 
-            Dictionary<string, AnimationAtlasAction> actions = new Dictionary<string, AnimationAtlasAction>()
+            Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },
                 { "Jump", Jump },

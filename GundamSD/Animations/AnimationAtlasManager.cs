@@ -13,40 +13,41 @@ namespace GundamSD.Animations
     public class AnimationAtlasManager
     {
         private ISprite _sprite;
-        public AnimationAtlasPlayer atlasPlayer;
-        protected Dictionary<string, AnimationAtlasAction> _actions;
+        public AnimationAtlasPlayer AtlasPlayer { get; set; }
+        //public AnimationAtlasPlayer AtlasPlayer;
+        protected Dictionary<string, IAnimationAtlasAction> _actions;
 
-        public AnimationAtlasManager(ISprite sprite, Dictionary<string, AnimationAtlasAction> actions)
+        public AnimationAtlasManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions)
         {
             _sprite = sprite;
             _actions = actions;
-            atlasPlayer = new AnimationAtlasPlayer(_sprite.Atlas, _actions.First().Value);
+            AtlasPlayer = new AnimationAtlasPlayer(_sprite.Atlas, _actions.First().Value);
         }
 
         public void SetAnimation()
         {
             if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Attack))
-                atlasPlayer.Play(_actions["Attack"]);
+                AtlasPlayer.Play(_actions["Attack"]);
             else if (_sprite.Velocity.X > 0)
-                atlasPlayer.Play(_actions["WalkRight"]);
+                AtlasPlayer.Play(_actions["WalkRight"]);
             else if (_sprite.Velocity.X < 0)
-                atlasPlayer.Play(_actions["WalkRight"]);
+                AtlasPlayer.Play(_actions["WalkRight"]);
             else if (_sprite.Velocity.Y > 0)
-                atlasPlayer.Play(_actions["WalkRight"]);
+                AtlasPlayer.Play(_actions["WalkRight"]);
             else if (_sprite.Velocity.Y < 0)
-                atlasPlayer.Play(_actions["Jump"]);
+                AtlasPlayer.Play(_actions["Jump"]);
 
-            else atlasPlayer.Stop();
+            else AtlasPlayer.Stop();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            atlasPlayer.Draw(spriteBatch);
+            AtlasPlayer.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
         {
-            atlasPlayer.Update(gameTime);
+            AtlasPlayer.Update(gameTime);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    public class AnimationAtlasAction
+    public class AnimationAtlasAction : IAnimationAtlasAction
     {
         
         public int StartFrame { get; set; }
@@ -14,13 +14,13 @@ namespace GundamSD.Animations
         public bool ShouldHold { get; set; }
 
 
-        public AnimationAtlasAction(int startFrame, int endFrame)
-        {
+        //public AnimationAtlasAction(int startFrame, int endFrame)
+        //{
             
-            StartFrame = startFrame;
-            EndFrame = endFrame;
+        //    StartFrame = startFrame;
+        //    EndFrame = endFrame;
             
-        }
+        //}
 
         public AnimationAtlasAction(int startFrame, int endFrame, bool shouldHold)
         {

@@ -30,7 +30,7 @@ namespace GundamSD.Models
 
                 if (_atlasManager != null)
                 {
-                    _atlasManager.atlasPlayer.Position = _position;
+                    _atlasManager.AtlasPlayer.Position = _position;
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace GundamSD.Models
 
         public IMover Mover;
 
-        public Sprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
+        public Sprite(AnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
         {
             Atlas = atlas;
             //_actions = actions;

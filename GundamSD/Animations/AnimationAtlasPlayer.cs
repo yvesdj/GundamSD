@@ -12,14 +12,14 @@ namespace GundamSD.Animations
     {
         private AnimationAtlas _atlas;
         //private AnimationAtlasAction _action;
-        public AnimationAtlasAction action;
+        public IAnimationAtlasAction action;
         private float _timer;
         private float _frameSpeed;
         private int _currentFrame;
         
         public Vector2 Position { get; set; }
 
-        public AnimationAtlasPlayer(AnimationAtlas atlas, AnimationAtlasAction action)
+        public AnimationAtlasPlayer(AnimationAtlas atlas, IAnimationAtlasAction action)
         {
             _atlas = atlas;
             //_action = action;
@@ -39,7 +39,7 @@ namespace GundamSD.Animations
             spriteBatch.Draw(_atlas.Texture, whereToDraw, whatToDraw, Color.White);
         }
 
-        public void Play(AnimationAtlasAction action) //what action to start playing
+        public void Play(IAnimationAtlasAction action) //what action to start playing
         {
             if (this.action == action) return;
 

@@ -23,15 +23,15 @@ namespace GundamSD
             return new Player(playerSprite);
         }
 
-        public static IAnimationManager CreateAnimationManager(IAnimation animation)
-        {
-            return new AnimationManager(animation);
-        }
+        //public static IAnimationManager CreateAnimationManager(IAnimation animation)
+        //{
+        //    return new AnimationManager(animation);
+        //}
 
-        public static IAnimation CreateAnimation()
-        {
-            return new Animation();
-        }
+        //public static IAnimation CreateAnimation()
+        //{
+        //    return new Animation();
+        //}
 
         public static IInput CreateInput()
         {

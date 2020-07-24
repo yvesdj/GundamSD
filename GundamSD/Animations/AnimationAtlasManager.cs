@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GundamSD.Models;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,72 +12,41 @@ namespace GundamSD.Animations
 {
     public class AnimationAtlasManager
     {
-        private AnimationAtlas _atlas;
-        private AnimationAtlasAction _action;
-        private float _timer;
-        private float _frameSpeed;
-        private int _currentFrame;
-        
-        public Vector2 Position { get; set; }
+        private ISprite _sprite;
+        public AnimationAtlasPlayer atlasPlayer;
+        protected Dictionary<string, AnimationAtlasAction> _actions;
 
-        public AnimationAtlasManager(AnimationAtlas atlas, AnimationAtlasAction action)
+        public AnimationAtlasManager(ISprite sprite, Dictionary<string, AnimationAtlasAction> actions)
         {
-            _atlas = atlas;
-            //_action = action;
-            //_currentFrame = _action.StartFrame;
-            _frameSpeed = 0.15f;
+            _sprite = sprite;
+            _actions = actions;
+            atlasPlayer = new AnimationAtlasPlayer(_sprite.Atlas, _actions.First().Value);
+        }
+
+        public void SetAnimation()
+        {
+            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Attack))
+                atlasPlayer.Play(_actions["Attack"]);
+            else if (_sprite.Velocity.X > 0)
+                atlasPlayer.Play(_actions["WalkRight"]);
+            else if (_sprite.Velocity.X < 0)
+                atlasPlayer.Play(_actions["WalkRight"]);
+            else if (_sprite.Velocity.Y > 0)
+                atlasPlayer.Play(_actions["WalkRight"]);
+            else if (_sprite.Velocity.Y < 0)
+                atlasPlayer.Play(_actions["Jump"]);
+
+            else atlasPlayer.Stop();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int row = _currentFrame / _atlas.Columns;
-            int column = _currentFrame % _atlas.Columns;
-
-            Rectangle whatToDraw = new Rectangle(_atlas.FrameWidth * column, _atlas.FrameHeight * row, _atlas.FrameWidth, _atlas.FrameHeight);
-            Rectangle whereToDraw = new Rectangle((int)Position.X, (int)Position.Y, _atlas.FrameWidth, _atlas.FrameHeight);
-
-
-            spriteBatch.Draw(_atlas.Texture, whereToDraw, whatToDraw, Color.White);
-        }
-
-        public void Play(AnimationAtlasAction action) //what action to start playing
-        {
-            if (_action == action) return;
-
-            _action = action;
-            _currentFrame = _action.StartFrame; //startframe
-            _timer = 0;
-            
-        }
-
-        public void Stop() //what action to stop
-        {
-            _timer = 0f;
-            _currentFrame = 0; //action start frame
+            atlasPlayer.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
         {
-            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-
-            if (_timer > _frameSpeed)
-            {
-                _timer = 0f;
-                _currentFrame++;
-
-                if (_currentFrame > _action.EndFrame) //action start frame >= action total frames
-                {
-                    if (_action.ShouldHold)
-                    {
-                        _currentFrame = _action.EndFrame;
-                    } else
-                    {
-                        _currentFrame = _action.StartFrame; //action start frame
-                    }
-                    
-                }
-            }
+            atlasPlayer.Update(gameTime);
         }
     }
 }

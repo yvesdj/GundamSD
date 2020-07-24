@@ -13,9 +13,11 @@ namespace GundamSD.Models
 {
     public class Sprite : ISprite
     {
+        public AnimationAtlas Atlas { get; set; }
         private AnimationAtlas _atlas;
         protected AnimationAtlasManager _atlasManager;
-        protected Dictionary<string, AnimationAtlasAction> _actions;
+        //protected AnimationAtlasPlayer _atlasPlayer;
+        //protected Dictionary<string, AnimationAtlasAction> _actions;
 
         private Vector2 _position;
 
@@ -28,7 +30,7 @@ namespace GundamSD.Models
 
                 if (_atlasManager != null)
                 {
-                    _atlasManager.Position = _position;
+                    _atlasManager.atlasPlayer.Position = _position;
                 }
             }
         }
@@ -51,9 +53,11 @@ namespace GundamSD.Models
 
         public Sprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
         {
-            _atlas = atlas;                
-            _actions = actions;
-            _atlasManager = new AnimationAtlasManager(atlas, _actions.First().Value);
+            Atlas = atlas;
+            //_actions = actions;
+            //_atlasPlayer = new AnimationAtlasPlayer(atlas, _actions.First().Value);
+            _atlasManager = new AnimationAtlasManager(this, actions);
+
             Position = spawnPoint;
             Speed = 3f;
             Mover = Factory.CreateMover(this);
@@ -68,28 +72,28 @@ namespace GundamSD.Models
             Mover.Move();
 
             //methode was uitgecommenteerd
-            SetAnimation();
+            _atlasManager.SetAnimation();
             _atlasManager.Update(gameTime);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();
         }
 
-        protected void SetAnimation()
-        {
-            if (Keyboard.GetState().IsKeyDown(Inputs.Attack))
-                _atlasManager.Play(_actions["Attack"]);
-            else if (_velocity.X > 0)
-                _atlasManager.Play(_actions["WalkRight"]);
-            else if (_velocity.X < 0)
-                _atlasManager.Play(_actions["WalkRight"]);
-            else if (Velocity.Y > 0)
-                _atlasManager.Play(_actions["WalkRight"]);
-            else if (Velocity.Y < 0)
-                _atlasManager.Play(_actions["Jump"]);
+        //protected void SetAnimation()
+        //{
+        //    if (Keyboard.GetState().IsKeyDown(Inputs.Attack))
+        //        _atlasPlayer.Play(_actions["Attack"]);
+        //    else if (_velocity.X > 0)
+        //        _atlasPlayer.Play(_actions["WalkRight"]);
+        //    else if (_velocity.X < 0)
+        //        _atlasPlayer.Play(_actions["WalkRight"]);
+        //    else if (Velocity.Y > 0)
+        //        _atlasPlayer.Play(_actions["WalkRight"]);
+        //    else if (Velocity.Y < 0)
+        //        _atlasPlayer.Play(_actions["Jump"]);
 
-            else _atlasManager.Stop();
-        }
+        //    else _atlasPlayer.Stop();
+        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {

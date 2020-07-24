@@ -9,6 +9,8 @@ namespace GundamSD
 {
     public class Animation : IAnimation
     {
+        //NOT USED
+
         public int CurrentFrame { get; set; }
         public int FrameCount { get; set; } //should be privat set
         public int FrameHeight { get { return Texture.Height; } }
@@ -22,7 +24,7 @@ namespace GundamSD
             IsLooping = true;
             FrameSpeed = 0.1f;
         }
-        
+
         public Animation(Texture2D texture, int frameCount)
         {
             Texture = texture;

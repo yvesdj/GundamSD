@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GundamSD.Animations;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,8 @@ namespace GundamSD.Models
 {
     public interface ISprite
     {
+        AnimationAtlas Atlas { get; set; }
+
         Vector2 Position { get; set; }
 
         void Draw(SpriteBatch spriteBatch);

@@ -76,9 +76,10 @@ namespace GundamSD
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
             //END TiledSharp Test
 
+            #region PlayerInstantiation
             //AtlasTest
-            Texture2D zetaAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            _atlas = new AnimationAtlas(zetaAtlas, 10, 10);
+            Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
+            _atlas = new AnimationAtlas(playerAtlas, 10, 10);
             //END AtlasTest
 
             AnimationAtlasAction WalkRight = new AnimationAtlasAction(0, 3);
@@ -94,6 +95,8 @@ namespace GundamSD
 
             ISprite playerSprite = Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint);
             IPlayer player = Factory.CreatePlayer(playerSprite);
+            #endregion
+
             _sprites = new List<ISprite>
             {
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)

@@ -13,9 +13,14 @@ namespace GundamSD
 {
     public static class Factory
     {
-        public static ISprite CreateSprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, bool isPlayer, Vector2 spawnPoint)
+        public static ISprite CreateSprite(AnimationAtlas atlas, Dictionary<string, AnimationAtlasAction> actions, /*bool isplayer,*/ Vector2 spawnPoint)
         {
-            return new Sprite(atlas, actions, isPlayer, spawnPoint);
+            return new Sprite(atlas, actions, /*isPlayer,*/ spawnPoint);
+        }
+
+        public static IPlayer CreatePlayer(ISprite playerSprite)
+        {
+            return new Player(playerSprite);
         }
 
         public static IAnimationManager CreateAnimationManager(IAnimation animation)

@@ -92,9 +92,12 @@ namespace GundamSD
                 { "Attack", Attack },
             };
 
+            ISprite playerSprite = Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint);
+            IPlayer player = Factory.CreatePlayer(playerSprite);
             _sprites = new List<ISprite>
             {
-                Factory.CreateSprite(_atlas, actions, true, spawnPoint)
+                //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
+                player.PlayerSprite
             };
 
 

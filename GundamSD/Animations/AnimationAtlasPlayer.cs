@@ -10,7 +10,7 @@ namespace GundamSD.Animations
 {
     public class AnimationAtlasPlayer : IAnimationAtlasPlayer
     {
-        private AnimationAtlas _atlas;
+        private IAnimationAtlas _atlas;
         //private AnimationAtlasAction _action;
         public IAnimationAtlasAction action;
         private float _timer;
@@ -19,7 +19,7 @@ namespace GundamSD.Animations
         
         public Vector2 Position { get; set; }
 
-        public AnimationAtlasPlayer(AnimationAtlas atlas, IAnimationAtlasAction action)
+        public AnimationAtlasPlayer(IAnimationAtlas atlas, IAnimationAtlasAction action)
         {
             _atlas = atlas;
             //_action = action;

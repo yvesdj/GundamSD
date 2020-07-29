@@ -13,7 +13,7 @@ namespace GundamSD
 {
     public static class Factory
     {
-        public static ISprite CreateSprite(AnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isplayer,*/ Vector2 spawnPoint)
+        public static ISprite CreateSprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isplayer,*/ Vector2 spawnPoint)
         {
             return new Sprite(atlas, actions, /*isPlayer,*/ spawnPoint);
         }
@@ -34,14 +34,19 @@ namespace GundamSD
         }
         #endregion
         #region Animation
-        public static IAnimationAtlasPlayer CreateAnimAtlasPlayer(AnimationAtlas atlas, IAnimationAtlasAction action)
+        public static IAnimationAtlas CreateAnimAtlas(Texture2D texture, int rows, int colums)
         {
-            return new AnimationAtlasPlayer(atlas, action);
+            return new AnimationAtlas(texture, rows, colums);
         }
 
         public static IAnimationAtlasAction CreateAnimAtlasAction(int startFrame, int endFrame, bool shouldHold)
         {
             return new AnimationAtlasAction(startFrame, endFrame, shouldHold);
+        }
+
+        public static IAnimationAtlasPlayer CreateAnimAtlasPlayer(IAnimationAtlas atlas, IAnimationAtlasAction action)
+        {
+            return new AnimationAtlasPlayer(atlas, action);
         }
         #endregion
 

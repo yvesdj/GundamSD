@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    public class AnimationAtlas
+    public class AnimationAtlas : IAnimationAtlas
     {
         public Texture2D Texture { get; set; }
         public int FrameWidth => Texture.Width / Columns;

@@ -13,8 +13,8 @@ namespace GundamSD.Models
 {
     public class Sprite : ISprite
     {
-        public AnimationAtlas Atlas { get; set; }
-        private AnimationAtlas _atlas;
+        public IAnimationAtlas Atlas { get; set; }
+        //private AnimationAtlas _atlas;
         protected AnimationAtlasManager _atlasManager;
         //protected AnimationAtlasPlayer _atlasPlayer;
         //protected Dictionary<string, AnimationAtlasAction> _actions;
@@ -51,7 +51,7 @@ namespace GundamSD.Models
 
         public IMover Mover;
 
-        public Sprite(AnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
+        public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
         {
             Atlas = atlas;
             //_actions = actions;

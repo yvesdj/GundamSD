@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\AnimationAtlasManager.cs" />
+    <Compile Include="Animations\IAnimationAtlas.cs" />
     <Compile Include="Animations\IAnimationAtlasAction.cs" />
     <Compile Include="Animations\IAnimationAtlasPlayer.cs" />
     <Compile Include="Animations\Legacy\Animation.cs" />

@@ -33,7 +33,7 @@ namespace GundamSD
         //private TiledMapRenderer mapRenderer;
 
         //AtlasTest
-        private AnimationAtlas _atlas;
+        private IAnimationAtlas _atlas;
         
         
         //END AtlasTest
@@ -79,7 +79,7 @@ namespace GundamSD
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            _atlas = new AnimationAtlas(playerAtlas, 10, 10);
+            _atlas = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
             //END AtlasTest
 
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);

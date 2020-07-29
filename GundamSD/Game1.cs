@@ -1,12 +1,8 @@
 ﻿using GundamSD.Animations;
 using GundamSD.Maps;
 using GundamSD.Models;
-using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Tiled.Graphics;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -27,6 +23,8 @@ namespace GundamSD
         private TmxMap _tutorialMap;
         private Texture2D _tileset;
         private MapManager _mapManager;
+
+        public TmxList<TmxObject> collidableLayer;
         //END TiledSharp Test
 
         //private TiledMap tutorialMap;
@@ -130,6 +128,8 @@ namespace GundamSD
                 sprite.Update(gameTime, _sprites);
             }
 
+            
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -155,6 +155,8 @@ namespace GundamSD
             }
 
             _mapManager.DrawLayer(spriteBatch, "Foreground");
+
+            
             //END TiledSharp Test
 
             

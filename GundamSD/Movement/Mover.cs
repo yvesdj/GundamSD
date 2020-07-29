@@ -14,6 +14,10 @@ namespace GundamSD.Movement
         //private IInput _inputs;
         private ISprite _sprite;
 
+        private Vector2 _jumpVelocity;
+        private float gravity = -9.81f;
+        private bool _isJumping;
+
         public Mover(ISprite sprite)
         {
             //_inputs = inputs;
@@ -28,9 +32,7 @@ namespace GundamSD.Movement
 
             //_sprite.Position = new Vector2(0, 2);
 
-            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Up))
-                _sprite.Velocity = new Vector2(0 , -_sprite.Speed);
-            else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Down))
+            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Down))
                 _sprite.Velocity = new Vector2(0 , _sprite.Speed);
             else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Left))
                 _sprite.Velocity = new Vector2(-_sprite.Speed , 0);
@@ -46,6 +48,17 @@ namespace GundamSD.Movement
         public void ResetVelocity()
         {
             _sprite.Velocity = Vector2.Zero;
+        }
+
+        public void Jump()
+        {
+            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Jump) && !_isJumping)
+            {
+                _jumpVelocity.Y = (float)Math.Sqrt(_sprite.JumpHeight * 2f * gravity);
+                _isJumping = true;
+            }
+
+            _jumpVelocity.Y += gravity;
         }
     }
 }

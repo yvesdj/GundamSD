@@ -16,6 +16,7 @@ namespace GundamSD.Models
         void Update(GameTime gameTime, List<ISprite> sprites);
         Vector2 Velocity { get; set; }
         float Speed { get; set; }
+        float JumpHeight { get; set; }
         IInput Inputs { get; set; }
     }
 }

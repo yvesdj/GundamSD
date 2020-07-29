@@ -11,15 +11,15 @@ namespace GundamSD.Movement
     {
         public Keys Left { get; set; }
         public Keys Right { get; set; }
-        public Keys Up { get; set; }
+        public Keys Jump { get; set; }
         public Keys Down { get; set; }
         public Keys Attack { get; set; }
 
         public Input()
         {
-            Up = Keys.Z;
+            Jump = Keys.Space;
             Down = Keys.S;
-            Left = Keys.Q;
+            Left = Keys.A;
             Right = Keys.D;
             Attack = Keys.E;
         }

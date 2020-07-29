@@ -40,6 +40,8 @@ namespace GundamSD.Models
 
         public float Speed { get; set; }
 
+        public float JumpHeight { get; set; }
+
         //public Vector2 Velocity;
         private Vector2 _velocity;
 
@@ -60,6 +62,7 @@ namespace GundamSD.Models
 
             Position = spawnPoint;
             Speed = 3f;
+            JumpHeight = 3f;
             Mover = Factory.CreateMover(this);
             //if (isPlayer)
             //{

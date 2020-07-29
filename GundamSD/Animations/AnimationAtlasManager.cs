@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    public class AnimationAtlasManager
+    public class AnimationAtlasManager : IAnimationAtlasManager
     {
         private ISprite _sprite;
         public IAnimationAtlasPlayer AtlasPlayer { get; set; }

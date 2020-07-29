@@ -48,6 +48,11 @@ namespace GundamSD
         {
             return new AnimationAtlasPlayer(atlas, action);
         }
+
+        public static IAnimationAtlasManager CreateAnimAtlasManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions)
+        {
+            return new AnimationAtlasManager(sprite, actions);
+        }
         #endregion
 
         //public static IAnimationManager CreateAnimationManager(IAnimation animation)

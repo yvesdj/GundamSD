@@ -15,7 +15,7 @@ namespace GundamSD.Models
     {
         public IAnimationAtlas Atlas { get; set; }
         //private AnimationAtlas _atlas;
-        protected AnimationAtlasManager _atlasManager;
+        protected IAnimationAtlasManager _atlasManager;
         //protected AnimationAtlasPlayer _atlasPlayer;
         //protected Dictionary<string, AnimationAtlasAction> _actions;
 
@@ -56,7 +56,7 @@ namespace GundamSD.Models
             Atlas = atlas;
             //_actions = actions;
             //_atlasPlayer = new AnimationAtlasPlayer(atlas, _actions.First().Value);
-            _atlasManager = new AnimationAtlasManager(this, actions);
+            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = spawnPoint;
             Speed = 3f;

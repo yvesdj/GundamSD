@@ -13,7 +13,7 @@ namespace GundamSD.Animations
     public class AnimationAtlasManager
     {
         private ISprite _sprite;
-        public AnimationAtlasPlayer AtlasPlayer { get; set; }
+        public IAnimationAtlasPlayer AtlasPlayer { get; set; }
         //public AnimationAtlasPlayer AtlasPlayer;
         protected Dictionary<string, IAnimationAtlasAction> _actions;
 
@@ -21,7 +21,7 @@ namespace GundamSD.Animations
         {
             _sprite = sprite;
             _actions = actions;
-            AtlasPlayer = new AnimationAtlasPlayer(_sprite.Atlas, _actions.First().Value);
+            AtlasPlayer = Factory.CreateAnimAtlasPlayer(_sprite.Atlas, _actions.First().Value);
         }
 
         public void SetAnimation()

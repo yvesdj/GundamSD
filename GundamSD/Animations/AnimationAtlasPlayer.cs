@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Animations
 {
-    public class AnimationAtlasPlayer
+    public class AnimationAtlasPlayer : IAnimationAtlasPlayer
     {
         private AnimationAtlas _atlas;
         //private AnimationAtlasAction _action;

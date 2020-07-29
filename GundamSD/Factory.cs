@@ -34,6 +34,11 @@ namespace GundamSD
         }
         #endregion
         #region Animation
+        public static IAnimationAtlasPlayer CreateAnimAtlasPlayer(AnimationAtlas atlas, IAnimationAtlasAction action)
+        {
+            return new AnimationAtlasPlayer(atlas, action);
+        }
+
         public static IAnimationAtlasAction CreateAnimAtlasAction(int startFrame, int endFrame, bool shouldHold)
         {
             return new AnimationAtlasAction(startFrame, endFrame, shouldHold);

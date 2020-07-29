@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Animations\AnimationAtlasManager.cs" />
     <Compile Include="Animations\IAnimationAtlasAction.cs" />
+    <Compile Include="Animations\IAnimationAtlasPlayer.cs" />
     <Compile Include="Animations\Legacy\Animation.cs" />
     <Compile Include="Animations\AnimationAtlas.cs" />
     <Compile Include="Animations\AnimationAtlasAction.cs" />

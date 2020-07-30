@@ -37,7 +37,7 @@ namespace GundamSD.Models
         public IMover Mover { get; set; }
 
         #region Collision
-        public Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth, Atlas.FrameHeight);
+        public Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth / 2, Atlas.FrameHeight / 2);
 
         #endregion
 

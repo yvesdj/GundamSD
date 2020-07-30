@@ -66,14 +66,6 @@ namespace GundamSD
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //TiledSharp Test
-            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
-            _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-
-            _mapManager = new MapManager(_tutorialMap, _tileset);
-            Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
-            //END TiledSharp Test
-
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
@@ -91,7 +83,7 @@ namespace GundamSD
                 { "Attack", Attack },
             };
 
-            ISprite playerSprite = Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint);
+            ISprite playerSprite = Factory.CreateSprite(_atlas, actions);
             IPlayer player = Factory.CreatePlayer(playerSprite);
             #endregion
 
@@ -100,6 +92,14 @@ namespace GundamSD
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
                 player.PlayerSprite
             };
+
+            //TiledSharp Test
+            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
+            _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+
+            _mapManager = new MapManager(_tutorialMap, _tileset, _sprites);
+            Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
+            //END TiledSharp Test
 
 
 
@@ -122,13 +122,12 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            foreach (var sprite in _sprites)
-            {
+            //foreach (var sprite in _sprites)
+            //{
+            //    sprite.Update(gameTime);
+            //}
 
-                sprite.Update(gameTime, _sprites);
-            }
-
-            
+            _mapManager.UpdateMap(gameTime);
 
             // TODO: Add your update logic here
 
@@ -145,24 +144,8 @@ namespace GundamSD
 
             spriteBatch.Begin();
             //TiledSharp Test
-            _mapManager.DrawLayer(spriteBatch, "BackgroundWall");
-            _mapManager.DrawLayer(spriteBatch, "BackgroundStuff");
-            _mapManager.DrawLayer(spriteBatch, "Walkable");
-
-            foreach (var sprite in _sprites)
-            {
-                sprite.Draw(spriteBatch);
-            }
-
-            _mapManager.DrawLayer(spriteBatch, "Foreground");
-
-            
+            _mapManager.DrawMap(spriteBatch);
             //END TiledSharp Test
-
-            
-
-            
-
             spriteBatch.End();
 
             // TODO: Add your drawing code here

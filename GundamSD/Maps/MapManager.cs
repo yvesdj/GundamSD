@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GundamSD.Models;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace GundamSD.Maps
     {
         private TmxMap _map;
         private Texture2D _tileSet;
-
+        private List<ISprite> _sprites;
 
         private int _tileWidth;
         private int _tileHeight;
@@ -21,30 +22,20 @@ namespace GundamSD.Maps
         private int _tilesetTilesHigh;
         
 
-        public MapManager(TmxMap map, Texture2D tileSet)
+
+        public MapManager(TmxMap map, Texture2D tileSet, List<ISprite> sprites)
         {
             _map = map;
             _tileSet = tileSet;
-            
+            _sprites = sprites;
+            //first sprite will always be Player
+            _sprites[0].Position = GetSpawnPoint(0);
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;
 
             _tilesetTilesWide = _tileSet.Width / _tileWidth;
             _tilesetTilesHigh = _tileSet.Height / _tileHeight;
-        }
-
-        //public void DrawImage(SpriteBatch spriteBatch)
-        //{
-        //    if (_map.ImageLayers.Count != 0)
-        //    {
-
-        //    }
-        //}
-
-        public TmxLayer GetTmxLayer(int index)
-        {
-            return _map.Layers[index];
         }
 
         public Vector2 GetSpawnPoint(int spawnPointNumber)
@@ -68,7 +59,6 @@ namespace GundamSD.Maps
 
             return collidableBoxes;
         }
-
 
         public void DrawLayer(SpriteBatch spriteBatch, string layerName)
         {
@@ -101,6 +91,28 @@ namespace GundamSD.Maps
                         Color.White);
                     //spriteBatch.Draw(_tileSet, destination, tilesetRec, Color.White, 0, Vector2.Zero, SpriteEffects.None, depth);
                 }
+            }
+        }
+
+        public void DrawMap(SpriteBatch spriteBatch)
+        {
+            DrawLayer(spriteBatch, "BackgroundWall");
+            DrawLayer(spriteBatch, "BackgroundStuff");
+            DrawLayer(spriteBatch, "Walkable");
+
+            foreach (var sprite in _sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
+
+            DrawLayer(spriteBatch, "Foreground");
+        }
+
+        public void UpdateMap(GameTime gameTime)
+        {
+            foreach (var sprite in _sprites)
+            {
+                sprite.Update(gameTime);
             }
         }
     }

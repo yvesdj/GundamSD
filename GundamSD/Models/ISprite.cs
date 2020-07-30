@@ -13,7 +13,7 @@ namespace GundamSD.Models
         Vector2 Position { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
-        void Update(GameTime gameTime, List<ISprite> sprites);
+        void Update(GameTime gameTime);
         Vector2 Velocity { get; set; }
         float Speed { get; set; }
         IInput Inputs { get; set; }

@@ -30,20 +30,26 @@ namespace GundamSD.Models
                 }
             }
         }
-        
+
         public IInput Inputs { get; set; }
-
         public float Speed { get; set; }
-
         public Vector2 Velocity { get; set; }
-
         public IMover Mover;
 
         #region Collision
-
         public Rectangle CollisionBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth, Atlas.FrameHeight);
 
         #endregion
+
+        public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
+        {
+            Atlas = atlas;
+            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
+
+            Position = new Vector2(0,0);
+            Speed = 3f;
+            Mover = Factory.CreateMover(this);
+        }
 
         public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
         {
@@ -53,13 +59,9 @@ namespace GundamSD.Models
             Position = spawnPoint;
             Speed = 3f;
             Mover = Factory.CreateMover(this);
-            //if (isPlayer)
-            //{
-            //    Inputs = Factory.CreateInput();
-            //}
         }
 
-        public void Update(GameTime gameTime, List<ISprite> sprites)
+        public void Update(GameTime gameTime)
         {
             Mover.Move();
             

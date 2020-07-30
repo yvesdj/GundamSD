@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,12 @@ namespace GundamSD.Maps
         private TmxMap _map;
         private Texture2D _tileSet;
         private List<ISprite> _sprites;
+        private List<Rectangle> _collisionBoxes => GetMapCollidables();
 
         private int _tileWidth;
         private int _tileHeight;
         private int _tilesetTilesWide;
         private int _tilesetTilesHigh;
-        
-
 
         public MapManager(TmxMap map, Texture2D tileSet, List<ISprite> sprites)
         {
@@ -113,6 +113,24 @@ namespace GundamSD.Maps
             foreach (var sprite in _sprites)
             {
                 sprite.Update(gameTime);
+            }
+        }
+
+        public void CheckCollision()
+        {
+            foreach (ISprite sprite in _sprites)
+            {
+                
+                //if (sprite.Velocity.X <= 0)
+                //{
+                    foreach (Rectangle box in _collisionBoxes)
+                    {
+                        if (sprite.HitBox.Intersects(box))
+                        {
+                            Console.WriteLine("Collision with " + box);
+                        }
+                    }
+                  //}
             }
         }
     }

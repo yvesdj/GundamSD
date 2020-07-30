@@ -17,5 +17,6 @@ namespace GundamSD.Models
         Vector2 Velocity { get; set; }
         float Speed { get; set; }
         IInput Inputs { get; set; }
+        Rectangle HitBox { get; }
     }
 }

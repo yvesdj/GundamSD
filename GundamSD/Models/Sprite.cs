@@ -33,8 +33,8 @@ namespace GundamSD.Models
 
         public IInput Inputs { get; set; }
         public float Speed { get; set; }
-        public Vector2 Velocity { get; set; }
-        public IMover Mover;
+
+        public IMover Mover { get; set; }
 
         #region Collision
         public Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth, Atlas.FrameHeight);
@@ -61,13 +61,15 @@ namespace GundamSD.Models
             Mover = Factory.CreateMover(this);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<Rectangle> collisionBoxes)
         {
             Mover.Move();
-            
-            //methode was uitgecommenteerd
+
             _atlasManager.SetAnimation();
             _atlasManager.Update(gameTime);
+
+            //Collision check should happen here
+            CollisionHandler.CheckCollision(this, collisionBoxes);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();

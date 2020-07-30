@@ -13,10 +13,11 @@ namespace GundamSD.Models
         Vector2 Position { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
-        void Update(GameTime gameTime);
-        Vector2 Velocity { get; set; }
+        void Update(GameTime gameTime, List<Rectangle> collisionBoxes);
+        
         float Speed { get; set; }
         IInput Inputs { get; set; }
+        IMover Mover { get; set; }
         Rectangle HitBox { get; }
     }
 }

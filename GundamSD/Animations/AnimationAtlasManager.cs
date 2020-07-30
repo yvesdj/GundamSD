@@ -28,13 +28,13 @@ namespace GundamSD.Animations
         {
             if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Attack))
                 AtlasPlayer.Play(_actions["Attack"]);
-            else if (_sprite.Velocity.X > 0)
+            else if (_sprite.Mover.Velocity.X > 0)
                 AtlasPlayer.Play(_actions["WalkRight"]);
-            else if (_sprite.Velocity.X < 0)
+            else if (_sprite.Mover.Velocity.X < 0)
                 AtlasPlayer.Play(_actions["WalkRight"]);
-            else if (_sprite.Velocity.Y > 0)
+            else if (_sprite.Mover.Velocity.Y > 0)
                 AtlasPlayer.Play(_actions["WalkRight"]);
-            else if (_sprite.Velocity.Y < 0)
+            else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);
 
             else AtlasPlayer.Stop();

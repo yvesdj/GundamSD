@@ -112,7 +112,7 @@ namespace GundamSD.Maps
         {
             foreach (var sprite in _sprites)
             {
-                sprite.Update(gameTime);
+                sprite.Update(gameTime, _collisionBoxes);
             }
         }
 
@@ -120,17 +120,24 @@ namespace GundamSD.Maps
         {
             foreach (ISprite sprite in _sprites)
             {
-                
-                //if (sprite.Velocity.X <= 0)
-                //{
-                    foreach (Rectangle box in _collisionBoxes)
+                foreach (Rectangle box in _collisionBoxes)
+                {
+                    if (sprite.Mover.Velocity.X < 0) //player going left
                     {
                         if (sprite.HitBox.Intersects(box))
                         {
-                            Console.WriteLine("Collision with " + box);
+                            Console.WriteLine("Collision to the left");
                         }
                     }
-                  //}
+                    else if (sprite.Mover.Velocity.X > 0)
+                    {
+                        if (sprite.HitBox.Intersects(box))
+                        {
+                            Console.WriteLine("Collision to the right");
+                        }
+                    }
+
+                }
             }
         }
     }

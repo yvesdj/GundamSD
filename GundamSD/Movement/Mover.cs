@@ -16,6 +16,8 @@ namespace GundamSD.Movement
 
         public Vector2 Velocity { get; set; }
 
+        public Vector2 NextPosition { get; set; }
+
         public Mover(ISprite sprite)
         {
             //_inputs = inputs;
@@ -28,8 +30,6 @@ namespace GundamSD.Movement
                 return;
             }
 
-            //_sprite.Position = new Vector2(0, 2);
-
             if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Up))
                 Velocity = new Vector2(0 , -_sprite.Speed);
             else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Down))
@@ -38,12 +38,13 @@ namespace GundamSD.Movement
                 Velocity = new Vector2(-_sprite.Speed , 0);
             else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Right))
                 Velocity = new Vector2(_sprite.Speed , 0);
-                //Console.WriteLine(_sprite.Velocity);
         }
 
         public void UpdatePosition()
         {
-            _sprite.Position += Velocity;
+            NextPosition = _sprite.Position + Velocity;
+
+            _sprite.Position = NextPosition;
         }
 
         public void ResetVelocity()

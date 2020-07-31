@@ -15,6 +15,7 @@ namespace GundamSD.Models
     {
         public IAnimationAtlas Atlas { get; set; }
         protected IAnimationAtlasManager _atlasManager;
+        public CollisionHandler CollisionHandler { get; set; }
 
         private Vector2 _position;
         public Vector2 Position
@@ -49,6 +50,7 @@ namespace GundamSD.Models
             Position = new Vector2(0,0);
             Speed = 3f;
             Mover = Factory.CreateMover(this);
+            CollisionHandler = new CollisionHandler(this);
         }
 
         public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
@@ -59,6 +61,7 @@ namespace GundamSD.Models
             Position = spawnPoint;
             Speed = 3f;
             Mover = Factory.CreateMover(this);
+            CollisionHandler = new CollisionHandler(this);
         }
 
         public void Update(GameTime gameTime, List<Rectangle> collisionBoxes)
@@ -69,7 +72,7 @@ namespace GundamSD.Models
             _atlasManager.Update(gameTime);
 
             //Collision check should happen here
-            CollisionHandler.CheckCollision(this, collisionBoxes);
+            CollisionHandler.CheckCollision(collisionBoxes);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();

@@ -9,6 +9,7 @@ namespace GundamSD.Models
     public interface ISprite
     {
         IAnimationAtlas Atlas { get; set; }
+        CollisionHandler CollisionHandler { get; set; }
 
         Vector2 Position { get; set; }
 

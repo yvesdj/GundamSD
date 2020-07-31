@@ -128,7 +128,7 @@ namespace GundamSD
             //}
 
             _mapManager.UpdateMap(gameTime);
-            _mapManager.CheckCollision();
+            //_mapManager.CheckCollision();
 
             // TODO: Add your update logic here
 

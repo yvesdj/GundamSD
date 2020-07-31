@@ -115,30 +115,5 @@ namespace GundamSD.Maps
                 sprite.Update(gameTime, _collisionBoxes);
             }
         }
-
-        public void CheckCollision()
-        {
-            foreach (ISprite sprite in _sprites)
-            {
-                foreach (Rectangle box in _collisionBoxes)
-                {
-                    if (sprite.Mover.Velocity.X < 0) //player going left
-                    {
-                        if (sprite.HitBox.Intersects(box))
-                        {
-                            Console.WriteLine("Collision to the left");
-                        }
-                    }
-                    else if (sprite.Mover.Velocity.X > 0)
-                    {
-                        if (sprite.HitBox.Intersects(box))
-                        {
-                            Console.WriteLine("Collision to the right");
-                        }
-                    }
-
-                }
-            }
-        }
     }
 }

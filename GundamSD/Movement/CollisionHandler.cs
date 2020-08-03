@@ -12,7 +12,9 @@ namespace GundamSD.Movement
     {
         private ISprite _sprite;
 
-        public bool IsColliding { get; set; }
+        public bool IsGrounded { get; set; }
+
+
 
         public CollisionHandler(ISprite sprite)
         {
@@ -27,29 +29,27 @@ namespace GundamSD.Movement
                 {
                     if (_sprite.Mover.Velocity.X < 0 && _sprite.HitBox.Right > box.Right)//left
                     {
-                        Console.WriteLine("Collision LEFT");
-                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X + 1, _sprite.Mover.NextPosition.Y);
+                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X + _sprite.Speed, _sprite.Mover.NextPosition.Y);
                         _sprite.Mover.Velocity = new Vector2(0, _sprite.Mover.Velocity.Y);
                     }
                     else if (_sprite.Mover.Velocity.X > 0 && _sprite.HitBox.Left < box.Left)
                     {
-                        Console.WriteLine("Collision RIGHT");
-                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X - 1, _sprite.Mover.NextPosition.Y);
+                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X - _sprite.Speed, _sprite.Mover.NextPosition.Y);
                         _sprite.Mover.Velocity = new Vector2(0, _sprite.Mover.Velocity.Y);
                     }
 
+                    
                     if (_sprite.Mover.Velocity.Y < 0 && _sprite.HitBox.Top > box.Top)
                     {
-                        Console.WriteLine("Collision UP");
-                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X, _sprite.Mover.NextPosition.Y - 1);
+                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X, _sprite.Mover.NextPosition.Y + _sprite.Speed);
                         _sprite.Mover.Velocity = new Vector2(_sprite.Mover.Velocity.X, 0);
                     }
                     else if (_sprite.Mover.Velocity.Y > 0 && _sprite.HitBox.Bottom < box.Bottom)
                     {
-                        Console.WriteLine("Collision DOWN");
-                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X, _sprite.Mover.NextPosition.Y + 1);
+                        _sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X, _sprite.Mover.NextPosition.Y - _sprite.Speed);
                         _sprite.Mover.Velocity = new Vector2(_sprite.Mover.Velocity.X, 0);
 
+                        IsGrounded = true;
                     }
                 }
             }

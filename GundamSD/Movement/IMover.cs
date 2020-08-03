@@ -6,7 +6,7 @@ namespace GundamSD.Movement
     {
         Vector2 Velocity { get; set; }
         Vector2 NextPosition { get; set; }
-        void Move();
+        void Move(GameTime gameTime);
         void UpdatePosition();
         void ResetVelocity();
     }

@@ -34,6 +34,7 @@ namespace GundamSD.Models
 
         public IInput Inputs { get; set; }
         public float Speed { get; set; }
+        public float JumpHeight { get; set; }
 
         public IMover Mover { get; set; }
 
@@ -66,7 +67,7 @@ namespace GundamSD.Models
 
         public void Update(GameTime gameTime, List<Rectangle> collisionBoxes)
         {
-            Mover.Move();
+            Mover.Move(gameTime);
 
             _atlasManager.SetAnimation();
             _atlasManager.Update(gameTime);

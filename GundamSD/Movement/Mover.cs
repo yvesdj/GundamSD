@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GundamSD.Maps;
 using GundamSD.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -27,7 +28,7 @@ namespace GundamSD.Movement
             //_inputs = inputs;
             _sprite = sprite;
         }
-        public void Move(GameTime gametime)
+        public void Move(GameTime gametime, MapManager mapManager)
         {
             if (_sprite.Inputs == null)
             {
@@ -41,15 +42,21 @@ namespace GundamSD.Movement
                 _sprite.CollisionHandler.IsGrounded = false;
             }
             else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Down))
+            {
                 _velocityY = _sprite.Speed;
+            }
             else if (_sprite.Inputs.KeyIsPressed(_sprite.Inputs.Jump))
             {
-                if (_velocityY == 0)
-                    _velocityY = -100f;
+                if (_sprite.CollisionHandler.IsGrounded)
+                {
+                    _velocityY = -200f;
+                }
                 _sprite.CollisionHandler.IsGrounded = false;
             }
             else
+            {
                 _velocityY = 0;
+            }
 
             if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Left))
                 _velocityX = -_sprite.Speed;
@@ -58,27 +65,32 @@ namespace GundamSD.Movement
             else
                 _velocityX = 0;
 
-            //_velocityY += _gravity * (float)gametime.ElapsedGameTime.TotalSeconds;
             ApplyGravity(gametime);
 
             Velocity = new Vector2(_velocityX, _velocityY);
+            _sprite.CollisionHandler.CheckCollision(mapManager);
+            //Console.WriteLine(_sprite.Mover.Velocity);
+            
+
+
 
             NextPosition = _sprite.Position + Velocity;
-            Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
-            //ResetVelocity();
+            //Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
+            //Console.WriteLine(_velocityY);
         }
 
         private void ApplyGravity(GameTime gametime)
         {
-            if (!_sprite.CollisionHandler.IsGrounded)
+            if (!_sprite.CollisionHandler.IsGrounded || !_sprite.CollisionHandler.IsColliding)
             {
                 _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
-                _velocityY += _gravity * 2 * _timer;
+                _velocityY += _gravity * 3 * _timer;
                 if (_timer > _frameSpeed)
                 {
                     _timer = 0f;
                 }
             }
+            
         }
 
         public void UpdatePosition()

@@ -1,4 +1,5 @@
 ﻿using GundamSD.Animations;
+using GundamSD.Maps;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -65,15 +66,15 @@ namespace GundamSD.Models
             CollisionHandler = new CollisionHandler(this);
         }
 
-        public void Update(GameTime gameTime, List<Rectangle> collisionBoxes)
+        public void Update(GameTime gameTime, MapManager mapManager)
         {
-            Mover.Move(gameTime);
+            Mover.Move(gameTime, mapManager);
 
             _atlasManager.SetAnimation();
             _atlasManager.Update(gameTime);
 
             //Collision check should happen here
-            CollisionHandler.CheckCollision(collisionBoxes);
+            //CollisionHandler.CheckCollision(mapManager);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();

@@ -96,6 +96,7 @@ namespace GundamSD
             //TiledSharp Test
             _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
             _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+            Console.WriteLine(_tutorialMap.Tilesets[0].Name.ToString());
 
             _mapManager = new MapManager(_tutorialMap, _tileset, _sprites);
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);

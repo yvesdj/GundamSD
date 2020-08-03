@@ -16,7 +16,7 @@ namespace GundamSD.Maps
         private TmxMap _map;
         private Texture2D _tileSet;
         private List<ISprite> _sprites;
-        private List<Rectangle> _collisionBoxes => GetMapCollidables();
+        //private List<Rectangle> _collisionBoxes => GetMapCollidables();
 
         private int _tileWidth;
         private int _tileHeight;
@@ -60,10 +60,19 @@ namespace GundamSD.Maps
             return collidableBoxes;
         }
 
+        //public TmxLayerTile GetTile(int x, int y)
+        //{
+        //    for (int i = 0; i < length; i++)
+        //    {
+
+        //    }
+
+        //}
+
         public void DrawLayer(SpriteBatch spriteBatch, string layerName)
         {
             
-            for (var i = 0; i < _map.Layers[layerName].Tiles.Count; i++)
+            for (var i = 0; i <  _map.Layers[layerName].Tiles.Count; i++)
             {
                 int gid = _map.Layers[layerName].Tiles[i].Gid;
                 
@@ -112,7 +121,7 @@ namespace GundamSD.Maps
         {
             foreach (var sprite in _sprites)
             {
-                sprite.Update(gameTime, _collisionBoxes);
+                sprite.Update(gameTime, this);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GundamSD.Animations;
+using GundamSD.Maps;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ namespace GundamSD.Models
         Vector2 Position { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
-        void Update(GameTime gameTime, List<Rectangle> collisionBoxes);
+        void Update(GameTime gameTime, MapManager mapManager);
         
         float Speed { get; set; }
         IInput Inputs { get; set; }

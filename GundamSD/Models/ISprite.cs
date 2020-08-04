@@ -22,5 +22,8 @@ namespace GundamSD.Models
         IInput Inputs { get; set; }
         IMover Mover { get; set; }
         Rectangle HitBox { get; }
+
+        int Health { get; set; }
+        Rectangle HealthBar { get; set; }
     }
 }

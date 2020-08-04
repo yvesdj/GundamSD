@@ -113,10 +113,13 @@ namespace GundamSD.Maps
 
         public void UpdateMap(GameTime gameTime)
         {
-            foreach (var sprite in Sprites)
+            for (int i = 0; i < Sprites.Count; i++)
             {
-                sprite.Update(gameTime, this);
-                //Console.WriteLine(sprite.Position);
+                if (Sprites[i].Health <= 0)
+                {
+                    Sprites.Remove(Sprites[i]);
+                } else 
+                    Sprites[i].Update(gameTime, this);
             }
         }
     }

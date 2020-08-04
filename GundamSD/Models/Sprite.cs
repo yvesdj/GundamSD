@@ -79,7 +79,9 @@ namespace GundamSD.Models
             Mover.UpdatePosition();
             Mover.ResetVelocity();
 
-            HealthBar = new Rectangle((int)Position.X - 6, (int)Position.Y - 20, 50, 5);
+            //HealthReduction test at AtlasManager Attack and mapManager UpdateMap
+            HealthBar = new Rectangle((int)Position.X - 6, (int)Position.Y - 20, Health / 2, 5);
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

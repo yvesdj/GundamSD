@@ -33,7 +33,11 @@ namespace GundamSD.Animations
             }
 
             if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Attack))
+            {
                 AtlasPlayer.Play(_actions["Attack"]);
+
+                _sprite.Health -= 10;
+            }
             else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);
             else if (_sprite.Mover.Velocity.X > 0 || _sprite.Mover.Velocity.X < 0)

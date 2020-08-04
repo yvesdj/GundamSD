@@ -38,6 +38,18 @@
 /processorParam:TextureFormat=Color
 /build:maps/Tilesets/Industrial/industrial.v1_32.png
 
+#begin Models/ZakuII_Atlas_64.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Models/ZakuII_Atlas_64.png
+
 #begin Models/ZetaGundam_Atlas_64.png
 /importer:TextureImporter
 /processor:TextureProcessor

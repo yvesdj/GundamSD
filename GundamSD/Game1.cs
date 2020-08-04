@@ -31,7 +31,7 @@ namespace GundamSD
         //private TiledMapRenderer mapRenderer;
 
         //AtlasTest
-        private IAnimationAtlas _atlas;
+        //private IAnimationAtlas _atlasPlayer;
         
         
         //END AtlasTest
@@ -69,7 +69,9 @@ namespace GundamSD
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            _atlas = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
+            Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64");
+            IAnimationAtlas _atlasPlayer = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
+            IAnimationAtlas _atlasEnemy = Factory.CreateAnimAtlas(enemyAtlas, 10, 10);
             //END AtlasTest
 
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
@@ -83,9 +85,9 @@ namespace GundamSD
                 { "Attack", Attack },
             };
 
-            ISprite playerSprite = Factory.CreateSprite(_atlas, actions);
+            ISprite playerSprite = Factory.CreateSprite(_atlasPlayer, actions);
             IPlayer player = Factory.CreatePlayer(playerSprite);
-            ISprite testSprite = Factory.CreateSprite(_atlas, actions);
+            ISprite testSprite = Factory.CreateSprite(_atlasEnemy, actions);
             #endregion
 
             _sprites = new List<ISprite>

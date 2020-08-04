@@ -50,52 +50,58 @@ namespace GundamSD.Movement
                 {
                     if (_sprite.CollisionHandler.IsGrounded)
                     {
-                        _velocityY = -200f;
+                        _velocityY = -_sprite.JumpHeight;
                     }
                     _sprite.CollisionHandler.IsGrounded = false;
                 }
-                else
-                {
-                    _velocityY = 0;
-                }
 
                 if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Left))
-                    _velocityX = -_sprite.Speed;
+                    _velocityX += -_sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
                 else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Right))
-                    _velocityX = _sprite.Speed;
-                else
-                    _velocityX = 0;
+                    _velocityX += _sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
             }
 
-            
-
             ApplyGravity(gametime);
+            ApplyDrag(gametime);
+            ClampVelocity();
 
             Velocity = new Vector2(_velocityX, _velocityY);
             _sprite.CollisionHandler.CheckCollisionMap(mapManager);
             _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
+
+            Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
+
             //Console.WriteLine(_sprite.Mover.Velocity);
-            
-
-
-
             NextPosition = _sprite.Position + Velocity;
-            //Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
-            //Console.WriteLine(_velocityY);
+        }
+
+        private void ApplyDrag(GameTime gametime)
+        {
+            if (_sprite.CollisionHandler.IsGrounded)
+            {
+                _velocityX += -3f * _velocityX * (float)gametime.ElapsedGameTime.TotalSeconds;
+                if (Math.Abs(_velocityX) < 0.1f)
+                {
+                    _velocityX = 0f;
+                }
+            }
+        }
+
+        private void ClampVelocity()
+        {
+            if (_velocityX > _sprite.Speed)
+                _velocityX = _sprite.Speed;
+            if (_velocityX < -_sprite.Speed)
+                _velocityX = -_sprite.Speed;
+            if (_velocityY > 20f)
+                _velocityY = 20f;
+            if (_velocityY < -20f)
+                _velocityY = -20f;
         }
 
         private void ApplyGravity(GameTime gametime)
         {
-            if (!_sprite.CollisionHandler.IsGrounded || !_sprite.CollisionHandler.IsColliding)
-            {
-                _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
-                _velocityY += _gravity * 3 * _timer;
-                if (_timer > _frameSpeed)
-                {
-                    _timer = 0f;
-                }
-            }
-            
+            _velocityY += _gravity * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
         }
 
         public void UpdatePosition()

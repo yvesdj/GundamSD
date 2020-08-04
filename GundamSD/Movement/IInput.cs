@@ -7,7 +7,7 @@ namespace GundamSD.Movement
         Keys Down { get; set; }
         Keys Left { get; set; }
         Keys Right { get; set; }
-        Keys Jump { get; set; }
+        Keys Up { get; set; }
         Keys Attack { get; set; }
         Keys Jump { get; set; }
 

@@ -50,7 +50,9 @@ namespace GundamSD.Models
             _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = new Vector2(0,0);
-            Speed = 3f;
+            Speed = 5f;
+            JumpHeight = 10f;
+
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);
         }
@@ -61,8 +63,8 @@ namespace GundamSD.Models
             _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = spawnPoint;
-            Speed = 3f;
-            JumpHeight = 3f;
+            Speed = 5f;
+            JumpHeight = 10f;
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);
         }

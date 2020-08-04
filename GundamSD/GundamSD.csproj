@@ -57,6 +57,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Maps\MapManager.cs" />
+    <Compile Include="Models\Grunt.cs" />
     <Compile Include="Models\HealthHandler.cs" />
     <Compile Include="Models\IHealthHandler.cs" />
     <Compile Include="Models\IPlayer.cs" />

@@ -18,20 +18,27 @@ namespace GundamSD
             return new Sprite(atlas, actions);
         }
 
-        public static IHealthHandler CreateHealthHandler(ISprite sprite)
+        public static IHealthHandler CreateHealthHandler(ISprite sprite, Color color)
         {
-            return new HealthHandler(sprite);
+            return new HealthHandler(sprite, color);
         }
+
+        #region Enemies
+        public static ISprite CreateGrunt(Texture2D atlasTexture)
+        {
+            return new Grunt(atlasTexture);
+        }
+        #endregion
 
         #region Player
-        public static ISprite CreatePlayerTest(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
-        {
-            return new Player(atlas, actions);
-        }
+        //public static ISprite CreatePlayerTest(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
+        //{
+        //    return new Player(atlas, actions);
+        //}
 
-        public static ISprite CreatePlayer(IAnimationAtlas atlas)
+        public static ISprite CreatePlayer(Texture2D atlasTexture)
         {
-            return new Player(atlas);
+            return new Player(atlasTexture);
         }
 
         public static IInput CreateInput()

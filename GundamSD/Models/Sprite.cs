@@ -62,12 +62,12 @@ namespace GundamSD.Models
             CollisionHandler = new CollisionHandler(this);
 
             MaxHealth = 100;
-            HealthHandler = Factory.CreateHealthHandler(this);
+            HealthHandler = Factory.CreateHealthHandler(this, Color.Wheat);
         }
 
-        public Sprite(IAnimationAtlas atlas)
+        public Sprite(Texture2D atlasTexture)
         {
-            Atlas = atlas;
+            Atlas = Factory.CreateAnimAtlas(atlasTexture, 10, 10);
             //_atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = new Vector2(0, 0);
@@ -78,7 +78,7 @@ namespace GundamSD.Models
             CollisionHandler = new CollisionHandler(this);
 
             MaxHealth = 100;
-            HealthHandler = Factory.CreateHealthHandler(this);
+            HealthHandler = Factory.CreateHealthHandler(this, Color.Wheat);
         }
 
         public void Update(GameTime gameTime, MapManager mapManager)

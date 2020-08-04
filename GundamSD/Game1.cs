@@ -83,7 +83,7 @@ namespace GundamSD
             };
 
             //ISprite player = Factory.CreatePlayer(_atlasPlayer, actions);
-            ISprite player = Factory.CreatePlayer(_atlasPlayer);
+            ISprite player = Factory.CreatePlayer(playerAtlas);
 
             IAnimationAtlas _atlasEnemy = Factory.CreateAnimAtlas(enemyAtlas, 10, 10);
             //END AtlasTest

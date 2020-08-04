@@ -8,14 +8,16 @@ namespace GundamSD.Models
         private ISprite _sprite;
         private Texture2D _healthBarText;
         private int _currentHealth;
+        private Color _color;
 
         public bool IsDead { get { return _currentHealth <= 0; } }
         public Rectangle HealthBar { get; set; }
 
-        public HealthHandler(ISprite sprite)
+        public HealthHandler(ISprite sprite, Color color)
         {
             _sprite = sprite;
             _currentHealth = _sprite.MaxHealth;
+            _color = color;
         }
 
         public void TakeDamage(int amount)
@@ -31,7 +33,7 @@ namespace GundamSD.Models
         public void Draw(SpriteBatch spriteBatch)
         {
             _healthBarText = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
-            _healthBarText.SetData(new Color[] { Color.Green });
+            _healthBarText.SetData(new Color[] { _color });
             spriteBatch.Draw(_healthBarText, HealthBar, Color.White);
         }
     }

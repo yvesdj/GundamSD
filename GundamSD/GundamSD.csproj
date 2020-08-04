@@ -61,6 +61,7 @@
     <Compile Include="Models\ISprite.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Sprite.cs" />
+    <Compile Include="Movement\CollisionChecker.cs" />
     <Compile Include="Movement\CollisionHandler.cs" />
     <Compile Include="Movement\IInput.cs" />
     <Compile Include="Movement\IMover.cs" />

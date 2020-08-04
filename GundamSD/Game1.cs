@@ -70,14 +70,11 @@ namespace GundamSD
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
             Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64");
-            IAnimationAtlas _atlasPlayer = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
-            IAnimationAtlas _atlasEnemy = Factory.CreateAnimAtlas(enemyAtlas, 10, 10);
-            //END AtlasTest
 
+            IAnimationAtlas _atlasPlayer = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
             IAnimationAtlasAction Attack = Factory.CreateAnimAtlasAction(30, 38, false);
-
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },
@@ -85,15 +82,22 @@ namespace GundamSD
                 { "Attack", Attack },
             };
 
-            ISprite playerSprite = Factory.CreateSprite(_atlasPlayer, actions);
-            IPlayer player = Factory.CreatePlayer(playerSprite);
+            //ISprite player = Factory.CreatePlayer(_atlasPlayer, actions);
+            ISprite player = Factory.CreatePlayer(_atlasPlayer);
+
+            IAnimationAtlas _atlasEnemy = Factory.CreateAnimAtlas(enemyAtlas, 10, 10);
+            //END AtlasTest
+
+
+
+            //ISprite playerSprite = Factory.CreateSprite(_atlasPlayer, actions);
             ISprite testSprite = Factory.CreateSprite(_atlasEnemy, actions);
             #endregion
 
             _sprites = new List<ISprite>
             {
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
-                player.PlayerSprite,
+                player,
                 testSprite
             };
 

@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GundamSD.Animations;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.Models
 {
-    public class Player : IPlayer
+    public class Player : Sprite
     {
-        public ISprite PlayerSprite { get; set; }
-
-        public Player(ISprite sprite)
+        public Player(IAnimationAtlas atlas) : base(atlas)
         {
-            PlayerSprite = sprite;
-            PlayerSprite.Inputs = Factory.CreateInput();
+            IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
+            IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
+            IAnimationAtlasAction Attack = Factory.CreateAnimAtlasAction(30, 38, false);
+            Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
+            {
+                { "WalkRight", WalkRight },
+                { "Jump", Jump },
+                { "Attack", Attack },
+            };
+            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
+            Inputs = Factory.CreateInput();
+        }
+
+        public Player(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions) : base(atlas, actions)
+        {
+            Inputs = Factory.CreateInput();
         }
     }
 }

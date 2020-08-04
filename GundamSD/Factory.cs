@@ -24,9 +24,14 @@ namespace GundamSD
         }
 
         #region Player
-        public static IPlayer CreatePlayer(ISprite playerSprite)
+        public static ISprite CreatePlayerTest(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
         {
-            return new Player(playerSprite);
+            return new Player(atlas, actions);
+        }
+
+        public static ISprite CreatePlayer(IAnimationAtlas atlas)
+        {
+            return new Player(atlas);
         }
 
         public static IInput CreateInput()

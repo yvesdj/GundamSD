@@ -65,6 +65,22 @@ namespace GundamSD.Models
             HealthHandler = Factory.CreateHealthHandler(this);
         }
 
+        public Sprite(IAnimationAtlas atlas)
+        {
+            Atlas = atlas;
+            //_atlasManager = Factory.CreateAnimAtlasManager(this, actions);
+
+            Position = new Vector2(0, 0);
+            Speed = 5f;
+            JumpHeight = 10f;
+
+            Mover = Factory.CreateMover(this);
+            CollisionHandler = new CollisionHandler(this);
+
+            MaxHealth = 100;
+            HealthHandler = Factory.CreateHealthHandler(this);
+        }
+
         public void Update(GameTime gameTime, MapManager mapManager)
         {
             Mover.Move(gameTime, mapManager);

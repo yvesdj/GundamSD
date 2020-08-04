@@ -71,34 +71,15 @@ namespace GundamSD
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
             Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64");
 
-            IAnimationAtlas _atlasPlayer = Factory.CreateAnimAtlas(playerAtlas, 10, 10);
-            IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
-            IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
-            IAnimationAtlasAction Attack = Factory.CreateAnimAtlasAction(30, 38, false);
-            Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
-            {
-                { "WalkRight", WalkRight },
-                { "Jump", Jump },
-                { "Attack", Attack },
-            };
-
-            //ISprite player = Factory.CreatePlayer(_atlasPlayer, actions);
             ISprite player = Factory.CreatePlayer(playerAtlas);
-
-            IAnimationAtlas _atlasEnemy = Factory.CreateAnimAtlas(enemyAtlas, 10, 10);
-            //END AtlasTest
-
-
-
-            //ISprite playerSprite = Factory.CreateSprite(_atlasPlayer, actions);
-            ISprite testSprite = Factory.CreateSprite(_atlasEnemy, actions);
+            ISprite grunt = Factory.CreateGrunt(enemyAtlas);
             #endregion
 
             _sprites = new List<ISprite>
             {
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
                 player,
-                testSprite
+                grunt
             };
 
             //TiledSharp Test

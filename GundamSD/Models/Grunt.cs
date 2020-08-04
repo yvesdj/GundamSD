@@ -23,7 +23,7 @@ namespace GundamSD.Models
                 { "Attack", Attack },
             };
             _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
-            Inputs = Factory.CreateInput();
+            //Inputs = Factory.CreateInput();
             HealthHandler = Factory.CreateHealthHandler(this, Color.Red);
         }
     }

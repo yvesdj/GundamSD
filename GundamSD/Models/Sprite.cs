@@ -39,6 +39,12 @@ namespace GundamSD.Models
 
         public IMover Mover { get; set; }
 
+        #region Health
+        public int Health { get; set; }
+        public Rectangle HealthBar { get; set; }
+        private Texture2D _healthBarText;
+        #endregion
+
         #region Collision
         public Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth / 2, Atlas.FrameHeight / 2);
 
@@ -55,18 +61,9 @@ namespace GundamSD.Models
 
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);
-        }
 
-        public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
-        {
-            Atlas = atlas;
-            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
-
-            Position = spawnPoint;
-            Speed = 5f;
-            JumpHeight = 10f;
-            Mover = Factory.CreateMover(this);
-            CollisionHandler = new CollisionHandler(this);
+            Health = 100;
+            
         }
 
         public void Update(GameTime gameTime, MapManager mapManager)
@@ -81,6 +78,8 @@ namespace GundamSD.Models
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();
+
+            HealthBar = new Rectangle((int)Position.X - 6, (int)Position.Y - 20, 50, 5);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -88,6 +87,10 @@ namespace GundamSD.Models
             if (_atlasManager != null)
                 _atlasManager.Draw(spriteBatch);
             else throw new Exception("this ni goe");
+
+            _healthBarText = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            _healthBarText.SetData(new Color[] { Color.Green });
+            spriteBatch.Draw(_healthBarText, HealthBar, Color.White);
         }
     }
 }

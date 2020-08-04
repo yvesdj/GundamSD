@@ -9,5 +9,10 @@ namespace GundamSD.Movement
         Keys Right { get; set; }
         Keys Jump { get; set; }
         Keys Attack { get; set; }
+        Keys Jump { get; set; }
+
+        KeyboardState GetKeyboardState();
+        bool KeyIsHoldDown(Keys key);
+        bool KeyIsPressed(Keys key);
     }
 }

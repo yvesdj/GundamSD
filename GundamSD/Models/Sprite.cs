@@ -1,4 +1,5 @@
 ﻿using GundamSD.Animations;
+using GundamSD.Maps;
 using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,13 +15,10 @@ namespace GundamSD.Models
     public class Sprite : ISprite
     {
         public IAnimationAtlas Atlas { get; set; }
-        //private AnimationAtlas _atlas;
         protected IAnimationAtlasManager _atlasManager;
-        //protected AnimationAtlasPlayer _atlasPlayer;
-        //protected Dictionary<string, AnimationAtlasAction> _actions;
+        public CollisionHandler CollisionHandler { get; set; }
 
         private Vector2 _position;
-
         public Vector2 Position
         {
             get { return _position; }
@@ -35,68 +33,53 @@ namespace GundamSD.Models
             }
         }
 
-        
         public IInput Inputs { get; set; }
-
         public float Speed { get; set; }
-
         public float JumpHeight { get; set; }
 
-        //public Vector2 Velocity;
-        private Vector2 _velocity;
+        public IMover Mover { get; set; }
 
-        public Vector2 Velocity
+        #region Collision
+        public Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, Atlas.FrameWidth / 2, Atlas.FrameHeight / 2);
+
+        #endregion
+
+        public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
         {
-            get { return _velocity; }
-            set { _velocity = value; }
-        }
+            Atlas = atlas;
+            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
-        public IMover Mover;
+            Position = new Vector2(0,0);
+            Speed = 3f;
+            Mover = Factory.CreateMover(this);
+            CollisionHandler = new CollisionHandler(this);
+        }
 
         public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions, /*bool isPlayer,*/ Vector2 spawnPoint)
         {
             Atlas = atlas;
-            //_actions = actions;
-            //_atlasPlayer = new AnimationAtlasPlayer(atlas, _actions.First().Value);
             _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = spawnPoint;
             Speed = 3f;
             JumpHeight = 3f;
             Mover = Factory.CreateMover(this);
-            //if (isPlayer)
-            //{
-            //    Inputs = Factory.CreateInput();
-            //}
+            CollisionHandler = new CollisionHandler(this);
         }
 
-        public void Update(GameTime gameTime, List<ISprite> sprites)
+        public void Update(GameTime gameTime, MapManager mapManager)
         {
-            Mover.Move();
+            Mover.Move(gameTime, mapManager);
 
-            //methode was uitgecommenteerd
             _atlasManager.SetAnimation();
             _atlasManager.Update(gameTime);
+
+            //Collision check should happen here
+            //CollisionHandler.CheckCollision(mapManager);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();
         }
-
-        //protected void SetAnimation()
-        //{
-        //    if (Keyboard.GetState().IsKeyDown(Inputs.Attack))
-        //        _atlasPlayer.Play(_actions["Attack"]);
-        //    else if (_velocity.X > 0)
-        //        _atlasPlayer.Play(_actions["WalkRight"]);
-        //    else if (_velocity.X < 0)
-        //        _atlasPlayer.Play(_actions["WalkRight"]);
-        //    else if (Velocity.Y > 0)
-        //        _atlasPlayer.Play(_actions["WalkRight"]);
-        //    else if (Velocity.Y < 0)
-        //        _atlasPlayer.Play(_actions["Jump"]);
-
-        //    else _atlasPlayer.Stop();
-        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -105,5 +88,4 @@ namespace GundamSD.Models
             else throw new Exception("this ni goe");
         }
     }
-
 }

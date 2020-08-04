@@ -17,6 +17,12 @@ namespace GundamSD
         {
             return new Sprite(atlas, actions);
         }
+
+        public static IHealthHandler CreateHealthHandler(ISprite sprite)
+        {
+            return new HealthHandler(sprite);
+        }
+
         #region Player
         public static IPlayer CreatePlayer(ISprite playerSprite)
         {

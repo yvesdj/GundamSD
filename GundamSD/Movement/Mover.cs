@@ -69,7 +69,7 @@ namespace GundamSD.Movement
             _sprite.CollisionHandler.CheckCollisionMap(mapManager);
             _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
 
-            Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
+            //Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
 
             //Console.WriteLine(_sprite.Mover.Velocity);
             NextPosition = _sprite.Position + Velocity;

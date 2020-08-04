@@ -36,7 +36,7 @@ namespace GundamSD.Animations
             {
                 AtlasPlayer.Play(_actions["Attack"]);
 
-                _sprite.Health -= 10;
+                _sprite.HealthHandler.TakeDamage(10);
             }
             else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);

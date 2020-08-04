@@ -40,9 +40,8 @@ namespace GundamSD.Models
         public IMover Mover { get; set; }
 
         #region Health
-        public int Health { get; set; }
-        public Rectangle HealthBar { get; set; }
-        private Texture2D _healthBarText;
+        public int MaxHealth { get; set; }
+        public IHealthHandler HealthHandler { get; set; }
         #endregion
 
         #region Collision
@@ -62,8 +61,8 @@ namespace GundamSD.Models
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);
 
-            Health = 100;
-            
+            MaxHealth = 100;
+            HealthHandler = Factory.CreateHealthHandler(this);
         }
 
         public void Update(GameTime gameTime, MapManager mapManager)
@@ -80,8 +79,7 @@ namespace GundamSD.Models
             Mover.ResetVelocity();
 
             //HealthReduction test at AtlasManager Attack and mapManager UpdateMap
-            HealthBar = new Rectangle((int)Position.X - 6, (int)Position.Y - 20, Health / 2, 5);
-            
+            HealthHandler.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -90,9 +88,7 @@ namespace GundamSD.Models
                 _atlasManager.Draw(spriteBatch);
             else throw new Exception("this ni goe");
 
-            _healthBarText = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
-            _healthBarText.SetData(new Color[] { Color.Green });
-            spriteBatch.Draw(_healthBarText, HealthBar, Color.White);
+            HealthHandler.Draw(spriteBatch);
         }
     }
 }

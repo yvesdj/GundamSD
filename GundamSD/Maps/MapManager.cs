@@ -115,8 +115,9 @@ namespace GundamSD.Maps
         {
             for (int i = 0; i < Sprites.Count; i++)
             {
-                if (Sprites[i].Health <= 0)
+                if (Sprites[i].HealthHandler.IsDead)
                 {
+                    Console.WriteLine("DEAD");
                     Sprites.Remove(Sprites[i]);
                 } else 
                     Sprites[i].Update(gameTime, this);

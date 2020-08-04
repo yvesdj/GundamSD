@@ -15,7 +15,8 @@ namespace GundamSD.Maps
     {
         private TmxMap _map;
         private Texture2D _tileSet;
-        private List<ISprite> _sprites;
+        public List<ISprite> Sprites { get; set; }
+
         //private List<Rectangle> _collisionBoxes => GetMapCollidables();
 
         private int _tileWidth;
@@ -23,14 +24,15 @@ namespace GundamSD.Maps
         private int _tilesetTilesWide;
         private int _tilesetTilesHigh;
 
+
         public MapManager(TmxMap map, Texture2D tileSet, List<ISprite> sprites)
         {
             _map = map;
             _tileSet = tileSet;
-            _sprites = sprites;
+            Sprites = sprites;
             //first sprite will always be Player
-            _sprites[0].Position = GetSpawnPoint(0);
-            _sprites[1].Position = new Vector2(700, 100);
+            Sprites[0].Position = GetSpawnPoint(0);
+            Sprites[1].Position = new Vector2(700, 100);
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;
@@ -60,15 +62,6 @@ namespace GundamSD.Maps
 
             return collidableBoxes;
         }
-
-        //public TmxLayerTile GetTile(int x, int y)
-        //{
-        //    for (int i = 0; i < length; i++)
-        //    {
-
-        //    }
-
-        //}
 
         public void DrawLayer(SpriteBatch spriteBatch, string layerName)
         {
@@ -110,7 +103,7 @@ namespace GundamSD.Maps
             DrawLayer(spriteBatch, "BackgroundStuff");
             DrawLayer(spriteBatch, "Walkable");
 
-            foreach (var sprite in _sprites)
+            foreach (var sprite in Sprites)
             {
                 sprite.Draw(spriteBatch);
             }
@@ -120,12 +113,11 @@ namespace GundamSD.Maps
 
         public void UpdateMap(GameTime gameTime)
         {
-            foreach (var sprite in _sprites)
+            foreach (var sprite in Sprites)
             {
                 sprite.Update(gameTime, this);
-                Console.WriteLine(sprite.Position);
+                //Console.WriteLine(sprite.Position);
             }
-
         }
     }
 }

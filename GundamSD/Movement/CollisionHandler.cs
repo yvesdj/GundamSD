@@ -76,5 +76,24 @@ namespace GundamSD.Movement
                 }
             }
         }
+
+        public void CheckCollisionSprite(MapManager mapManager)
+        {
+            List<ISprite> otherSprites = mapManager.Sprites;
+
+            for (int i = 0; i < otherSprites.Count; i++)
+            {
+                if (otherSprites[i] == _sprite)
+                {
+                    continue;
+                }
+                //Console.WriteLine(otherSprites[i]);
+                if (_sprite.HitBox.Intersects(otherSprites[i].HitBox))
+                {
+                    Console.WriteLine("COLLIDED WITH SPRITE");
+                }
+            }
+            
+        }
     }
 }

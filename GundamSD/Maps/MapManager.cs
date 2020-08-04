@@ -30,6 +30,7 @@ namespace GundamSD.Maps
             _sprites = sprites;
             //first sprite will always be Player
             _sprites[0].Position = GetSpawnPoint(0);
+            _sprites[1].Position = new Vector2(700, 100);
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;
@@ -122,7 +123,9 @@ namespace GundamSD.Maps
             foreach (var sprite in _sprites)
             {
                 sprite.Update(gameTime, this);
+                Console.WriteLine(sprite.Position);
             }
+
         }
     }
 }

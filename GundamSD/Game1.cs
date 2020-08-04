@@ -85,12 +85,14 @@ namespace GundamSD
 
             ISprite playerSprite = Factory.CreateSprite(_atlas, actions);
             IPlayer player = Factory.CreatePlayer(playerSprite);
+            ISprite testSprite = Factory.CreateSprite(_atlas, actions);
             #endregion
 
             _sprites = new List<ISprite>
             {
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
-                player.PlayerSprite
+                player.PlayerSprite,
+                testSprite
             };
 
             //TiledSharp Test

@@ -21,7 +21,7 @@ namespace GundamSD.Movement
             _sprite = sprite;
         }
 
-        public void CheckCollision(MapManager mapManager)
+        public void CheckCollisionMap(MapManager mapManager)
         {
             List<Rectangle> collisionBoxes = mapManager.GetMapCollidables();
             foreach (Rectangle box in collisionBoxes)
@@ -36,7 +36,6 @@ namespace GundamSD.Movement
                     _sprite.Mover.Velocity = new Vector2(_sprite.Mover.Velocity.X, 0);
                     IsColliding = true;
                     IsGrounded = true;
-                    Console.WriteLine("Collision BOTTOM");
 
                 }
                 else if (_sprite.Mover.Velocity.Y < 0 &&
@@ -48,7 +47,6 @@ namespace GundamSD.Movement
                     //_sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X, _sprite.Mover.NextPosition.Y + _sprite.Speed);
                     _sprite.Mover.Velocity = new Vector2(_sprite.Mover.Velocity.X, 0);
                     IsColliding = true;
-                    Console.WriteLine("Collision TOP");
                 }
 
                 else if (_sprite.Mover.Velocity.X > 0 &&
@@ -60,7 +58,6 @@ namespace GundamSD.Movement
                     //_sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X - _sprite.Speed, _sprite.Mover.NextPosition.Y);
                     _sprite.Mover.Velocity = new Vector2(0, _sprite.Mover.Velocity.Y);
                     IsColliding = true;
-                    Console.WriteLine("Collision RIGHT");
 
                 }
                 else if (_sprite.Mover.Velocity.X < 0 &&
@@ -72,12 +69,10 @@ namespace GundamSD.Movement
                     //_sprite.Mover.NextPosition = new Vector2(_sprite.Mover.NextPosition.X + _sprite.Speed, _sprite.Mover.NextPosition.Y);
                     _sprite.Mover.Velocity = new Vector2(0, _sprite.Mover.Velocity.Y);
                     IsColliding = true;
-                    Console.WriteLine("Collision LEFT");
                 }
                 else
                 {
                     IsColliding = false;
-                    //Console.WriteLine("Collision NONE");
                 }
             }
         }

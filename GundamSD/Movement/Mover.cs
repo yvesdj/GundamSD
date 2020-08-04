@@ -30,45 +30,45 @@ namespace GundamSD.Movement
         }
         public void Move(GameTime gametime, MapManager mapManager)
         {
-            if (_sprite.Inputs == null)
+            if (_sprite.Inputs != null)
             {
-                return;
-            }
-
-            _sprite.Inputs.GetKeyboardState();
-            if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Up))
-            {
-                _velocityY = -_sprite.Speed;
-                _sprite.CollisionHandler.IsGrounded = false;
-            }
-            else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Down))
-            {
-                _velocityY = _sprite.Speed;
-            }
-            else if (_sprite.Inputs.KeyIsPressed(_sprite.Inputs.Jump))
-            {
-                if (_sprite.CollisionHandler.IsGrounded)
+                _sprite.Inputs.GetKeyboardState();
+                if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Up))
                 {
-                    _velocityY = -200f;
+                    _velocityY = -_sprite.Speed;
+                    _sprite.CollisionHandler.IsGrounded = false;
                 }
-                _sprite.CollisionHandler.IsGrounded = false;
-            }
-            else
-            {
-                _velocityY = 0;
+                else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Down))
+                {
+                    _velocityY = _sprite.Speed;
+                }
+                else if (_sprite.Inputs.KeyIsPressed(_sprite.Inputs.Jump))
+                {
+                    if (_sprite.CollisionHandler.IsGrounded)
+                    {
+                        _velocityY = -200f;
+                    }
+                    _sprite.CollisionHandler.IsGrounded = false;
+                }
+                else
+                {
+                    _velocityY = 0;
+                }
+
+                if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Left))
+                    _velocityX = -_sprite.Speed;
+                else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Right))
+                    _velocityX = _sprite.Speed;
+                else
+                    _velocityX = 0;
             }
 
-            if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Left))
-                _velocityX = -_sprite.Speed;
-            else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Right))
-                _velocityX = _sprite.Speed;
-            else
-                _velocityX = 0;
+            
 
             ApplyGravity(gametime);
 
             Velocity = new Vector2(_velocityX, _velocityY);
-            _sprite.CollisionHandler.CheckCollision(mapManager);
+            _sprite.CollisionHandler.CheckCollisionMap(mapManager);
             //Console.WriteLine(_sprite.Mover.Velocity);
             
 

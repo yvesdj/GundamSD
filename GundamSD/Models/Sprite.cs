@@ -81,7 +81,7 @@ namespace GundamSD.Models
             HealthHandler = Factory.CreateHealthHandler(this, Color.Wheat);
         }
 
-        public void Update(GameTime gameTime, MapManager mapManager)
+        public virtual void Update(GameTime gameTime, MapManager mapManager)
         {
             Mover.Move(gameTime, mapManager);
 
@@ -90,6 +90,7 @@ namespace GundamSD.Models
 
             //Collision check should happen here
             //CollisionHandler.CheckCollision(mapManager);
+            //CollisionHandler.CheckCollisionSprite(mapManager);
 
             Mover.UpdatePosition();
             Mover.ResetVelocity();

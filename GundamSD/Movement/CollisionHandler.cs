@@ -73,12 +73,33 @@ namespace GundamSD.Movement
                     continue;
                 }
                 //Console.WriteLine(otherSprites[i]);
-                if (_sprite.HitBox.Intersects(otherSprites[i].HitBox))
+                if (CollisionChecker.IsCollisionSprite(_sprite, otherSprites[i]))
                 {
-                    Console.WriteLine("COLLIDED WITH SPRITE");
+                    //Console.WriteLine("COLLIDED WITH SPRITE");
                 }
             }
             
+        }
+
+        public bool IsCollisionSpriteAttack(Rectangle hitbox, MapManager mapManager)
+        {
+            List<ISprite> otherSprites = mapManager.Sprites;
+
+            for (int i = 0; i < otherSprites.Count; i++)
+            {
+                if (otherSprites[i] == _sprite)
+                {
+                    continue;
+                }
+                //Console.WriteLine(otherSprites[i]);
+                if (CollisionChecker.IsCollisionMelee(hitbox, otherSprites[i]))
+                {
+                    otherSprites[i].HealthHandler.TakeDamage(10);
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

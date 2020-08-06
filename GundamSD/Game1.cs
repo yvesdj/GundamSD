@@ -69,7 +69,7 @@ namespace GundamSD
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64");
+            Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
             ISprite grunt = Factory.CreateGrunt(enemyAtlas);

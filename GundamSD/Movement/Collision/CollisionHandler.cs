@@ -81,7 +81,7 @@ namespace GundamSD.Movement
             
         }
 
-        public bool IsCollisionSpriteAttack(Rectangle hitbox, MapManager mapManager)
+        public ISprite GetOtherSprite(Rectangle hitbox, MapManager mapManager)
         {
             List<ISprite> otherSprites = mapManager.Sprites;
 
@@ -91,15 +91,15 @@ namespace GundamSD.Movement
                 {
                     continue;
                 }
-                //Console.WriteLine(otherSprites[i]);
                 if (CollisionChecker.IsCollisionMelee(hitbox, otherSprites[i]))
                 {
-                    otherSprites[i].HealthHandler.TakeDamage(10);
-                    return true;
+                    //Console.WriteLine(otherSprites[i]);
+                    //otherSprites[i].HealthHandler.TakeDamage(10);
+                    return otherSprites[i];
                 }
             }
-
-            return false;
+            return null;
+            //return false;
         }
     }
 }

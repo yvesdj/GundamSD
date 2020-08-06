@@ -16,7 +16,12 @@ namespace GundamSD.Animations
         private float _timer;
         private float _frameSpeed;
         private int _currentFrame;
-        
+
+        public int CurrentFrame
+        {
+            get { return _currentFrame; }
+        }
+
         public Vector2 Position { get; set; }
 
         public AnimationAtlasPlayer(IAnimationAtlas atlas, IAnimationAtlasAction action)

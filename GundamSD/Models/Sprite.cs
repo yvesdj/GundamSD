@@ -15,7 +15,7 @@ namespace GundamSD.Models
     public class Sprite : ISprite
     {
         public IAnimationAtlas Atlas { get; set; }
-        protected IAnimationAtlasManager _atlasManager;
+        public IAnimationAtlasManager AtlasManager { get; set; }
         public CollisionHandler CollisionHandler { get; set; }
 
         private Vector2 _position;
@@ -26,9 +26,9 @@ namespace GundamSD.Models
             {
                 _position = value;
 
-                if (_atlasManager != null)
+                if (AtlasManager != null)
                 {
-                    _atlasManager.AtlasPlayer.Position = _position;
+                    AtlasManager.AtlasPlayer.Position = _position;
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace GundamSD.Models
         public Sprite(IAnimationAtlas atlas, Dictionary<string, IAnimationAtlasAction> actions)
         {
             Atlas = atlas;
-            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
+            AtlasManager = Factory.CreateAnimAtlasManager(this, actions);
 
             Position = new Vector2(0,0);
             Speed = 5f;
@@ -85,8 +85,8 @@ namespace GundamSD.Models
         {
             Mover.Move(gameTime, mapManager);
 
-            _atlasManager.SetAnimation();
-            _atlasManager.Update(gameTime);
+            AtlasManager.SetAnimation();
+            AtlasManager.Update(gameTime);
 
             //Collision check should happen here
             //CollisionHandler.CheckCollision(mapManager);
@@ -101,8 +101,8 @@ namespace GundamSD.Models
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_atlasManager != null)
-                _atlasManager.Draw(spriteBatch);
+            if (AtlasManager != null)
+                AtlasManager.Draw(spriteBatch);
             else throw new Exception("this ni goe");
 
             HealthHandler.Draw(spriteBatch);

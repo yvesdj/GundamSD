@@ -22,7 +22,7 @@ namespace GundamSD.Models
                 { "Jump", Jump },
                 { "Attack", Attack },
             };
-            _atlasManager = Factory.CreateAnimAtlasManager(this, actions);
+            AtlasManager = Factory.CreateAnimAtlasManager(this, actions);
             //Inputs = Factory.CreateInput();
             HealthHandler = Factory.CreateHealthHandler(this, Color.Red);
         }

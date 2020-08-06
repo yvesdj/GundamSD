@@ -5,6 +5,7 @@ namespace GundamSD.Animations
 {
     public interface IAnimationAtlasPlayer
     {
+        int CurrentFrame { get; }
         Vector2 Position { get; set; }
 
         void Draw(SpriteBatch spriteBatch);

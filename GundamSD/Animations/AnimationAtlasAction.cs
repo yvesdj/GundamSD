@@ -31,4 +31,23 @@ namespace GundamSD.Animations
 
         }
     }
+
+    public class AnimationAtlasAttackAction : IAnimationAtlasAction
+    {
+        private List<int> _attackFrames;
+        //public bool HasAttacked { get; set; }
+
+        public int EndFrame { get; set; }
+        public bool ShouldHold { get; set; }
+        public int StartFrame { get; set; }
+
+        public AnimationAtlasAttackAction(int startFrame, int endFrame, bool shouldHold, List<int> attackFrames)
+        {
+            StartFrame = startFrame;
+            EndFrame = endFrame;
+            ShouldHold = shouldHold;
+
+            _attackFrames = attackFrames;
+        }
+    }
 }

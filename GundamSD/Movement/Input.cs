@@ -16,8 +16,9 @@ namespace GundamSD.Movement
         public Keys Right { get; set; }
         public Keys Up { get; set; }
         public Keys Down { get; set; }
-        public Keys Attack { get; set; }
+        public Keys Melee { get; set; }
         public Keys Jump { get; set; }
+        public Keys Ranged { get; set; }
 
         public Input()
         {
@@ -25,8 +26,9 @@ namespace GundamSD.Movement
             Down = Keys.S;
             Left = Keys.A;
             Right = Keys.D;
-            Attack = Keys.E;
+            Melee = Keys.E;
             Jump = Keys.Space;
+            Ranged = Keys.R;
         }
 
         public KeyboardState GetKeyboardState()

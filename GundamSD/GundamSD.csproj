@@ -62,9 +62,11 @@
     <Compile Include="Models\IHealthHandler.cs" />
     <Compile Include="Models\IPlayer.cs" />
     <Compile Include="Models\ISprite.cs" />
+    <Compile Include="Models\ModelWeapons\IMeleeWeapon.cs" />
+    <Compile Include="Models\ModelWeapons\IWeapon.cs" />
+    <Compile Include="Models\ModelWeapons\MeleeWeapon.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Sprite.cs" />
-    <Compile Include="Models\ModelWeapons\Weapon.cs" />
     <Compile Include="Movement\Collision\CollisionChecker.cs" />
     <Compile Include="Movement\Collision\CollisionHandler.cs" />
     <Compile Include="Movement\IInput.cs" />

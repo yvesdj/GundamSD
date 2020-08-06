@@ -8,8 +8,9 @@ namespace GundamSD.Movement
         Keys Left { get; set; }
         Keys Right { get; set; }
         Keys Up { get; set; }
-        Keys Attack { get; set; }
+        Keys Melee { get; set; }
         Keys Jump { get; set; }
+        Keys Ranged { get; set; }
 
         KeyboardState GetKeyboardState();
         bool KeyIsHoldDown(Keys key);

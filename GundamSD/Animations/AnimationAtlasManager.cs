@@ -32,11 +32,15 @@ namespace GundamSD.Animations
                 return;
             }
 
-            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Attack))
+            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Melee))
             {
-                AtlasPlayer.Play(_actions["Attack"]);
+                AtlasPlayer.Play(_actions["Melee"]);
 
                 //_sprite.HealthHandler.TakeDamage(10);
+            }
+            else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Ranged))
+            {
+                AtlasPlayer.Play(_actions["Ranged"]);
             }
             else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);

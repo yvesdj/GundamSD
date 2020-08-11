@@ -24,7 +24,7 @@ namespace GundamSD.Models
         IMover Mover { get; set; }
         Rectangle HitBox { get; }
 
-        int MaxHealth { get; set; }
-        IHealthHandler HealthHandler { get; set; }
+        //int MaxHealth { get; set; }
+        //IHealthHandler HealthHandler { get; set; }
     }
 }

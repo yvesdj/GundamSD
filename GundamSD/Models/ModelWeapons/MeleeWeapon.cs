@@ -23,6 +23,25 @@ namespace GundamSD.Models
             AttackFrames = attackFrames;
         }
 
+        //public void DealDamage(MapManager mapManager)
+        //{
+        //    if (Sprite.Inputs.KeyIsHoldDown(Sprite.Inputs.Melee))
+        //    {
+        //        _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
+        //                                Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
+
+        //        ISprite target = Sprite.CollisionHandler.GetOtherSprite(_hitBox, mapManager);
+                
+        //        for (int i = 0; i < AttackFrames.Count; i++)
+        //        {
+        //            if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
+        //            {
+        //                target.HealthHandler.TakeDamage(Damage);
+        //            }
+        //        }
+        //    }
+        //}
+
         public void DealDamage(MapManager mapManager)
         {
             if (Sprite.Inputs.KeyIsHoldDown(Sprite.Inputs.Melee))
@@ -31,14 +50,19 @@ namespace GundamSD.Models
                                         Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
 
                 ISprite target = Sprite.CollisionHandler.GetOtherSprite(_hitBox, mapManager);
-                
-                for (int i = 0; i < AttackFrames.Count; i++)
+
+                if (target is IHasHealth hasHealth)
                 {
-                    if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
+                    for (int i = 0; i < AttackFrames.Count; i++)
                     {
-                        target.HealthHandler.TakeDamage(Damage);
+                        if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
+                        {
+                            hasHealth.HealthHandler.TakeDamage(Damage);
+                        }
                     }
+
                 }
+
             }
         }
     }
@@ -46,9 +70,7 @@ namespace GundamSD.Models
     public class RangedWeapon : IWeapon
     {
         public int Damage { get; }
-
         public int Range { get; }
-
         public ISprite Sprite { get; }
 
 
@@ -57,5 +79,10 @@ namespace GundamSD.Models
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class Bullet/* : ISprite*/
+    {
+
     }
 }

@@ -16,7 +16,11 @@ namespace GundamSD.Models
         public HealthHandler(ISprite sprite, Color color)
         {
             _sprite = sprite;
-            _currentHealth = _sprite.MaxHealth;
+            if (_sprite is IHasHealth hasHealth)
+            {
+                _currentHealth = hasHealth.MaxHealth;
+            }
+            
             _color = color;
         }
 

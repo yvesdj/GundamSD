@@ -10,10 +10,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.Models
 {
-    public class Player : Sprite
+    public class Player : Sprite, IHasHealth
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
+        public int MaxHealth { get; set; }
+        public IHealthHandler HealthHandler { get; set; }
 
         public Player(Texture2D atlasTexture) : base(atlasTexture)
         {
@@ -30,16 +32,27 @@ namespace GundamSD.Models
             };
             AtlasManager = Factory.CreateAnimAtlasManager(this, actions);
             Inputs = Factory.CreateInput();
+
+            MaxHealth = 100;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Green);
 
             List<int> attackFrames = new List<int>() { 31, 34, 37 };
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
+
+
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)
         {
             base.Update(gameTime, mapManager);
             MeleeWeapon.DealDamage(mapManager);
+            HealthHandler.Update();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            HealthHandler.Draw(spriteBatch);
         }
     }
 }

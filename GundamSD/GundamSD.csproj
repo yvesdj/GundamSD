@@ -60,6 +60,7 @@
     <Compile Include="Models\Grunt.cs" />
     <Compile Include="Models\HealthHandler.cs" />
     <Compile Include="Models\IHasHealth.cs" />
+    <Compile Include="Models\IHasInput.cs" />
     <Compile Include="Models\IHealthHandler.cs" />
     <Compile Include="Models\IPlayer.cs" />
     <Compile Include="Models\ISprite.cs" />

@@ -10,12 +10,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.Models
 {
-    public class Player : Sprite, IHasHealth
+    public class Player : Sprite, IHasHealth, IHasInput
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
+        public IInput Inputs { get; set; }
 
         public Player(Texture2D atlasTexture) : base(atlasTexture)
         {

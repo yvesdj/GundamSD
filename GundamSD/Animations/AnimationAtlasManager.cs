@@ -26,19 +26,16 @@ namespace GundamSD.Animations
 
         public void SetAnimation()
         {
-            if (_sprite.Inputs == null)
-            {
-                AtlasPlayer.Stop();
-                return;
-            }
+            IHasInput hasInput = _sprite as IHasInput;
 
-            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Melee))
+            
+            if (hasInput != null && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Melee))
             {
                 AtlasPlayer.Play(_actions["Melee"]);
 
                 //_sprite.HealthHandler.TakeDamage(10);
             }
-            else if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Ranged))
+            else if (hasInput != null && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Ranged))
             {
                 AtlasPlayer.Play(_actions["Ranged"]);
             }
@@ -51,11 +48,12 @@ namespace GundamSD.Animations
                 else
                     AtlasPlayer.Play(_actions["WalkRight"]);
             }
-            else
+            else if (_sprite.Mover.Velocity.X == 0 && _sprite.Mover.Velocity.Y == 0)
             {
-                AtlasPlayer.Play(_actions["WalkRight"]);
+                AtlasPlayer.Play(_actions.First().Value);
                 AtlasPlayer.Stop();
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

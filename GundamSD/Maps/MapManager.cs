@@ -111,18 +111,6 @@ namespace GundamSD.Maps
             DrawLayer(spriteBatch, "Foreground");
         }
 
-        //public void UpdateMap(GameTime gameTime)
-        //{
-        //    for (int i = 0; i < Sprites.Count; i++)
-        //    {
-        //        if (Sprites[i].HealthHandler.IsDead)
-        //        {
-        //            Console.WriteLine("DEAD");
-        //            Sprites.Remove(Sprites[i]);
-        //        } else 
-        //            Sprites[i].Update(gameTime, this);
-        //    }
-        //}
         public void UpdateMap(GameTime gameTime)
         {
             for (int i = 0; i < Sprites.Count; i++)

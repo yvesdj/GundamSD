@@ -20,7 +20,7 @@ namespace GundamSD.Models
         
         float Speed { get; set; }
         float JumpHeight { get; set; }
-        IInput Inputs { get; set; }
+        //IInput Inputs { get; set; }
         IMover Mover { get; set; }
         Rectangle HitBox { get; }
 

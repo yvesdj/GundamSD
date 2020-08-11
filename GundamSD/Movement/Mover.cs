@@ -32,21 +32,22 @@ namespace GundamSD.Movement
             //_inputs = inputs;
             _sprite = sprite;
         }
+
         public void Move(GameTime gametime, MapManager mapManager)
         {
-            if (_sprite.Inputs != null)
+            if (_sprite is IHasInput hasInput)
             {
-                _sprite.Inputs.GetKeyboardState();
-                if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Up))
+                hasInput.Inputs.GetKeyboardState();
+                if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Up))
                 {
                     _velocityY = -_sprite.Speed;
                     _sprite.CollisionHandler.IsGrounded = false;
                 }
-                else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Down))
+                else if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Down))
                 {
                     _velocityY = _sprite.Speed;
                 }
-                else if (_sprite.Inputs.KeyIsPressed(_sprite.Inputs.Jump))
+                else if (hasInput.Inputs.KeyIsPressed(hasInput.Inputs.Jump))
                 {
                     if (_sprite.CollisionHandler.IsGrounded)
                     {
@@ -55,11 +56,15 @@ namespace GundamSD.Movement
                     _sprite.CollisionHandler.IsGrounded = false;
                 }
 
-                if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Left))
+                if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Left))
                     _velocityX += -_sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
-                else if (_sprite.Inputs.KeyIsHoldDown(_sprite.Inputs.Right))
+                else if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Right))
                     _velocityX += _sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+
             }
+            //if (_sprite.Inputs != null)
+            //{
+            //}
 
             ApplyGravity(gametime);
             ApplyDrag(gametime);
@@ -116,7 +121,7 @@ namespace GundamSD.Movement
 
         public void Jump()
         {
-            if (Keyboard.GetState().IsKeyDown(_sprite.Inputs.Jump) && !_isJumping)
+            if (_sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
             {
                 _jumpVelocity.Y = (float)Math.Sqrt(_sprite.JumpHeight * 2f * gravity);
                 _isJumping = true;

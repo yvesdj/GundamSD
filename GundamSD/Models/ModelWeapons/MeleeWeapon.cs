@@ -23,28 +23,9 @@ namespace GundamSD.Models
             AttackFrames = attackFrames;
         }
 
-        //public void DealDamage(MapManager mapManager)
-        //{
-        //    if (Sprite.Inputs.KeyIsHoldDown(Sprite.Inputs.Melee))
-        //    {
-        //        _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
-        //                                Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
-
-        //        ISprite target = Sprite.CollisionHandler.GetOtherSprite(_hitBox, mapManager);
-                
-        //        for (int i = 0; i < AttackFrames.Count; i++)
-        //        {
-        //            if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
-        //            {
-        //                target.HealthHandler.TakeDamage(Damage);
-        //            }
-        //        }
-        //    }
-        //}
-
         public void DealDamage(MapManager mapManager)
         {
-            if (Sprite.Inputs.KeyIsHoldDown(Sprite.Inputs.Melee))
+            if (Sprite is IHasInput hasInput && hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Melee))
             {
                 _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
                                         Sprite.HitBox.Width + Range, Sprite.HitBox.Height);

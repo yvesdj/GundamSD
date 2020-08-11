@@ -33,7 +33,7 @@ namespace GundamSD.Models
             }
         }
 
-        public IInput Inputs { get; set; }
+        //public IInput Inputs { get; set; }
         public float Speed { get; set; }
         public float JumpHeight { get; set; }
 

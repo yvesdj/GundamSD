@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using GundamSD.Animations;
 using GundamSD.Maps;
+using GundamSD.Movement;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.Models
 {
@@ -50,20 +53,64 @@ namespace GundamSD.Models
 
     public class RangedWeapon : IWeapon
     {
+
         public int Damage { get; }
         public int Range { get; }
         public ISprite Sprite { get; }
 
+        public Bullet GunBullet { get; set; }
 
+        public RangedWeapon(ISprite sprite, int damage, int range)
+        {
+            Damage = damage;
+            Range = range;
+            Sprite = sprite;
+            GunBullet = new Bullet(Sprite.Atlas.Texture);
+        }
 
         public void DealDamage(MapManager mapManager)
         {
-            throw new NotImplementedException();
+            if (Sprite is IHasInput hasInput && hasInput.Inputs.KeyIsPressed(hasInput.Inputs.Ranged))
+            {
+                AddBullet(mapManager.Sprites);
+            }
+
+
+        }
+
+        public void AddBullet(List<ISprite> sprites)
+        {
+            Bullet bullet = GunBullet.Clone() as Bullet;
+            //bullet.Direction = this.Direction;
+            bullet.Position = Sprite.Position;
+            //bullet.LinearVelocity = this.LinearVelocity * 2;
+            bullet.LifeSpan = 1f;
+            //bullet.Parent = this;
+
+            if (bullet is ISprite sprite)
+                sprites.Add(sprite);
         }
     }
 
-    public class Bullet/* : ISprite*/
+    public class Bullet : Sprite, ICloneable
     {
+        //public IAnimationAtlasPlayer AnimationAtlasPlayer { get; set; }
 
+        public float LifeSpan { get; set; }
+
+        public Bullet(Texture2D atlasTexture) : base(atlasTexture)
+        {
+            IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(90, 90, false);
+            Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
+            {
+                { "SingleAction", action }
+            };
+            AtlasManager = new AtlasAnimationSingleActionManager(this, actions);
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

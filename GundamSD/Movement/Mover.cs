@@ -23,6 +23,7 @@ namespace GundamSD.Movement
         private const float _frameSpeed = 0.15f;
         private float _timer;
 
+        private float _jumpHeight = 10f;
         private Vector2 _jumpVelocity;
         private float gravity = -9.81f;
         private bool _isJumping;
@@ -51,7 +52,7 @@ namespace GundamSD.Movement
                 {
                     if (_sprite.CollisionHandler.IsGrounded)
                     {
-                        _velocityY = -_sprite.JumpHeight;
+                        _velocityY = -_jumpHeight;
                     }
                     _sprite.CollisionHandler.IsGrounded = false;
                 }
@@ -123,7 +124,7 @@ namespace GundamSD.Movement
         {
             if (_sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
             {
-                _jumpVelocity.Y = (float)Math.Sqrt(_sprite.JumpHeight * 2f * gravity);
+                _jumpVelocity.Y = (float)Math.Sqrt(_jumpHeight * 2f * gravity);
                 _isJumping = true;
             }
 

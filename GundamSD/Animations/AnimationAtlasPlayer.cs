@@ -28,7 +28,7 @@ namespace GundamSD.Animations
         {
             _atlas = atlas;
             this.action = action;
-            //_currentFrame = _action.StartFrame;
+            _currentFrame = action.StartFrame;
             _frameSpeed = 0.15f;
         }
 

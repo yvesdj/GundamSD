@@ -35,7 +35,6 @@ namespace GundamSD.Models
 
         //public IInput Inputs { get; set; }
         public float Speed { get; set; }
-        public float JumpHeight { get; set; }
 
         public IMover Mover { get; set; }
 
@@ -51,7 +50,6 @@ namespace GundamSD.Models
 
             Position = new Vector2(0,0);
             Speed = 5f;
-            JumpHeight = 10f;
 
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);
@@ -64,7 +62,6 @@ namespace GundamSD.Models
 
             Position = new Vector2(0, 0);
             Speed = 5f;
-            JumpHeight = 10f;
 
             Mover = Factory.CreateMover(this);
             CollisionHandler = new CollisionHandler(this);

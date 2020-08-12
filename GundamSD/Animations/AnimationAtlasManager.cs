@@ -24,7 +24,7 @@ namespace GundamSD.Animations
             AtlasPlayer = Factory.CreateAnimAtlasPlayer(_sprite.Atlas, _actions.First().Value);
         }
 
-        public void SetAnimation()
+        public virtual void SetAnimation()
         {
             IHasInput hasInput = _sprite as IHasInput;
 
@@ -64,6 +64,20 @@ namespace GundamSD.Animations
         public void Update(GameTime gameTime)
         {
             AtlasPlayer.Update(gameTime);
+        }
+
+    }
+
+    public class AtlasAnimationSingleActionManager : AnimationAtlasManager
+    {
+        public AtlasAnimationSingleActionManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions) : base(sprite, actions)
+        {
+
+        }
+
+        public override void SetAnimation()
+        {
+            AtlasPlayer.Play(_actions["SingleAction"]);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace GundamSD.Models
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
+
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
         public IInput Inputs { get; set; }
@@ -40,13 +41,14 @@ namespace GundamSD.Models
             List<int> attackFrames = new List<int>() { 31, 34, 37 };
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
 
-
+            RangedWeapon = new RangedWeapon(this, 1, 20);
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)
         {
             base.Update(gameTime, mapManager);
             MeleeWeapon.DealDamage(mapManager);
+            RangedWeapon.DealDamage(mapManager);
             HealthHandler.Update();
         }
 

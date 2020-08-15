@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\AnimationAtlasManager.cs" />
+    <Compile Include="Animations\AtlasAnimationSingleActionManager.cs" />
     <Compile Include="Animations\IAnimationAtlas.cs" />
     <Compile Include="Animations\IAnimationAtlasAction.cs" />
     <Compile Include="Animations\IAnimationAtlasManager.cs" />
@@ -64,9 +65,11 @@
     <Compile Include="Models\IHealthHandler.cs" />
     <Compile Include="Models\IPlayer.cs" />
     <Compile Include="Models\ISprite.cs" />
+    <Compile Include="Models\ModelWeapons\Bullet.cs" />
     <Compile Include="Models\ModelWeapons\IMeleeWeapon.cs" />
     <Compile Include="Models\ModelWeapons\IWeapon.cs" />
     <Compile Include="Models\ModelWeapons\MeleeWeapon.cs" />
+    <Compile Include="Models\ModelWeapons\RangedWeapon.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Sprite.cs" />
     <Compile Include="Movement\Collision\CollisionChecker.cs" />

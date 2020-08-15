@@ -119,7 +119,12 @@ namespace GundamSD.Maps
                 {
                     Console.WriteLine("DEAD");
                     Sprites.Remove(Sprites[i]);
-                } else 
+                }
+                else if (Sprites[i] is Bullet bullet && bullet.IsExpired)
+                {
+                    Sprites.Remove(Sprites[i]);
+                }
+                else
                     Sprites[i].Update(gameTime, this);
             }
         }

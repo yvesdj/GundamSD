@@ -65,19 +65,5 @@ namespace GundamSD.Animations
         {
             AtlasPlayer.Update(gameTime);
         }
-
-    }
-
-    public class AtlasAnimationSingleActionManager : AnimationAtlasManager
-    {
-        public AtlasAnimationSingleActionManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions) : base(sprite, actions)
-        {
-
-        }
-
-        public override void SetAnimation()
-        {
-            AtlasPlayer.Play(_actions["SingleAction"]);
-        }
     }
 }

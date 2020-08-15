@@ -17,10 +17,7 @@ namespace GundamSD.Movement
 
         public MoverBullet(ISprite sprite)
         {
-            //_inputs = inputs;
             _sprite = sprite;
-
-            //NextPosition = _sprite.Position;
         }
 
         public void Move(GameTime gameTime, MapManager mapManager)
@@ -40,8 +37,6 @@ namespace GundamSD.Movement
         public void UpdatePosition()
         {
             _sprite.Position = NextPosition;
-            Console.WriteLine(_sprite + "Mover Position: " + NextPosition);
-
         }
     }
 }

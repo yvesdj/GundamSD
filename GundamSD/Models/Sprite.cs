@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GundamSD.Models
 {
-    public class Sprite : ISprite
+    public class Sprite : ISprite/*, ICloneable*/
     {
         public IAnimationAtlas Atlas { get; set; }
         public IAnimationAtlasManager AtlasManager { get; set; }
@@ -96,5 +96,10 @@ namespace GundamSD.Models
 
             //HealthHandler.Draw(spriteBatch);
         }
+
+        //public object Clone()
+        //{
+        //    return this.MemberwiseClone();
+        //}
     }
 }

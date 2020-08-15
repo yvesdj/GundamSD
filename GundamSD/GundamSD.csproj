@@ -75,6 +75,7 @@
     <Compile Include="Movement\IMover.cs" />
     <Compile Include="Movement\Input.cs" />
     <Compile Include="Movement\Mover.cs" />
+    <Compile Include="Movement\MoverBullet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

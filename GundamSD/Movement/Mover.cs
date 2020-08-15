@@ -34,7 +34,28 @@ namespace GundamSD.Movement
             _sprite = sprite;
         }
 
-        public void Move(GameTime gametime, MapManager mapManager)
+        public virtual void Move(GameTime gametime, MapManager mapManager)
+        {
+            ProcessInput(gametime);
+            //if (_sprite.Inputs != null)
+            //{
+            //}
+
+            ApplyGravity(gametime);
+            ApplyDrag(gametime);
+            ClampVelocity();
+
+            Velocity = new Vector2(_velocityX, _velocityY);
+            _sprite.CollisionHandler.CheckCollisionMap(mapManager);
+            _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
+
+            //Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
+
+            //Console.WriteLine(_sprite.Mover.Velocity);
+            NextPosition = _sprite.Position + Velocity;
+        }
+
+        private void ProcessInput(GameTime gametime)
         {
             if (_sprite is IHasInput hasInput)
             {
@@ -63,22 +84,6 @@ namespace GundamSD.Movement
                     _velocityX += _sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
 
             }
-            //if (_sprite.Inputs != null)
-            //{
-            //}
-
-            ApplyGravity(gametime);
-            ApplyDrag(gametime);
-            ClampVelocity();
-
-            Velocity = new Vector2(_velocityX, _velocityY);
-            _sprite.CollisionHandler.CheckCollisionMap(mapManager);
-            _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
-
-            //Console.WriteLine(_sprite.CollisionHandler.IsGrounded);
-
-            //Console.WriteLine(_sprite.Mover.Velocity);
-            NextPosition = _sprite.Position + Velocity;
         }
 
         private void ApplyDrag(GameTime gametime)

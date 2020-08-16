@@ -16,7 +16,7 @@ namespace GundamSD.Models
             Damage = damage;
             Range = range;
             Sprite = sprite;
-            GunBullet = new Bullet(Sprite.Atlas.Texture, Sprite);
+            GunBullet = new Bullet(Sprite.Atlas.Texture, Sprite, Damage);
         }
 
         public void DealDamage(MapManager mapManager)

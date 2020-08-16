@@ -26,6 +26,15 @@ namespace GundamSD.Movement
             _velocityY = 0;
             Velocity = new Vector2(_velocityX, _velocityY);
 
+            //if (_sprite.CollisionHandler.IsCollisionSprite(mapManager))
+            //{
+            //    if (_sprite is Bullet bullet)
+            //    {
+            //        Console.WriteLine("Attacked with " + bullet.Damage + "Damage.");
+            //    }
+            //}
+            _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
+
             NextPosition = _sprite.Position + Velocity;
         }
 

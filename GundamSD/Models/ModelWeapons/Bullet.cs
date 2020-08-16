@@ -11,6 +11,7 @@ namespace GundamSD.Models
     public class Bullet : Sprite, ICloneable
     {
         public ISprite ParentSprite { get; set; }
+        public int Damage { get; }
 
         public float LifeSpan { get; set; }
         public bool IsExpired { get; set; }
@@ -20,7 +21,7 @@ namespace GundamSD.Models
         {
         }
 
-        public Bullet(Texture2D atlasTexture, ISprite parentSprite) : base(atlasTexture)
+        public Bullet(Texture2D atlasTexture, ISprite parentSprite, int damage) : base(atlasTexture)
         {
             IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(90, 90, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
@@ -28,6 +29,7 @@ namespace GundamSD.Models
                 { "SingleAction", action }
             };
             AtlasManager = new AtlasAnimationSingleActionManager(this, actions);
+            Damage = damage;
             LifeSpan = 1f;
             Speed = 10f;
 
@@ -38,6 +40,13 @@ namespace GundamSD.Models
         public override void Update(GameTime gameTime, MapManager mapManager)
         {
             base.Update(gameTime, mapManager);
+            ISprite target = CollisionHandler.GetOtherSprite(HitBox, mapManager);
+
+            if (target is IHasHealth hasHealth)
+            {
+                hasHealth.HealthHandler.TakeDamage(Damage);
+                IsExpired = true;
+            }
             BulletTimer(gameTime);
         }
 
@@ -62,6 +71,7 @@ namespace GundamSD.Models
             bulletClone.AtlasManager = new AtlasAnimationSingleActionManager(bulletClone, actions);
 
             bulletClone.Mover = new MoverBullet(bulletClone);
+            bulletClone.CollisionHandler = new CollisionHandler(bulletClone);
             return bulletClone;
         }
     }

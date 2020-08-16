@@ -41,7 +41,7 @@ namespace GundamSD.Models
             List<int> attackFrames = new List<int>() { 31, 34, 37 };
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
 
-            RangedWeapon = new RangedWeapon(this, 1, 20);
+            RangedWeapon = new RangedWeapon(this, 10, 20);
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)

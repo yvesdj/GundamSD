@@ -27,6 +27,7 @@ namespace GundamSD.Models
         public void TakeDamage(int amount)
         {
             _currentHealth -= amount;
+            _sprite.AtlasManager.AtlasPlayer.Color = Color.Red;
         }
 
         public void Update()

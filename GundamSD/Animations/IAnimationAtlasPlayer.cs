@@ -7,6 +7,7 @@ namespace GundamSD.Animations
     {
         int CurrentFrame { get; }
         Vector2 Position { get; set; }
+        Color Color { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
         void Play(IAnimationAtlasAction action);

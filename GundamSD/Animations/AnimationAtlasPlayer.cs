@@ -24,12 +24,15 @@ namespace GundamSD.Animations
 
         public Vector2 Position { get; set; }
 
+        public Color Color { get; set; }
+
         public AnimationAtlasPlayer(IAnimationAtlas atlas, IAnimationAtlasAction action)
         {
             _atlas = atlas;
             this.action = action;
             _currentFrame = action.StartFrame;
             _frameSpeed = 0.15f;
+            Color = Color.White;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -41,7 +44,11 @@ namespace GundamSD.Animations
             Rectangle whereToDraw = new Rectangle((int)Position.X, (int)Position.Y, _atlas.FrameWidth, _atlas.FrameHeight);
 
 
-            spriteBatch.Draw(_atlas.Texture, whereToDraw, whatToDraw, Color.White);
+            spriteBatch.Draw(_atlas.Texture, whereToDraw, whatToDraw, Color);
+            if (Color != Color.White)
+            {
+                Color = Color.White;
+            }
         }
 
         public void Play(IAnimationAtlasAction action) //what action to start playing

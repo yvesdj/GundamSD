@@ -1,6 +1,7 @@
 ﻿using GundamSD.Animations;
 using GundamSD.Maps;
 using GundamSD.Models;
+using GundamSD.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,6 +19,7 @@ namespace GundamSD
         SpriteBatch spriteBatch;
 
         private List<ISprite> _sprites;
+        private PlayerCamera _camera;
 
         ////TiledSharp Test
         private TmxMap _tutorialMap;
@@ -73,6 +75,7 @@ namespace GundamSD
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
             ISprite grunt = Factory.CreateGrunt(enemyAtlas);
+            _camera = new PlayerCamera(graphics);
             #endregion
 
             _sprites = new List<ISprite>
@@ -118,6 +121,8 @@ namespace GundamSD
             //}
 
             _mapManager.UpdateMap(gameTime);
+
+            _camera.Follow(_sprites[0]);
             //_mapManager.CheckCollision();
 
             // TODO: Add your update logic here
@@ -133,7 +138,7 @@ namespace GundamSD
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: _camera.ViewMatrix);
             //TiledSharp Test
             _mapManager.DrawMap(spriteBatch);
             //END TiledSharp Test

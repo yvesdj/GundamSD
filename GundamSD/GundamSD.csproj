@@ -55,6 +55,7 @@
     <Compile Include="Animations\Legacy\AnimationManager.cs" />
     <Compile Include="Animations\Legacy\IAnimationManager.cs" />
     <Compile Include="Animations\Legacy\IAnimation.cs" />
+    <Compile Include="Camera\Camera.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Maps\MapManager.cs" />

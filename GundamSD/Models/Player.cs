@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.Models
 {
-    public class Player : Sprite, IHasHealth, IHasInput
+    public class Player : Sprite, IHasHealth, IHasInput, IHasScore
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
@@ -18,6 +19,8 @@ namespace GundamSD.Models
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
         public IInput Inputs { get; set; }
+
+        public int Score { get; set; }
 
         public Player(Texture2D atlasTexture) : base(atlasTexture)
         {
@@ -42,6 +45,7 @@ namespace GundamSD.Models
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
 
             RangedWeapon = new RangedWeapon(this, 10, 20);
+            Score = 0;
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)
@@ -50,6 +54,8 @@ namespace GundamSD.Models
             MeleeWeapon.DealDamage(mapManager);
             RangedWeapon.DealDamage(mapManager);
             HealthHandler.Update();
+
+            Console.WriteLine(Score);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

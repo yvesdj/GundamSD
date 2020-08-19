@@ -38,6 +38,11 @@ namespace GundamSD.Models
                         if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
                         {
                             hasHealth.HealthHandler.TakeDamage(Damage);
+
+                            if (Sprite is IHasScore hasScore)
+                            {
+                                hasScore.Score += Damage;
+                            }
                         }
                     }
 

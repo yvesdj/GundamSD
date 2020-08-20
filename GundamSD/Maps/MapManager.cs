@@ -41,6 +41,11 @@ namespace GundamSD.Maps
             _tilesetTilesHigh = _tileSet.Height / _tileHeight;
         }
 
+        public IHasScore GetPlayerScore()
+        {
+            return Sprites[0] is IHasScore hasScore ? hasScore : null;
+        }
+
         public Vector2 GetSpawnPoint(int spawnPointNumber)
         {
             TmxObject spawnPoint = _map.ObjectGroups["SpawnPoints"].Objects[spawnPointNumber];

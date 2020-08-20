@@ -32,7 +32,7 @@ namespace GundamSD.Camera
             ClampCamera();
 
             CameraPos = new Vector2(_positionX, _positionY);
-            Console.WriteLine(CameraPos);
+            Console.WriteLine("CameraPos: " + CameraPos);
 
             ViewMatrix = Matrix.CreateTranslation(new Vector3(-CameraPos, 0))
                                                 * Matrix.CreateScale(_zoomScale);

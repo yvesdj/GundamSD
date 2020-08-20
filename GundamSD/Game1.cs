@@ -19,13 +19,15 @@ namespace GundamSD
         SpriteBatch spriteBatch;
 
         private List<ISprite> _sprites;
-        private PlayerCamera _camera;
 
         private TmxMap _tutorialMap;
         private Texture2D _tileset;
         private MapManager _mapManager;
 
         private SpriteFont _font;
+        private PlayerCamera _camera;
+        private ScoreDisplayer _scoreDisplayer;
+
 
         public Game1()
         {
@@ -66,7 +68,10 @@ namespace GundamSD
             ISprite player = Factory.CreatePlayer(playerAtlas);
             ISprite grunt = Factory.CreateGrunt(gruntAtlas);
 
+            _font = Content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(graphics);
+            _scoreDisplayer = new ScoreDisplayer(_camera, _font);
+
             #endregion
 
             _sprites = new List<ISprite>
@@ -85,7 +90,6 @@ namespace GundamSD
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
             //END TiledSharp Test
 
-            _font = Content.Load<SpriteFont>("Font");
 
             // TODO: use this.Content to load your game content here
         }
@@ -114,6 +118,7 @@ namespace GundamSD
             _mapManager.UpdateMap(gameTime);
 
             _camera.Follow(_sprites[0]);
+            _scoreDisplayer.Update();
             //_mapManager.CheckCollision();
 
             // TODO: Add your update logic here
@@ -134,11 +139,12 @@ namespace GundamSD
             _mapManager.DrawMap(spriteBatch);
             //END TiledSharp Test
 
-            Vector2 fontPos = new Vector2(100);
-            if (_sprites[0] is IHasScore hasScore)
-            {
-                spriteBatch.DrawString(_font, "Score: " + hasScore.Score, fontPos, Color.White);
-            }
+            _scoreDisplayer.Draw(spriteBatch, _mapManager);
+            //Vector2 fontPos = new Vector2(100);
+            //if (_sprites[0] is IHasScore hasScore)
+            //{
+            //    spriteBatch.DrawString(_font, "Score: " + hasScore.Score, fontPos, Color.White);
+            //}
 
             spriteBatch.End();
 

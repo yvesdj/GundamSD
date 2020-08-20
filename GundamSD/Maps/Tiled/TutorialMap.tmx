@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="20">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="22">
  <tileset firstgid="1" name="industrial.v1_32" tilewidth="32" tileheight="32" tilecount="0" columns="32">
   <image source="Tilesets/Industrial/industrial.v1_32.png" width="1024" height="1024"/>
  </tileset>
@@ -96,6 +96,10 @@
  <objectgroup id="6" name="SpawnPoints">
   <object id="6" name="Spawn" x="32" y="608" width="64" height="64"/>
   <object id="19" name="Spawn" x="704" y="448" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="8" name="WayPoints">
+  <object id="20" name="Waypoint1" x="608" y="480" width="32" height="32"/>
+  <object id="21" name="Waypoint2" x="832" y="480" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Collidable">
   <object id="12" name="MainFloor" x="0" y="672" width="1600" height="32"/>

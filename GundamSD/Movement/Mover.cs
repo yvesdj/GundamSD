@@ -118,15 +118,15 @@ namespace GundamSD.Movement
             Velocity = Vector2.Zero;
         }
 
-        public void Jump()
-        {
-            if (_sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
-            {
-                _jumpVelocity.Y = (float)Math.Sqrt(_jumpHeight * 2f * gravity);
-                _isJumping = true;
-            }
+        //public void Jump()
+        //{
+        //    if (_sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
+        //    {
+        //        _jumpVelocity.Y = (float)Math.Sqrt(_jumpHeight * 2f * gravity);
+        //        _isJumping = true;
+        //    }
 
-            _jumpVelocity.Y += gravity;
-        }
+        //    _jumpVelocity.Y += gravity;
+        //}
     }
 }

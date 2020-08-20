@@ -33,10 +33,12 @@ namespace GundamSD.Animations
             {
                 AtlasPlayer.Play(_actions["Melee"]);
 
+                //For Testing
                 //if (_sprite is IHasHealth hasHealth)
                 //{
                 //    hasHealth.HealthHandler.TakeDamage(20);
                 //}
+                //End Testing
             }
             else if (hasInput != null && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Ranged))
             {

@@ -23,11 +23,12 @@ namespace GundamSD.Camera
         public void Update()
         {
             _fontPos = PlayerCamera.CameraPos + _offset;
-            Console.WriteLine("ScorePos: " + _fontPos);
         }
 
         public void Draw(SpriteBatch spriteBatch, MapManager mapManager)
         {
+            if (mapManager.GetPlayerScore() == null)
+                return;
             spriteBatch.DrawString(Font, "Score: " + mapManager.GetPlayerScore().Score, _fontPos, Color.White);
         }
     }

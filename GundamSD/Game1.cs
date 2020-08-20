@@ -21,22 +21,12 @@ namespace GundamSD
         private List<ISprite> _sprites;
         private PlayerCamera _camera;
 
-        ////TiledSharp Test
         private TmxMap _tutorialMap;
         private Texture2D _tileset;
         private MapManager _mapManager;
 
-        public TmxList<TmxObject> collidableLayer;
-        //END TiledSharp Test
+        private SpriteFont _font;
 
-        //private TiledMap tutorialMap;
-        //private TiledMapRenderer mapRenderer;
-
-        //AtlasTest
-        //private IAnimationAtlas _atlasPlayer;
-        
-        
-        //END AtlasTest
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -71,10 +61,11 @@ namespace GundamSD
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            Texture2D enemyAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
+            Texture2D gruntAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
-            ISprite grunt = Factory.CreateGrunt(enemyAtlas);
+            ISprite grunt = Factory.CreateGrunt(gruntAtlas);
+
             _camera = new PlayerCamera(graphics);
             #endregion
 
@@ -94,7 +85,7 @@ namespace GundamSD
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
             //END TiledSharp Test
 
-
+            _font = Content.Load<SpriteFont>("Font");
 
             // TODO: use this.Content to load your game content here
         }
@@ -142,6 +133,13 @@ namespace GundamSD
             //TiledSharp Test
             _mapManager.DrawMap(spriteBatch);
             //END TiledSharp Test
+
+            Vector2 fontPos = new Vector2(100);
+            if (_sprites[0] is IHasScore hasScore)
+            {
+                spriteBatch.DrawString(_font, "Score: " + hasScore.Score, fontPos, Color.White);
+            }
+
             spriteBatch.End();
 
             // TODO: Add your drawing code here

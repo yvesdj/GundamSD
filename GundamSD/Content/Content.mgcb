@@ -26,6 +26,13 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/tutorialBackground.jpg
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;Font.spritefont
+
 #begin maps/Tilesets/Industrial/industrial.v1_32.png
 /importer:TextureImporter
 /processor:TextureProcessor

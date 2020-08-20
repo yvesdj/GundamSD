@@ -23,7 +23,7 @@ namespace GundamSD.Movement
 
         public void CheckCollisionMap(MapManager mapManager)
         {
-            List<Rectangle> collisionBoxes = mapManager.GetMapCollidables();
+            List<Rectangle> collisionBoxes = mapManager.GetMapRectangles("Collidable");
             foreach (Rectangle box in collisionBoxes)
             {
                 if (CollisionChecker.IsCollisionBottom(_sprite, box))

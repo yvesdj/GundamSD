@@ -7,35 +7,28 @@ namespace GundamSD.Movement
 {
     public class MoverBullet : IMover
     {
-        private ISprite _sprite;
+        public ISprite Sprite { get; set; }
 
-        private float _velocityX;
-        private float _velocityY;
+        public float VelocityX { get; set; }
+        public float VelocityY { get; set; }
 
         public Vector2 Velocity { get; set; }
         public Vector2 NextPosition { get; set; }
 
         public MoverBullet(ISprite sprite)
         {
-            _sprite = sprite;
+            Sprite = sprite;
         }
 
         public void Move(GameTime gameTime, MapManager mapManager)
         {
-            _velocityX = _sprite.Speed;
-            _velocityY = 0;
-            Velocity = new Vector2(_velocityX, _velocityY);
+            VelocityX = Sprite.Speed;
+            VelocityY = 0;
+            Velocity = new Vector2(VelocityX, VelocityY);
 
-            //if (_sprite.CollisionHandler.IsCollisionSprite(mapManager))
-            //{
-            //    if (_sprite is Bullet bullet)
-            //    {
-            //        Console.WriteLine("Attacked with " + bullet.Damage + "Damage.");
-            //    }
-            //}
-            _sprite.CollisionHandler.CheckCollisionSprite(mapManager);
+            Sprite.CollisionHandler.CheckCollisionSprite(mapManager);
 
-            NextPosition = _sprite.Position + Velocity;
+            NextPosition = Sprite.Position + Velocity;
         }
 
         public void ResetVelocity()
@@ -45,7 +38,7 @@ namespace GundamSD.Movement
 
         public void UpdatePosition()
         {
-            _sprite.Position = NextPosition;
+            Sprite.Position = NextPosition;
         }
     }
 }

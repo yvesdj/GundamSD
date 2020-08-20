@@ -13,15 +13,14 @@ namespace GundamSD.Movement
     public class Mover : IMover
     {
         //private IInput _inputs;
-        private ISprite _sprite;
+        public ISprite Sprite { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 NextPosition { get; set; }
+        public float VelocityX { get; set; }
+        public float VelocityY { get; set; }
 
-        private float _velocityX;
-        private float _velocityY;
         private const float _gravity = 9.81f;
         private const float _frameSpeed = 0.15f;
-        private float _timer;
 
         private float _jumpHeight = 10f;
         private Vector2 _jumpVelocity;
@@ -30,7 +29,7 @@ namespace GundamSD.Movement
 
         public Mover(ISprite sprite)
         {
-            _sprite = sprite;
+            Sprite = sprite;
         }
 
         public virtual void Move(GameTime gametime, MapManager mapManager)
@@ -41,76 +40,76 @@ namespace GundamSD.Movement
             ApplyDrag(gametime);
             ClampVelocity();
 
-            Velocity = new Vector2(_velocityX, _velocityY);
-            _sprite.CollisionHandler.CheckCollisionMap(mapManager);
-            //_sprite.CollisionHandler.CheckCollisionSprite(mapManager);
+            Velocity = new Vector2(VelocityX, VelocityY);
+            Sprite.CollisionHandler.CheckCollisionMap(mapManager);
+            //Sprite.CollisionHandler.CheckCollisionSprite(mapManager);
 
-            NextPosition = _sprite.Position + Velocity;
+            NextPosition = Sprite.Position + Velocity;
         }
 
         private void ProcessInput(GameTime gametime)
         {
-            if (_sprite is IHasInput hasInput)
+            if (Sprite is IHasInput hasInput)
             {
                 hasInput.Inputs.GetKeyboardState();
                 if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Up))
                 {
-                    _velocityY = -_sprite.Speed;
-                    _sprite.CollisionHandler.IsGrounded = false;
+                    VelocityY = -Sprite.Speed;
+                    Sprite.CollisionHandler.IsGrounded = false;
                 }
                 else if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Down))
                 {
-                    _velocityY = _sprite.Speed;
+                    VelocityY = Sprite.Speed;
                 }
                 else if (hasInput.Inputs.KeyIsPressed(hasInput.Inputs.Jump))
                 {
-                    if (_sprite.CollisionHandler.IsGrounded)
+                    if (Sprite.CollisionHandler.IsGrounded)
                     {
-                        _velocityY = -_jumpHeight;
+                        VelocityY = -_jumpHeight;
                     }
-                    _sprite.CollisionHandler.IsGrounded = false;
+                    Sprite.CollisionHandler.IsGrounded = false;
                 }
 
                 if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Left))
-                    _velocityX += -_sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+                    VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
                 else if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Right))
-                    _velocityX += _sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+                    VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
 
             }
         }
 
         private void ApplyDrag(GameTime gametime)
         {
-            if (_sprite.CollisionHandler.IsGrounded)
+            if (Sprite.CollisionHandler.IsGrounded)
             {
-                _velocityX += -3f * _velocityX * (float)gametime.ElapsedGameTime.TotalSeconds;
-                if (Math.Abs(_velocityX) < 0.1f)
+                VelocityX += -3f * VelocityX * (float)gametime.ElapsedGameTime.TotalSeconds;
+                if (Math.Abs(VelocityX) < 0.1f)
                 {
-                    _velocityX = 0f;
+                    VelocityX = 0f;
                 }
             }
         }
 
         private void ClampVelocity()
         {
-            if (_velocityX > _sprite.Speed)
-                _velocityX = _sprite.Speed;
-            if (_velocityX < -_sprite.Speed)
-                _velocityX = -_sprite.Speed;
-            if (_velocityY > 20f)
-                _velocityY = 20f;
-            if (_velocityY < -20f)
-                _velocityY = -20f;
+            if (VelocityX > Sprite.Speed)
+                VelocityX = Sprite.Speed;
+            if (VelocityX < -Sprite.Speed)
+                VelocityX = -Sprite.Speed;
+            if (VelocityY > 20f)
+                VelocityY = 20f;
+            if (VelocityY < -20f)
+                VelocityY = -20f;
         }
 
         private void ApplyGravity(GameTime gametime)
         {
-            _velocityY += _gravity * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+            VelocityY += _gravity * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
         }
 
         public void UpdatePosition()
         {
-            _sprite.Position = NextPosition;
+            Sprite.Position = NextPosition;
         }
 
         public void ResetVelocity()
@@ -120,7 +119,7 @@ namespace GundamSD.Movement
 
         //public void Jump()
         //{
-        //    if (_sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
+        //    if (Sprite is IHasInput hasInput && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Jump) && !_isJumping)
         //    {
         //        _jumpVelocity.Y = (float)Math.Sqrt(_jumpHeight * 2f * gravity);
         //        _isJumping = true;

@@ -46,6 +46,11 @@ namespace GundamSD.Movement
             return sprite.HitBox.Intersects(otherSprite.HitBox);
         }
 
+        public static bool IsCollisionWithRectangle(ISprite sprite, Rectangle box)
+        {
+            return sprite.HitBox.Intersects(box);
+        }
+
         public static bool IsCollisionMelee(Rectangle hitbox, ISprite otherSprite)
         {
             return hitbox.Intersects(otherSprite.HitBox);

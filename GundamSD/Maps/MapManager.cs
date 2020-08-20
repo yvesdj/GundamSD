@@ -53,19 +53,19 @@ namespace GundamSD.Maps
             return spawnPointLocation;
         }
 
-        public List<Rectangle> GetMapCollidables()
+        public List<Rectangle> GetMapRectangles(string layerName)
         {
-            TmxList<TmxObject> collidableObjects = _map.ObjectGroups["Collidable"].Objects;
-            List <Rectangle> collidableBoxes = new List<Rectangle>();
+            TmxList<TmxObject> tmxObjects = _map.ObjectGroups[layerName].Objects;
+            List <Rectangle> rectangles = new List<Rectangle>();
 
-            foreach (TmxObject tmxObject in collidableObjects)
+            foreach (TmxObject tmxObject in tmxObjects)
             {
                 Rectangle objectBox = new Rectangle((int)tmxObject.X, (int)tmxObject.Y,
                                                     (int)tmxObject.Width, (int)tmxObject.Height);
-                collidableBoxes.Add(objectBox);
+                rectangles.Add(objectBox);
             }
 
-            return collidableBoxes;
+            return rectangles;
         }
 
         public void DrawLayer(SpriteBatch spriteBatch, string layerName)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GundamSD.Animations;
 using GundamSD.Maps;
+using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -30,6 +31,7 @@ namespace GundamSD.Models
             //Inputs = Factory.CreateInput();
             MaxHealth = 100;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Red);
+            Mover = new MoverAI(this);
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)

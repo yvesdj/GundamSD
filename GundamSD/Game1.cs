@@ -68,7 +68,7 @@ namespace GundamSD
             ISprite player = Factory.CreatePlayer(playerAtlas);
             ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas);
             //ISprite grunt = new GruntBase(gruntAtlas);
-            ISprite gruntRanged = new GruntBase(gruntAtlas);
+            ISprite gruntRanged = new GruntRanged(gruntAtlas);
 
             _font = Content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(graphics);

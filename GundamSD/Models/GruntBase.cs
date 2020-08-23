@@ -50,8 +50,21 @@ namespace GundamSD.Models
         public GruntRanged(Texture2D atlasTexture) : base(atlasTexture)
         {
             IAnimationAtlasAction Ranged = Factory.CreateAnimAtlasAction(11, 11, true);
+            Actions.Add("Ranged", Ranged);
 
+            RangedWeapon = new RangedWeaponAI(this, 10, 480, 300f);
 
+        }
+
+        public override void Update(GameTime gameTime, MapManager mapManager)
+        {
+            base.Update(gameTime, mapManager);
+            RangedWeapon.DealDamage(mapManager, gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
         }
     }
 }

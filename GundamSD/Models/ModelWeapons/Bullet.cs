@@ -12,6 +12,7 @@ namespace GundamSD.Models
     {
         public ISprite ParentSprite { get; set; }
         public int Damage { get; }
+        public int BulletFrame { get; }
 
         public float LifeSpan { get; set; }
         public bool IsExpired { get; set; }
@@ -21,9 +22,10 @@ namespace GundamSD.Models
         {
         }
 
-        public Bullet(Texture2D atlasTexture, ISprite parentSprite, int damage) : base(atlasTexture)
+        public Bullet(Texture2D atlasTexture, ISprite parentSprite, int damage, int bulletFrame) : base(atlasTexture)
         {
-            IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(90, 90, false);
+            BulletFrame = bulletFrame;
+            IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(bulletFrame, bulletFrame, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "SingleAction", action }
@@ -63,7 +65,7 @@ namespace GundamSD.Models
             Bullet bulletClone = (Bullet)this.MemberwiseClone();
             bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y + 16);
 
-            IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(90, 90, false);
+            IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(BulletFrame, BulletFrame, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "SingleAction", action }

@@ -73,6 +73,7 @@
     <Compile Include="Models\ModelWeapons\IWeapon.cs" />
     <Compile Include="Models\ModelWeapons\MeleeWeapon.cs" />
     <Compile Include="Models\ModelWeapons\RangedWeapon.cs" />
+    <Compile Include="Models\ModelWeapons\Weapon.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Sprite.cs" />
     <Compile Include="Movement\Collision\CollisionChecker.cs" />

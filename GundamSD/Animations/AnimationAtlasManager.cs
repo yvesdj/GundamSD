@@ -17,6 +17,9 @@ namespace GundamSD.Animations
         //public AnimationAtlasPlayer AtlasPlayer;
         protected Dictionary<string, IAnimationAtlasAction> _actions;
 
+        public bool IsMeleeAttacking { get; set; }
+        public bool IsRangedAttacking { get; set; }
+
         public AnimationAtlasManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions)
         {
             _sprite = sprite;
@@ -29,7 +32,7 @@ namespace GundamSD.Animations
             IHasInput hasInput = _sprite as IHasInput;
 
             
-            if (hasInput != null && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Melee))
+            if (IsMeleeAttacking)
             {
                 AtlasPlayer.Play(_actions["Melee"]);
 
@@ -40,7 +43,7 @@ namespace GundamSD.Animations
                 //}
                 //End Testing
             }
-            else if (hasInput != null && Keyboard.GetState().IsKeyDown(hasInput.Inputs.Ranged))
+            else if (IsRangedAttacking)
             {
                 AtlasPlayer.Play(_actions["Ranged"]);
             }

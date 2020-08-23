@@ -7,6 +7,9 @@ namespace GundamSD.Animations
     {
         IAnimationAtlasPlayer AtlasPlayer { get; set; }
 
+        bool IsMeleeAttacking { get; set; }
+        bool IsRangedAttacking { get; set; }
+
         void Draw(SpriteBatch spriteBatch);
         void SetAnimation();
         void Update(GameTime gameTime);

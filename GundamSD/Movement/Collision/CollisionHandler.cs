@@ -76,7 +76,7 @@ namespace GundamSD.Movement
                 if (CollisionChecker.IsCollisionSprite(_sprite, otherSprites[i]))
                 {
                     IsColliding = true;
-                    Console.WriteLine("COLLIDED WITH SPRITE");
+                    //Console.WriteLine("COLLIDED WITH SPRITE");
                 } else
                     IsColliding = false;
             }

@@ -4,28 +4,22 @@ using Microsoft.Xna.Framework;
 
 namespace GundamSD.Models
 {
-    public class MeleeWeapon : IWeapon, IMeleeWeapon
+    public class MeleeWeapon : Weapon , IMeleeWeapon
     {
-        public ISprite Sprite { get;}
-        public int Damage { get; }
-        public int Range { get; }
+        private Rectangle _hitBox;
+        public virtual Rectangle HitBox { get => _hitBox; }
         public List<int> AttackFrames { get; set; }
 
-        private Rectangle _hitBox;
-        public Rectangle HitBox { get => _hitBox; }
-
-        public MeleeWeapon(ISprite sprite, int damage, int range, List<int> attackFrames)
+        public MeleeWeapon(ISprite sprite, int damage, int range, List<int> attackFrames) : base(sprite, damage, range)
         {
-            Sprite = sprite;
-            Damage = damage;
-            Range = range;
             AttackFrames = attackFrames;
         }
 
-        public void DealDamage(MapManager mapManager)
+        public override void DealDamage(MapManager mapManager, GameTime gameTime)
         {
             if (Sprite is IHasInput hasInput && hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Melee))
             {
+                Sprite.AtlasManager.IsMeleeAttacking = true;
                 _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
                                         Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
 
@@ -48,6 +42,10 @@ namespace GundamSD.Models
 
                 }
 
+            }
+            else
+            {
+                Sprite.AtlasManager.IsMeleeAttacking = false ;
             }
         }
     }

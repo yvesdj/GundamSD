@@ -1,4 +1,5 @@
 ﻿using GundamSD.Maps;
+using Microsoft.Xna.Framework;
 
 namespace GundamSD.Models
 {
@@ -8,6 +9,6 @@ namespace GundamSD.Models
         int Range { get; }
         ISprite Sprite { get; }
 
-        void DealDamage(MapManager mapManager);
+        void DealDamage(MapManager mapManager, GameTime gameTime);
     }
 }

@@ -11,7 +11,7 @@ namespace GundamSD.Movement
 {
     public class MoverAI : Mover
     {
-        private float _timer = 0;
+        private float _timer = 0f;
         private bool _isMovingLeft = true;
         private bool _isMovingRight;
 

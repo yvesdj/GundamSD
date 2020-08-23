@@ -28,7 +28,7 @@ namespace GundamSD.Models
             IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
             IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
-            IAnimationAtlasAction Ranged = Factory.CreateAnimAtlasAction(10, 10, false);
+            IAnimationAtlasAction Ranged = Factory.CreateAnimAtlasAction(10, 10, true);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },
@@ -46,15 +46,15 @@ namespace GundamSD.Models
             List<int> attackFrames = new List<int>() { 31, 34, 37 };
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
 
-            RangedWeapon = new RangedWeapon(this, 10, 20);
+            RangedWeapon = new RangedWeapon(this, 10, 20, 300f);
             Score = 0;
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)
         {
             base.Update(gameTime, mapManager);
-            MeleeWeapon.DealDamage(mapManager);
-            RangedWeapon.DealDamage(mapManager);
+            MeleeWeapon.DealDamage(mapManager, gameTime);
+            RangedWeapon.DealDamage(mapManager, gameTime);
             HealthHandler.Update();
 
             //Console.WriteLine(Score);

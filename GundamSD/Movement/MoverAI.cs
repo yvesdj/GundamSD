@@ -27,10 +27,17 @@ namespace GundamSD.Movement
 
         public override void ProcessInput(GameTime gametime)
         {
-            if (_isMovingLeft)
-                VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
-            else if (_isMovingRight)
-                VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+            if (Sprite.AtlasManager.IsMeleeAttacking)
+            {
+                ResetVelocity();
+            }
+            else
+            {
+                if (_isMovingLeft)
+                    VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+                else if (_isMovingRight)
+                    VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         public void ChooseDirection(GameTime gametime, MapManager mapManager)

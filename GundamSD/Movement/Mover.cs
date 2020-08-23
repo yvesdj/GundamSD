@@ -47,7 +47,7 @@ namespace GundamSD.Movement
             NextPosition = Sprite.Position + Velocity;
         }
 
-        private void ProcessInput(GameTime gametime)
+        public virtual void ProcessInput(GameTime gametime)
         {
             if (Sprite is IHasInput hasInput)
             {

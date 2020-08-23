@@ -55,7 +55,7 @@ namespace GundamSD.Models
             RangedWeapon.DealDamage(mapManager);
             HealthHandler.Update();
 
-            Console.WriteLine(Score);
+            //Console.WriteLine(Score);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

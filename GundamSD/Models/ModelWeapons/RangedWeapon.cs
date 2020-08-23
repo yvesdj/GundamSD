@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace GundamSD.Models
 {
-    public class RangedWeapon : Weapon
+    public class RangedWeapon : Weapon, IRangedWeapon
     {
         public Bullet GunBullet { get; set; }
         public float FireRate { get; }
@@ -33,7 +33,7 @@ namespace GundamSD.Models
             }
         }
 
-        private void ShootBullet(MapManager mapManager)
+        public void ShootBullet(MapManager mapManager)
         {
             if (_timer == 0f)
             {

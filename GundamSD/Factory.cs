@@ -24,9 +24,9 @@ namespace GundamSD
         }
 
         #region Enemies
-        public static ISprite CreateGrunt(Texture2D atlasTexture)
+        public static ISprite CreateGruntMelee(Texture2D atlasTexture)
         {
-            return new Grunt(atlasTexture);
+            return new GruntMelee(atlasTexture);
         }
         #endregion
 

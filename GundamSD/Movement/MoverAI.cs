@@ -66,11 +66,9 @@ namespace GundamSD.Movement
             ResetVelocity();
           
             _timer += (float)gametime.ElapsedGameTime.TotalSeconds;
-            Console.WriteLine(_timer);
             if (_timer >= holdTime)
             {
                 _timer = 0f;
-                Console.WriteLine("RESET TIMER");
                 return true;
             }
             return false;

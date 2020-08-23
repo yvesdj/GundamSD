@@ -66,7 +66,9 @@ namespace GundamSD
             Texture2D gruntAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
-            ISprite grunt = Factory.CreateGrunt(gruntAtlas);
+            ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas);
+            //ISprite grunt = new GruntBase(gruntAtlas);
+            ISprite gruntRanged = new GruntBase(gruntAtlas);
 
             _font = Content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(graphics);
@@ -78,7 +80,8 @@ namespace GundamSD
             {
                 //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
                 player,
-                grunt
+                gruntMelee,
+                gruntRanged
             };
 
             //TiledSharp Test

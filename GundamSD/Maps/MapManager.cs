@@ -33,6 +33,7 @@ namespace GundamSD.Maps
             //first sprite will always be Player
             Sprites[0].Position = GetSpawnPoint(0);
             Sprites[1].Position = GetSpawnPoint(1);
+            Sprites[2].Position = GetSpawnPoint(2);
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;

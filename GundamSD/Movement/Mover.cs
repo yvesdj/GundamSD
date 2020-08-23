@@ -42,7 +42,6 @@ namespace GundamSD.Movement
 
             Velocity = new Vector2(VelocityX, VelocityY);
             Sprite.CollisionHandler.CheckCollisionMapLayer(mapManager, "Collidable");
-            //Sprite.CollisionHandler.CheckCollisionSprite(mapManager);
 
             NextPosition = Sprite.Position + Velocity;
         }

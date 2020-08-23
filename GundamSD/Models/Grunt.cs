@@ -18,11 +18,13 @@ namespace GundamSD.Models
 
         public Grunt(Texture2D atlasTexture) : base(atlasTexture)
         {
-            IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
+            IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(0, 3, false);
+            IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 6, true);
             IAnimationAtlasAction Attack = Factory.CreateAnimAtlasAction(20, 22, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
+                { "WalkLeft", WalkLeft },
                 { "WalkRight", WalkRight },
                 { "Jump", Jump },
                 { "Attack", Attack },

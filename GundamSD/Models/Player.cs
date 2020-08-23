@@ -25,12 +25,14 @@ namespace GundamSD.Models
         public Player(Texture2D atlasTexture) : base(atlasTexture)
         {
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
+            IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
             IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
             IAnimationAtlasAction Ranged = Factory.CreateAnimAtlasAction(10, 10, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },
+                { "WalkLeft", WalkLeft },
                 { "Jump", Jump },
                 { "Melee", Melee },
                 { "Ranged", Ranged },

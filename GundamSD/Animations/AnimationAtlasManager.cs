@@ -50,8 +50,10 @@ namespace GundamSD.Animations
             {
                 if (_sprite.Mover.Velocity.Y < 0)
                     AtlasPlayer.Play(_actions["Jump"]);
-                else
+                else if(_sprite.Mover.Velocity.X > 0)
                     AtlasPlayer.Play(_actions["WalkRight"]);
+                else 
+                    AtlasPlayer.Play(_actions["WalkLeft"]);
             }
             else if (_sprite.Mover.Velocity.X == 0 && _sprite.Mover.Velocity.Y == 0)
             {

@@ -36,7 +36,8 @@ namespace GundamSD.Models
             Speed = 10f;
 
             ParentSprite = parentSprite;
-            Mover = new MoverBullet(this);
+            bool direction = (ParentSprite.Mover.IsMovingLeft) ? true : false;
+            Mover = new MoverBullet(this, direction);
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)
@@ -72,7 +73,9 @@ namespace GundamSD.Models
             };
             bulletClone.AtlasManager = new AtlasAnimationSingleActionManager(bulletClone, actions);
 
-            bulletClone.Mover = new MoverBullet(bulletClone);
+            bool direction = (ParentSprite.Mover.IsMovingLeft) ? true : false;
+
+            bulletClone.Mover = new MoverBullet(bulletClone, direction);
             bulletClone.CollisionHandler = new CollisionHandler(bulletClone);
             return bulletClone;
         }

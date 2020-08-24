@@ -29,7 +29,7 @@ namespace GundamSD.Models
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
             IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
             IAnimationAtlasAction RangedRight = Factory.CreateAnimAtlasAction(10, 10, true);
-            IAnimationAtlasAction RangedLeft = Factory.CreateAnimAtlasAction(11, 11, true);
+            IAnimationAtlasAction RangedLeft = Factory.CreateAnimAtlasAction(12, 12, true);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
             {
                 { "WalkRight", WalkRight },

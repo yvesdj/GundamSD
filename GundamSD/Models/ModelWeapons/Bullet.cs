@@ -75,9 +75,9 @@ namespace GundamSD.Models
 
             bool direction = (ParentSprite.Mover.IsMovingLeft) ? true : false;
             if (direction)
-                bulletClone.Position = new Vector2(ParentSprite.Position.X - 6, ParentSprite.Position.Y + 16);
+                bulletClone.Position = new Vector2(ParentSprite.Position.X - 6, ParentSprite.Position.Y);
             else
-                bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y + 16);
+                bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y);
 
             bulletClone.Mover = new MoverBullet(bulletClone, direction);
             bulletClone.CollisionHandler = new CollisionHandler(bulletClone);

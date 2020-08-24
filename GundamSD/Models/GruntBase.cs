@@ -57,7 +57,7 @@ namespace GundamSD.Models
             Actions.Add("RangedRight", RangedRight);
 
             Mover = new MoverAI(this, true);
-            RangedWeapon = new RangedWeaponAI(this, 10, 480, 300f);
+            RangedWeapon = new RangedWeaponAI(this, 10, 480, 500f);
 
         }
 

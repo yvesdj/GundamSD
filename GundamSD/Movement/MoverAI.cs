@@ -12,11 +12,13 @@ namespace GundamSD.Movement
     public class MoverAI : Mover
     {
         private float _timer = 0f;
-        private bool _isMovingLeft = true;
-        private bool _isMovingRight;
+        //private bool _isMovingLeft = true;
+        //private bool _isMovingRight;
 
         public MoverAI(ISprite sprite) : base(sprite)
         {
+            IsMovingLeft = true;
+            IsMovingRight = false;
         }
 
         public override void Move(GameTime gametime, MapManager mapManager)
@@ -33,10 +35,15 @@ namespace GundamSD.Movement
             }
             else
             {
-                if (_isMovingLeft)
+                if (IsMovingLeft)
                     VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
-                else if (_isMovingRight)
+                else if (IsMovingRight)
                     VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+
+                //if (_isMovingLeft)
+                //    VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+                //else if (_isMovingRight)
+                //    VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
             }
         }
 
@@ -48,17 +55,33 @@ namespace GundamSD.Movement
             {
                 if (CollisionChecker.IsCollisionWithRectangle(Sprite, Waypoints[0]))
                 {
-                    _isMovingLeft = false;
+                    IsMovingLeft = false;
                     if (PauseMovement(gametime, 5f))
-                        _isMovingRight = true;
+                        IsMovingRight = true;
                 }
                 if (CollisionChecker.IsCollisionWithRectangle(Sprite, Waypoints[1]))
                 {
-                    _isMovingRight = false;
+                    IsMovingRight = false;
                     if (PauseMovement(gametime, 5f))
-                        _isMovingLeft = true;
+                        IsMovingLeft = true;
                 }
             }
+
+            //for (int i = 0; i < Waypoints.Count; i++)
+            //{
+            //    if (CollisionChecker.IsCollisionWithRectangle(Sprite, Waypoints[0]))
+            //    {
+            //        _isMovingLeft = false;
+            //        if (PauseMovement(gametime, 5f))
+            //            _isMovingRight = true;
+            //    }
+            //    if (CollisionChecker.IsCollisionWithRectangle(Sprite, Waypoints[1]))
+            //    {
+            //        _isMovingRight = false;
+            //        if (PauseMovement(gametime, 5f))
+            //            _isMovingLeft = true;
+            //    }
+            //}
         }
 
         private bool PauseMovement(GameTime gametime, float holdTime)

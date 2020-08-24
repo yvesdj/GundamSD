@@ -15,6 +15,9 @@ namespace GundamSD.Movement
         public Vector2 Velocity { get; set; }
         public Vector2 NextPosition { get; set; }
 
+        public bool IsMovingLeft { get; private set; }
+        public bool IsMovingRight { get; private set; }
+
         public MoverBullet(ISprite sprite)
         {
             Sprite = sprite;

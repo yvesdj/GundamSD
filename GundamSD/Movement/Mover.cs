@@ -18,6 +18,8 @@ namespace GundamSD.Movement
         public Vector2 NextPosition { get; set; }
         public float VelocityX { get; set; }
         public float VelocityY { get; set; }
+        public bool IsMovingLeft { get; set; }
+        public bool IsMovingRight { get; set; }
 
         private const float _gravity = 9.81f;
         private const float _frameSpeed = 0.15f;
@@ -35,7 +37,6 @@ namespace GundamSD.Movement
         public virtual void Move(GameTime gametime, MapManager mapManager)
         {
             ProcessInput(gametime);
-
             ApplyGravity(gametime);
             ApplyDrag(gametime);
             ClampVelocity();
@@ -70,10 +71,17 @@ namespace GundamSD.Movement
                 }
 
                 if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Left))
+                {
                     VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
+                    IsMovingLeft = true;
+                    IsMovingRight = false;
+                }
                 else if (hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Right))
+                {
                     VelocityX += Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;
-
+                    IsMovingRight = true;
+                    IsMovingLeft = false;
+                }
             }
         }
 

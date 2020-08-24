@@ -60,8 +60,21 @@ namespace GundamSD.Animations
             }
             else if (_sprite.Mover.Velocity.X == 0 && _sprite.Mover.Velocity.Y == 0)
             {
-                AtlasPlayer.Play(_actions.First().Value);
-                AtlasPlayer.Stop();
+                if (_sprite.Mover.IsMovingLeft && !_sprite.Mover.IsMovingRight)
+                {
+                    AtlasPlayer.Play(_actions["WalkLeft"]);
+                    AtlasPlayer.Stop();
+                }
+                else if (!_sprite.Mover.IsMovingLeft && _sprite.Mover.IsMovingRight)
+                {
+                    AtlasPlayer.Play(_actions["WalkRight"]);
+                    AtlasPlayer.Stop();
+                }
+                else
+                {
+                    AtlasPlayer.Play(_actions["WalkRight"]);
+                    AtlasPlayer.Stop();
+                }
             }
             
         }

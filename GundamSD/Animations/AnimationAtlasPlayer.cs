@@ -64,7 +64,7 @@ namespace GundamSD.Animations
         public void Stop() //what action to stop
         {
             _timer = 0f;
-            _currentFrame = 0; //action start frame
+            _currentFrame = action.StartFrame; //action start frame
         }
 
         public void Update(GameTime gameTime)

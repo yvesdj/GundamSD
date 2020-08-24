@@ -54,13 +54,6 @@ namespace GundamSD.Models
             {
                 sprites.Add(sprite);
             }
-
-            //Bullet bullet = new Bullet(Sprite.Atlas.Texture, Sprite, Damage, 90);
-            //if (bullet is ISprite sprite)
-            //{
-            //    sprites.Add(sprite);
-            //}
-
         }
     }
 

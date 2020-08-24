@@ -16,6 +16,7 @@ namespace GundamSD.Models
 
         public float LifeSpan { get; set; }
         public bool IsExpired { get; set; }
+        public override Rectangle HitBox => new Rectangle((int)Position.X, (int)Position.Y, 16, 12);
         private float _timer; 
 
         public Bullet(Texture2D atlasTexture) : base(atlasTexture)
@@ -74,7 +75,7 @@ namespace GundamSD.Models
 
             bool direction = (ParentSprite.Mover.IsMovingLeft) ? true : false;
             if (direction)
-                bulletClone.Position = new Vector2(ParentSprite.Position.X - 32, ParentSprite.Position.Y + 16);
+                bulletClone.Position = new Vector2(ParentSprite.Position.X - 6, ParentSprite.Position.Y + 16);
             else
                 bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y + 16);
 

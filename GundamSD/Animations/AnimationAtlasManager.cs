@@ -43,10 +43,10 @@ namespace GundamSD.Animations
                 //}
                 //End Testing
             }
-            else if (IsRangedAttacking)
-            {
-                AtlasPlayer.Play(_actions["Ranged"]);
-            }
+            else if (IsRangedAttacking && _sprite.Mover.IsMovingRight)
+                AtlasPlayer.Play(_actions["RangedRight"]);
+            else if (IsRangedAttacking && _sprite.Mover.IsMovingLeft)
+                AtlasPlayer.Play(_actions["RangedLeft"]);
             else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);
             else if (_sprite.Mover.Velocity.X > 0 || _sprite.Mover.Velocity.X < 0)

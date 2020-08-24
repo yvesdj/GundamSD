@@ -32,6 +32,8 @@ namespace GundamSD.Movement
         public Mover(ISprite sprite)
         {
             Sprite = sprite;
+            IsMovingLeft = false;
+            IsMovingRight = true;
         }
 
         public virtual void Move(GameTime gametime, MapManager mapManager)

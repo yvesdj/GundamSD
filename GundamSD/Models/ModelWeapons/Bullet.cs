@@ -64,7 +64,6 @@ namespace GundamSD.Models
         public object Clone()
         {
             Bullet bulletClone = (Bullet)this.MemberwiseClone();
-            bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y + 16);
 
             IAnimationAtlasAction action = Factory.CreateAnimAtlasAction(BulletFrame, BulletFrame, false);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
@@ -74,6 +73,10 @@ namespace GundamSD.Models
             bulletClone.AtlasManager = new AtlasAnimationSingleActionManager(bulletClone, actions);
 
             bool direction = (ParentSprite.Mover.IsMovingLeft) ? true : false;
+            if (direction)
+                bulletClone.Position = new Vector2(ParentSprite.Position.X - 32, ParentSprite.Position.Y + 16);
+            else
+                bulletClone.Position = new Vector2(ParentSprite.Position.X + 32, ParentSprite.Position.Y + 16);
 
             bulletClone.Mover = new MoverBullet(bulletClone, direction);
             bulletClone.CollisionHandler = new CollisionHandler(bulletClone);

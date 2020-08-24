@@ -21,7 +21,7 @@ namespace GundamSD.Models
             IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(20, 22, false);
             Actions.Add("Melee", Melee);
 
-            Mover = new MoverAI(this);
+            Mover = new MoverAI(this, false);
 
             List<int> AttackFrames = new List<int>() { 21 };
             MeleeWeapon = new MeleeWeaponAI(this, 1, 20, AttackFrames);

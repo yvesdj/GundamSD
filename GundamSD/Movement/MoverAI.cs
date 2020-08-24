@@ -11,14 +11,15 @@ namespace GundamSD.Movement
 {
     public class MoverAI : Mover
     {
-        private float _timer = 0f;
-        //private bool _isMovingLeft = true;
-        //private bool _isMovingRight;
+        public bool IsStatic { get; set; }
 
-        public MoverAI(ISprite sprite) : base(sprite)
+        private float _timer = 0f;
+
+        public MoverAI(ISprite sprite, bool isStatic) : base(sprite)
         {
             IsMovingLeft = true;
             IsMovingRight = false;
+            IsStatic = isStatic;
         }
 
         public override void Move(GameTime gametime, MapManager mapManager)
@@ -29,11 +30,11 @@ namespace GundamSD.Movement
 
         public override void ProcessInput(GameTime gametime)
         {
-            if (Sprite.AtlasManager.IsMeleeAttacking)
+            if (Sprite.AtlasManager.IsMeleeAttacking || Sprite.AtlasManager.IsRangedAttacking)
             {
                 ResetVelocity();
             }
-            else
+            else if (!IsStatic)
             {
                 if (IsMovingLeft)
                     VelocityX += -Sprite.Speed * 2 * (float)gametime.ElapsedGameTime.TotalSeconds;

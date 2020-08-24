@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GundamSD.Animations;
 using GundamSD.Maps;
+using GundamSD.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -49,9 +50,13 @@ namespace GundamSD.Models
 
         public GruntRanged(Texture2D atlasTexture) : base(atlasTexture)
         {
-            IAnimationAtlasAction Ranged = Factory.CreateAnimAtlasAction(11, 11, true);
-            Actions.Add("Ranged", Ranged);
+            IAnimationAtlasAction RangedLeft = Factory.CreateAnimAtlasAction(11, 11, true);
+            IAnimationAtlasAction RangedRight = Factory.CreateAnimAtlasAction(12, 12, true);
 
+            Actions.Add("RangedLeft", RangedLeft);
+            Actions.Add("RangedRight", RangedRight);
+
+            Mover = new MoverAI(this, true);
             RangedWeapon = new RangedWeaponAI(this, 10, 480, 300f);
 
         }

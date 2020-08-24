@@ -15,7 +15,7 @@ namespace GundamSD.Models
         public RangedWeapon(ISprite sprite, int damage, int range, float fireRate) : base(sprite, damage, range)
         {
             FireRate = fireRate;
-            GunBullet = new Bullet(Sprite.Atlas.Texture, Sprite, Damage, 90);
+            GunBullet = new Bullet(Sprite.Atlas.Texture, Sprite, Damage, 11);
         }
 
         public override void DealDamage(MapManager mapManager, GameTime gameTime)
@@ -43,12 +43,14 @@ namespace GundamSD.Models
             {
                 Timer = 0f;
                 AddBullet(mapManager.Sprites);
+                Console.WriteLine("Sprite position: " + Sprite.Position);
             }
         }
 
         public void AddBullet(List<ISprite> sprites)
         {
             Bullet bullet = GunBullet.Clone() as Bullet;
+            Console.WriteLine("Bullet position: " + bullet.Position);
 
             if (bullet is ISprite sprite)
             {

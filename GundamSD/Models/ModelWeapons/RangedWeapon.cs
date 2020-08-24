@@ -8,9 +8,9 @@ namespace GundamSD.Models
     public class RangedWeapon : Weapon, IRangedWeapon
     {
         public Bullet GunBullet { get; set; }
-        public float FireRate { get; }
+        public float FireRate { get; set; }
 
-        private float _timer = 0f;
+        public float Timer { get; set; }
 
         public RangedWeapon(ISprite sprite, int damage, int range, float fireRate) : base(sprite, damage, range)
         {
@@ -23,7 +23,7 @@ namespace GundamSD.Models
             if (Sprite is IHasInput hasInput && hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Ranged))
             {
                 Sprite.AtlasManager.IsRangedAttacking = true;
-                _timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 ShootBullet(mapManager);
             }
@@ -35,13 +35,13 @@ namespace GundamSD.Models
 
         public void ShootBullet(MapManager mapManager)
         {
-            if (_timer == 0f)
+            if (Timer == 0f)
             {
                 AddBullet(mapManager.Sprites);
             }
-            else if (_timer >= FireRate)
+            else if (Timer >= FireRate)
             {
-                _timer = 0f;
+                Timer = 0f;
                 AddBullet(mapManager.Sprites);
             }
         }
@@ -60,10 +60,10 @@ namespace GundamSD.Models
     public class RangedWeaponAI : RangedWeapon
     {
         public Rectangle KillZone { get; set; }
-        private float _timer = 0f;
 
         public RangedWeaponAI(ISprite sprite, int damage, int range, float fireRate) : base(sprite, damage, range, fireRate)
         {
+            FireRate = fireRate;
             GunBullet = new Bullet(Sprite.Atlas.Texture, Sprite, Damage, 10);
         }
 
@@ -73,10 +73,10 @@ namespace GundamSD.Models
                                         Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
             ISprite target = Sprite.CollisionHandler.GetOtherSprite(KillZone, mapManager);
 
-            if (target is IHasHealth hasHealth)
+            if (target is Player player)
             {
                 Sprite.AtlasManager.IsRangedAttacking = true;
-                _timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 ShootBullet(mapManager);
 

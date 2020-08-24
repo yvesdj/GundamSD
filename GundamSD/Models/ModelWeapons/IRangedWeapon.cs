@@ -5,7 +5,7 @@ namespace GundamSD.Models
 {
     public interface IRangedWeapon
     {
-        float FireRate { get; }
+        float FireRate { get; set; }
         Bullet GunBullet { get; set; }
 
         void AddBullet(List<ISprite> sprites);

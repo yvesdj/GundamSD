@@ -25,7 +25,7 @@ namespace GundamSD.StateManagement.GameStates
         private PlayerCamera _camera;
         private ScoreDisplayer _scoreDisplayer;
 
-        public TutorialLevel(GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(graphicsDevice, graphicsDeviceManager)
+        public TutorialLevel(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
         {
         }
 

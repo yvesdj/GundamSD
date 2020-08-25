@@ -38,24 +38,26 @@ namespace GundamSD
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            //IsMouseVisible = true;
             base.Initialize();
         }
 
-    /// <summary>
-    /// LoadContent will be called once per game and is the place to load
-    /// all of your content.
-    /// </summary>
-    protected override void LoadContent()
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             GameStateManager.Instance.SetContent(Content);
 
-            GameState testState = new TutorialLevel(GraphicsDevice, _graphicsManager);
+            //GameState testState = new TutorialLevel(GraphicsDevice, _graphicsManager);
+            GameState MainMenu = new MainMenu(this, GraphicsDevice, _graphicsManager);
 
-            GameStateManager.Instance.AddState(testState);
+            //GameStateManager.Instance.AddState(testState);
+            GameStateManager.Instance.AddState(MainMenu);
 
             // TODO: use this.Content to load your game content here
         }

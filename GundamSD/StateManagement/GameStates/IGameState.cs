@@ -11,6 +11,7 @@ namespace GundamSD.StateManagement
 {
     interface IGameState
     {
+        Game1 Game { get; }
         void Initialize();
 
         void LoadContent(ContentManager content);

@@ -14,8 +14,11 @@ namespace GundamSD.StateManagement
         protected GraphicsDevice _graphicsDevice;
         protected GraphicsDeviceManager _graphicsDeviceManager;
 
-        public GameState(GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
+        public Game1 Game { get; }
+
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
         {
+            Game = game;
             _graphicsDevice = graphicsDevice;
             _graphicsDeviceManager = graphicsDeviceManager;
         }

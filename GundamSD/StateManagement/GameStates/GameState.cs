@@ -12,10 +12,12 @@ namespace GundamSD.StateManagement
     public abstract class GameState : IGameState
     {
         protected GraphicsDevice _graphicsDevice;
+        protected GraphicsDeviceManager _graphicsDeviceManager;
 
-        public GameState(GraphicsDevice graphicsDevice)
+        public GameState(GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
         {
             _graphicsDevice = graphicsDevice;
+            _graphicsDeviceManager = graphicsDeviceManager;
         }
 
         public abstract void Initialize();

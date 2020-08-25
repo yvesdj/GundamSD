@@ -89,8 +89,10 @@
     <Compile Include="Movement\MoverBullet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateManagement\GameState.cs" />
-    <Compile Include="StateManagement\IGameState.cs" />
+    <Compile Include="StateManagement\GameStates\GameState.cs" />
+    <Compile Include="StateManagement\GameStateManager.cs" />
+    <Compile Include="StateManagement\GameStates\IGameState.cs" />
+    <Compile Include="StateManagement\GameStates\TutorialLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

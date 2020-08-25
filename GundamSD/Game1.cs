@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
+using GundamSD.StateManagement;
+using GundamSD.StateManagement.GameStates;
 
 namespace GundamSD
 {
@@ -15,27 +17,16 @@ namespace GundamSD
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        private List<ISprite> _sprites;
-
-        private TmxMap _tutorialMap;
-        private Texture2D _tileset;
-        private MapManager _mapManager;
-
-        private SpriteFont _font;
-        private PlayerCamera _camera;
-        private ScoreDisplayer _scoreDisplayer;
-
+        private GraphicsDeviceManager _graphicsManager;
+        private SpriteBatch _spriteBatch;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphicsManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 800;   // set this value to the desired height of your window
-            graphics.ApplyChanges();
+            _graphicsManager.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            _graphicsManager.PreferredBackBufferHeight = 800;   // set this value to the desired height of your window
+            _graphicsManager.ApplyChanges();
         }
 
         /// <summary>
@@ -58,41 +49,13 @@ namespace GundamSD
     protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            #region PlayerInstantiation
-            //AtlasTest
-            Texture2D playerAtlas = Content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            Texture2D gruntAtlas = Content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
+            GameStateManager.Instance.SetContent(Content);
 
-            ISprite player = Factory.CreatePlayer(playerAtlas);
-            ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas);
-            //ISprite grunt = new GruntBase(gruntAtlas);
-            ISprite gruntRanged = new GruntRanged(gruntAtlas);
+            GameState testState = new TutorialLevel(GraphicsDevice, _graphicsManager);
 
-            _font = Content.Load<SpriteFont>("Font");
-            _camera = new PlayerCamera(graphics);
-            _scoreDisplayer = new ScoreDisplayer(_camera, _font);
-
-            #endregion
-
-            _sprites = new List<ISprite>
-            {
-                //Factory.CreateSprite(_atlas, actions, /*true,*/ spawnPoint)
-                player,
-                gruntMelee,
-                gruntRanged
-            };
-
-            //TiledSharp Test
-            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
-            _tileset = Content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-            Console.WriteLine(_tutorialMap.Tilesets[0].Name.ToString());
-
-            _mapManager = new MapManager(_tutorialMap, _tileset, _sprites);
-            Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
-            //END TiledSharp Test
-
+            GameStateManager.Instance.AddState(testState);
 
             // TODO: use this.Content to load your game content here
         }
@@ -104,6 +67,7 @@ namespace GundamSD
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            GameStateManager.Instance.UnloadContent();
         }
 
         /// <summary>
@@ -113,18 +77,8 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //foreach (var sprite in _sprites)
-            //{
-            //    sprite.Update(gameTime);
-            //}
-
-            _mapManager.UpdateMap(gameTime);
-
-            _camera.Follow(_sprites[0]);
-            _scoreDisplayer.Update();
-            //_mapManager.CheckCollision();
-
             // TODO: Add your update logic here
+            GameStateManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -135,23 +89,10 @@ namespace GundamSD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // TODO: Add your drawing code here
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(transformMatrix: _camera.ViewMatrix);
-            //TiledSharp Test
-            _mapManager.DrawMap(spriteBatch);
-            //END TiledSharp Test
-
-            _scoreDisplayer.Draw(spriteBatch, _mapManager);
-            //Vector2 fontPos = new Vector2(100);
-            //if (_sprites[0] is IHasScore hasScore)
-            //{
-            //    spriteBatch.DrawString(_font, "Score: " + hasScore.Score, fontPos, Color.White);
-            //}
-
-            spriteBatch.End();
-
-            // TODO: Add your drawing code here
+            GameStateManager.Instance.Draw(_spriteBatch);
 
             base.Draw(gameTime);
         }

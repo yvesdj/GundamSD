@@ -11,29 +11,21 @@ namespace GundamSD.StateManagement
 {
     public abstract class GameState : IGameState
     {
-        public void Draw(SpriteBatch spriteBatch)
+        protected GraphicsDevice _graphicsDevice;
+
+        public GameState(GraphicsDevice graphicsDevice)
         {
-            throw new NotImplementedException();
+            _graphicsDevice = graphicsDevice;
         }
 
-        public void Initialize()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Initialize();
 
-        public void LoadContent(ContentManager content)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void LoadContent(ContentManager content);
 
-        public void UnloadContent()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void UnloadContent();
 
-        public void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Update(GameTime gameTime);
+
+        public abstract void Draw(SpriteBatch spriteBatch);
     }
 }

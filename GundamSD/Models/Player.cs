@@ -15,6 +15,7 @@ namespace GundamSD.Models
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
+        public Shield Shield { get; set; }
 
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
@@ -28,6 +29,8 @@ namespace GundamSD.Models
             IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
             IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
+            IAnimationAtlasAction BlockRight = Factory.CreateAnimAtlasAction(4, 4, true);
+            IAnimationAtlasAction BlockLeft = Factory.CreateAnimAtlasAction(14, 14, true);
             IAnimationAtlasAction RangedRight = Factory.CreateAnimAtlasAction(10, 10, true);
             IAnimationAtlasAction RangedLeft = Factory.CreateAnimAtlasAction(12, 12, true);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
@@ -38,6 +41,8 @@ namespace GundamSD.Models
                 { "Melee", Melee },
                 { "RangedRight", RangedRight },
                 { "RangedLeft", RangedLeft },
+                { "BlockRight", BlockRight },
+                { "BlockLeft", BlockLeft },
             };
             AtlasManager = Factory.CreateAnimAtlasManager(this, actions);
             Inputs = Factory.CreateInput();
@@ -49,6 +54,9 @@ namespace GundamSD.Models
             MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
 
             RangedWeapon = new RangedWeapon(this, 10, 20, 300f);
+
+            Shield = new Shield(this, 5);
+
             Score = 0;
         }
 
@@ -57,6 +65,7 @@ namespace GundamSD.Models
             base.Update(gameTime, mapManager);
             MeleeWeapon.DealDamage(mapManager, gameTime);
             RangedWeapon.DealDamage(mapManager, gameTime);
+            Shield.BlockDamage(mapManager);
             HealthHandler.Update();
 
             //Console.WriteLine(Score);

@@ -27,7 +27,7 @@ namespace GundamSD.Models
             };
 
             AtlasManager = Factory.CreateAnimAtlasManager(this, Actions);
-            MaxHealth = 100;
+            MaxHealth = 50;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Red);
         }
 

@@ -9,6 +9,7 @@ namespace GundamSD.Animations
 
         bool IsMeleeAttacking { get; set; }
         bool IsRangedAttacking { get; set; }
+        bool IsBlocking { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
         void SetAnimation();

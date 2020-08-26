@@ -30,10 +30,7 @@ namespace GundamSD.Maps
             _map = map;
             _tileSet = tileSet;
             Sprites = sprites;
-            //first sprite will always be Player
-            Sprites[0].Position = GetSpawnPoint(0);
-            Sprites[1].Position = GetSpawnPoint(1);
-            Sprites[2].Position = GetSpawnPoint(2);
+            SetSpriteSpawns();
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;
@@ -103,12 +100,18 @@ namespace GundamSD.Maps
             }
         }
 
-        //public void DrawImage(SpriteBatch spriteBatch, string layerName)
-        //{
-        //    TmxImage Image = _map.ImageLayers[layerName].Image.Data;
+        public void SetSpriteSpawns()
+        {
+            //first sprite will always be Player
+            //Sprites[0].Position = GetSpawnPoint(0);
+            //Sprites[1].Position = GetSpawnPoint(1);
+            //Sprites[2].Position = GetSpawnPoint(2);
 
-        //    spriteBatch.Draw(Image, new Rectangle(0, 0, 1600, 800), Color.White);
-        //}
+            for (int i = 0; i < Sprites.Count; i++)
+            {
+                Sprites[i].Position = GetSpawnPoint(i);
+            }
+        }
 
         public void DrawMap(SpriteBatch spriteBatch)
         {

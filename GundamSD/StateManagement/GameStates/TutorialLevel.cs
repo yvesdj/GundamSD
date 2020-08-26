@@ -43,8 +43,10 @@ namespace GundamSD.StateManagement.GameStates
             Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
-            ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas);
-            //ISprite grunt = new GruntBase(gruntAtlas);
+
+            List<int> wayPointIndexes = new List<int>() { 0, 1 };
+            ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes);
+
             ISprite gruntRanged = new GruntRanged(gruntAtlas);
 
             _font = content.Load<SpriteFont>("Font");

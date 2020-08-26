@@ -16,14 +16,14 @@ namespace GundamSD.Models
         public IWeapon MeleeWeapon { get; set; }
         public List<int> AttackFrames { get; }
 
-        public GruntMelee(Texture2D atlasTexture) : base(atlasTexture)
+        public GruntMelee(Texture2D atlasTexture, List<int> wayPointIndexes) : base(atlasTexture)
         {
             IAnimationAtlasAction MeleeRight = Factory.CreateAnimAtlasAction(23, 25, false);
             IAnimationAtlasAction MeleeLeft = Factory.CreateAnimAtlasAction(20, 22, false);
             Actions.Add("MeleeRight", MeleeRight);
             Actions.Add("MeleeLeft", MeleeLeft);
 
-            Mover = new MoverAI(this, false);
+            Mover = new MoverAI(this, false, wayPointIndexes);
 
             List<int> attackFramesRight = new List<int>() { 24 };
             List<int> attackFramesLeft = new List<int>() { 21 };

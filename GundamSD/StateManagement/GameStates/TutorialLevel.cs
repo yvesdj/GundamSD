@@ -64,9 +64,9 @@ namespace GundamSD.StateManagement.GameStates
 
             _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
             _tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-            Console.WriteLine(_tutorialMap.Tilesets[0].Name.ToString());
+            Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
 
-            _mapManager = new MapManager(_tutorialMap, _tileset, _sprites);
+            _mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
         }
 

@@ -15,6 +15,7 @@ namespace GundamSD.Maps
     {
         private TmxMap _map;
         private Texture2D _tileSet;
+        private Texture2D _background;
         public List<ISprite> Sprites { get; set; }
 
         //private List<Rectangle> _collisionBoxes => GetMapCollidables();
@@ -25,10 +26,12 @@ namespace GundamSD.Maps
         private int _tilesetTilesHigh;
 
 
-        public MapManager(TmxMap map, Texture2D tileSet, List<ISprite> sprites)
+        public MapManager(TmxMap map, Texture2D tileSet, Texture2D background, List<ISprite> sprites)
         {
             _map = map;
             _tileSet = tileSet;
+            _background = background;
+
             Sprites = sprites;
             SetSpriteSpawns();
 
@@ -115,7 +118,7 @@ namespace GundamSD.Maps
 
         public void DrawMap(SpriteBatch spriteBatch)
         {
-            //DrawLayer(spriteBatch, "BackgroundImage");
+            spriteBatch.Draw(_background, new Rectangle(0, 0, _background.Width, _background.Height), Color.DimGray);
             DrawLayer(spriteBatch, "BackgroundWall");
             DrawLayer(spriteBatch, "BackgroundStuff");
             DrawLayer(spriteBatch, "Walkable");

@@ -14,7 +14,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Backgrounds/tutorialBackground.jpg
+#begin Backgrounds/LevelBackground1.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -24,7 +24,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Backgrounds/tutorialBackground.jpg
+/build:Backgrounds/LevelBackground1.jpg
 
 #begin File.spritefont
 /importer:FontDescriptionImporter

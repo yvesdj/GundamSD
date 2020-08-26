@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace GundamSD.Models
 {
@@ -8,6 +9,7 @@ namespace GundamSD.Models
         private ISprite _sprite;
         private Texture2D _healthBarText;
         private int _currentHealth;
+        private int _maxHealth;
         private Color _color;
 
         public bool IsDead { get { return _currentHealth <= 0; } }
@@ -19,6 +21,7 @@ namespace GundamSD.Models
             if (_sprite is IHasHealth hasHealth)
             {
                 _currentHealth = hasHealth.MaxHealth;
+                _maxHealth = hasHealth.MaxHealth;
             }
             
             _color = color;
@@ -26,13 +29,20 @@ namespace GundamSD.Models
 
         public void TakeDamage(int amount)
         {
-            _currentHealth -= amount;
-            _sprite.AtlasManager.AtlasPlayer.Color = Color.Red;
+            if (_sprite.AtlasManager.IsBlocking)
+            {
+                return;
+            } else
+            {
+                _currentHealth -= amount;
+                _sprite.AtlasManager.AtlasPlayer.Color = Color.Red;
+            }
         }
 
         public void Update()
         {
-            HealthBar = new Rectangle((int)_sprite.Position.X - 6, (int)_sprite.Position.Y - 20, _currentHealth / 2, 5);
+            int healthPercentage = (int)Math.Round((double)(100 * _currentHealth) / _maxHealth);
+            HealthBar = new Rectangle((int)_sprite.Position.X - 6, (int)_sprite.Position.Y - 20, healthPercentage / 2, 5);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace GundamSD.Models
 {
-    public class Weapon : IWeapon
+    public abstract class Weapon : IWeapon
     {
 
         public ISprite Sprite { get; }
@@ -17,9 +17,7 @@ namespace GundamSD.Models
             Range = range;
         }
 
-        public virtual void DealDamage(MapManager mapManager, GameTime gameTime)
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void DealDamage(MapManager mapManager, GameTime gameTime);
+
     }
 }

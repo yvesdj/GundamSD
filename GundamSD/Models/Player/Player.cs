@@ -15,6 +15,7 @@ namespace GundamSD.Models
     {
         public IWeapon MeleeWeapon { get; set; }
         public IWeapon RangedWeapon { get; set; }
+        public Shield Shield { get; set; }
 
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
@@ -27,7 +28,10 @@ namespace GundamSD.Models
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
             IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
-            IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
+            IAnimationAtlasAction MeleeRight = Factory.CreateAnimAtlasAction(30, 38, false);
+            IAnimationAtlasAction MeleeLeft = Factory.CreateAnimAtlasAction(90, 98, false);
+            IAnimationAtlasAction BlockRight = Factory.CreateAnimAtlasAction(4, 4, true);
+            IAnimationAtlasAction BlockLeft = Factory.CreateAnimAtlasAction(14, 14, true);
             IAnimationAtlasAction RangedRight = Factory.CreateAnimAtlasAction(10, 10, true);
             IAnimationAtlasAction RangedLeft = Factory.CreateAnimAtlasAction(12, 12, true);
             Dictionary<string, IAnimationAtlasAction> actions = new Dictionary<string, IAnimationAtlasAction>()
@@ -35,9 +39,12 @@ namespace GundamSD.Models
                 { "WalkRight", WalkRight },
                 { "WalkLeft", WalkLeft },
                 { "Jump", Jump },
-                { "Melee", Melee },
+                { "MeleeRight", MeleeRight },
+                { "MeleeLeft", MeleeLeft },
                 { "RangedRight", RangedRight },
                 { "RangedLeft", RangedLeft },
+                { "BlockRight", BlockRight },
+                { "BlockLeft", BlockLeft },
             };
             AtlasManager = Factory.CreateAnimAtlasManager(this, actions);
             Inputs = Factory.CreateInput();
@@ -45,10 +52,14 @@ namespace GundamSD.Models
             MaxHealth = 100;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Green);
 
-            List<int> attackFrames = new List<int>() { 31, 34, 37 };
-            MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
+            List<int> attackFramesRight = new List<int>() { 31, 34, 37 };
+            List<int> attackFramesLeft = new List<int>() { 91, 94, 97 };
+            MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFramesRight, attackFramesLeft);
 
             RangedWeapon = new RangedWeapon(this, 10, 20, 300f);
+
+            Shield = new Shield(this, 5);
+
             Score = 0;
         }
 
@@ -57,6 +68,7 @@ namespace GundamSD.Models
             base.Update(gameTime, mapManager);
             MeleeWeapon.DealDamage(mapManager, gameTime);
             RangedWeapon.DealDamage(mapManager, gameTime);
+            Shield.BlockDamage(mapManager);
             HealthHandler.Update();
 
             //Console.WriteLine(Score);

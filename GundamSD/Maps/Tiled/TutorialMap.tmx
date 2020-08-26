@@ -95,7 +95,7 @@
  </layer>
  <objectgroup id="6" name="SpawnPoints">
   <object id="6" name="Spawn" x="32" y="608" width="64" height="64"/>
-  <object id="19" name="Spawn" x="704" y="416" width="64" height="64"/>
+  <object id="19" name="Spawn" x="704" y="448" width="64" height="64"/>
   <object id="22" name="Spawn" x="1504" y="576" width="64" height="64"/>
  </objectgroup>
  <objectgroup id="8" name="WayPoints">

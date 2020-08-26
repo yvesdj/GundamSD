@@ -19,6 +19,7 @@ namespace GundamSD.Movement
         public Keys Melee { get; set; }
         public Keys Jump { get; set; }
         public Keys Ranged { get; set; }
+        public Keys Block { get; set; }
 
         public Input()
         {
@@ -29,6 +30,7 @@ namespace GundamSD.Movement
             Melee = Keys.E;
             Jump = Keys.Space;
             Ranged = Keys.R;
+            Block = Keys.F;
         }
 
         public KeyboardState GetKeyboardState()

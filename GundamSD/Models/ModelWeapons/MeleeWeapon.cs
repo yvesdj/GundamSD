@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GundamSD.Maps;
 using Microsoft.Xna.Framework;
 
@@ -8,11 +9,14 @@ namespace GundamSD.Models
     {
         private Rectangle _hitBox;
         public virtual Rectangle HitBox { get => _hitBox; }
-        public List<int> AttackFrames { get; set; }
 
-        public MeleeWeapon(ISprite sprite, int damage, int range, List<int> attackFrames) : base(sprite, damage, range)
+        public List<int> AttackFramesRight { get; set; }
+        public List<int> AttackFramesLeft { get; set; }
+
+        public MeleeWeapon(ISprite sprite, int damage, int range, List<int> attackFramesRight, List<int> attackFramesLeft) : base(sprite, damage, range)
         {
-            AttackFrames = attackFrames;
+            AttackFramesRight = attackFramesRight;
+            AttackFramesLeft = attackFramesLeft;
         }
 
         public override void DealDamage(MapManager mapManager, GameTime gameTime)
@@ -20,16 +24,18 @@ namespace GundamSD.Models
             if (Sprite is IHasInput hasInput && hasInput.Inputs.KeyIsHoldDown(hasInput.Inputs.Melee))
             {
                 Sprite.AtlasManager.IsMeleeAttacking = true;
-                _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
-                                        Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
+
+                GenerateHitbox();
+
+                List<int> attackFrames = DetermineAttackFrames();
 
                 ISprite target = Sprite.CollisionHandler.GetOtherSprite(_hitBox, mapManager);
 
                 if (target is IHasHealth hasHealth)
                 {
-                    for (int i = 0; i < AttackFrames.Count; i++)
+                    for (int i = 0; i < attackFrames.Count; i++)
                     {
-                        if (AttackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
+                        if (attackFrames[i] == Sprite.AtlasManager.AtlasPlayer.CurrentFrame && target != null)
                         {
                             hasHealth.HealthHandler.TakeDamage(Damage);
 
@@ -46,6 +52,29 @@ namespace GundamSD.Models
             else
             {
                 Sprite.AtlasManager.IsMeleeAttacking = false ;
+            }
+        }
+
+        public List<int> DetermineAttackFrames()
+        {
+            if (Sprite.Mover.IsMovingRight)
+                return AttackFramesRight;
+            else
+                return AttackFramesLeft;
+
+        }
+
+        public virtual void GenerateHitbox()
+        {
+            if (Sprite.Mover.IsMovingRight)
+            {
+                _hitBox = new Rectangle(Sprite.HitBox.X, Sprite.HitBox.Y,
+                                    Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
+            }
+            else if (Sprite.Mover.IsMovingLeft)
+            {
+                _hitBox = new Rectangle(Sprite.HitBox.X - Range, Sprite.HitBox.Y,
+                                    Sprite.HitBox.Width + Range, Sprite.HitBox.Height);
             }
         }
     }

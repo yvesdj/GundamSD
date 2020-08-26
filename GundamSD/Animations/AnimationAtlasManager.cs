@@ -19,6 +19,7 @@ namespace GundamSD.Animations
 
         public bool IsMeleeAttacking { get; set; }
         public bool IsRangedAttacking { get; set; }
+        public bool IsBlocking { get; set; }
 
         public AnimationAtlasManager(ISprite sprite, Dictionary<string, IAnimationAtlasAction> actions)
         {
@@ -31,31 +32,28 @@ namespace GundamSD.Animations
         {
             IHasInput hasInput = _sprite as IHasInput;
 
-            
-            if (IsMeleeAttacking)
-            {
-                AtlasPlayer.Play(_actions["Melee"]);
 
-                //For Testing
-                //if (_sprite is IHasHealth hasHealth)
-                //{
-                //    hasHealth.HealthHandler.TakeDamage(20);
-                //}
-                //End Testing
-            }
+            if (IsMeleeAttacking && _sprite.Mover.IsMovingRight)
+                AtlasPlayer.Play(_actions["MeleeRight"]);
+            else if (IsMeleeAttacking && _sprite.Mover.IsMovingLeft)
+                AtlasPlayer.Play(_actions["MeleeLeft"]);
             else if (IsRangedAttacking && _sprite.Mover.IsMovingRight)
                 AtlasPlayer.Play(_actions["RangedRight"]);
             else if (IsRangedAttacking && _sprite.Mover.IsMovingLeft)
                 AtlasPlayer.Play(_actions["RangedLeft"]);
+            else if (IsBlocking && _sprite.Mover.IsMovingRight)
+                AtlasPlayer.Play(_actions["BlockRight"]);
+            else if (IsBlocking && _sprite.Mover.IsMovingLeft)
+                AtlasPlayer.Play(_actions["BlockLeft"]);
             else if (_sprite.Mover.Velocity.Y < 0)
                 AtlasPlayer.Play(_actions["Jump"]);
             else if (_sprite.Mover.Velocity.X > 0 || _sprite.Mover.Velocity.X < 0)
             {
                 if (_sprite.Mover.Velocity.Y < 0)
                     AtlasPlayer.Play(_actions["Jump"]);
-                else if(_sprite.Mover.Velocity.X > 0)
+                else if (_sprite.Mover.Velocity.X > 0)
                     AtlasPlayer.Play(_actions["WalkRight"]);
-                else 
+                else
                     AtlasPlayer.Play(_actions["WalkLeft"]);
             }
             else if (_sprite.Mover.Velocity.X == 0 && _sprite.Mover.Velocity.Y == 0)

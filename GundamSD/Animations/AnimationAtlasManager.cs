@@ -33,8 +33,10 @@ namespace GundamSD.Animations
             IHasInput hasInput = _sprite as IHasInput;
 
 
-            if (IsMeleeAttacking)
-                AtlasPlayer.Play(_actions["Melee"]);
+            if (IsMeleeAttacking && _sprite.Mover.IsMovingRight)
+                AtlasPlayer.Play(_actions["MeleeRight"]);
+            else if (IsMeleeAttacking && _sprite.Mover.IsMovingLeft)
+                AtlasPlayer.Play(_actions["MeleeLeft"]);
             else if (IsRangedAttacking && _sprite.Mover.IsMovingRight)
                 AtlasPlayer.Play(_actions["RangedRight"]);
             else if (IsRangedAttacking && _sprite.Mover.IsMovingLeft)

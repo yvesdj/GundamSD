@@ -18,13 +18,16 @@ namespace GundamSD.Models
 
         public GruntMelee(Texture2D atlasTexture) : base(atlasTexture)
         {
-            IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(20, 22, false);
-            Actions.Add("Melee", Melee);
+            IAnimationAtlasAction MeleeRight = Factory.CreateAnimAtlasAction(23, 25, false);
+            IAnimationAtlasAction MeleeLeft = Factory.CreateAnimAtlasAction(20, 22, false);
+            Actions.Add("MeleeRight", MeleeRight);
+            Actions.Add("MeleeLeft", MeleeLeft);
 
             Mover = new MoverAI(this, false);
 
-            List<int> AttackFrames = new List<int>() { 21 };
-            MeleeWeapon = new MeleeWeaponAI(this, 1, 20, AttackFrames);
+            List<int> attackFramesRight = new List<int>() { 24 };
+            List<int> attackFramesLeft = new List<int>() { 21 };
+            MeleeWeapon = new MeleeWeaponAI(this, 1, 20, attackFramesRight, attackFramesLeft);
         }
 
         public override void Update(GameTime gameTime, MapManager mapManager)

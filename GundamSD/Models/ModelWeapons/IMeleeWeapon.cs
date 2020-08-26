@@ -5,7 +5,11 @@ namespace GundamSD.Models
 {
     public interface IMeleeWeapon
     {
-        List<int> AttackFrames { get; set; }
+        List<int> AttackFramesRight { get; set; }
+        List<int> AttackFramesLeft { get; set; }
         Rectangle HitBox { get; }
+
+        List<int> DetermineAttackFrames();
+        void GenerateHitbox();
     }
 }

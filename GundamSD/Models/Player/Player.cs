@@ -28,7 +28,8 @@ namespace GundamSD.Models
             IAnimationAtlasAction WalkRight = Factory.CreateAnimAtlasAction(0, 3, false);
             IAnimationAtlasAction WalkLeft = Factory.CreateAnimAtlasAction(15, 18, false);
             IAnimationAtlasAction Jump = Factory.CreateAnimAtlasAction(5, 7, true);
-            IAnimationAtlasAction Melee = Factory.CreateAnimAtlasAction(30, 38, false);
+            IAnimationAtlasAction MeleeRight = Factory.CreateAnimAtlasAction(30, 38, false);
+            IAnimationAtlasAction MeleeLeft = Factory.CreateAnimAtlasAction(90, 98, false);
             IAnimationAtlasAction BlockRight = Factory.CreateAnimAtlasAction(4, 4, true);
             IAnimationAtlasAction BlockLeft = Factory.CreateAnimAtlasAction(14, 14, true);
             IAnimationAtlasAction RangedRight = Factory.CreateAnimAtlasAction(10, 10, true);
@@ -38,7 +39,8 @@ namespace GundamSD.Models
                 { "WalkRight", WalkRight },
                 { "WalkLeft", WalkLeft },
                 { "Jump", Jump },
-                { "Melee", Melee },
+                { "MeleeRight", MeleeRight },
+                { "MeleeLeft", MeleeLeft },
                 { "RangedRight", RangedRight },
                 { "RangedLeft", RangedLeft },
                 { "BlockRight", BlockRight },
@@ -50,8 +52,9 @@ namespace GundamSD.Models
             MaxHealth = 100;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Green);
 
-            List<int> attackFrames = new List<int>() { 31, 34, 37 };
-            MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFrames);
+            List<int> attackFramesRight = new List<int>() { 31, 34, 37 };
+            List<int> attackFramesLeft = new List<int>() { 91, 94, 97 };
+            MeleeWeapon = new MeleeWeapon(this, 1, 20, attackFramesRight, attackFramesLeft);
 
             RangedWeapon = new RangedWeapon(this, 10, 20, 300f);
 

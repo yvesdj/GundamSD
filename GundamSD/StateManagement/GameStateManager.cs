@@ -64,7 +64,7 @@ namespace GundamSD.StateManagement
 
         public void ChangeState(GameState gameState)
         {
-            ClearStates();
+            //ClearStates();
             AddState(gameState);
         }
 

@@ -42,7 +42,6 @@ namespace GundamSD.Models
         public void Update()
         {
             int healthPercentage = (int)Math.Round((double)(100 * _currentHealth) / _maxHealth);
-            Console.WriteLine(healthPercentage);
             HealthBar = new Rectangle((int)_sprite.Position.X - 6, (int)_sprite.Position.Y - 20, healthPercentage / 2, 5);
         }
 

@@ -93,6 +93,7 @@
     <Compile Include="StateManagement\GameStateManager.cs" />
     <Compile Include="StateManagement\GameStates\IGameState.cs" />
     <Compile Include="StateManagement\GameStates\MainMenu.cs" />
+    <Compile Include="StateManagement\GameStates\PauseMenu.cs" />
     <Compile Include="StateManagement\GameStates\TutorialLevel.cs" />
     <Compile Include="UI\Button.cs" />
   </ItemGroup>

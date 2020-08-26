@@ -9,6 +9,7 @@ using GundamSD.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using TiledSharp;
 
 namespace GundamSD.StateManagement.GameStates
@@ -77,6 +78,13 @@ namespace GundamSD.StateManagement.GameStates
 
             _camera.Follow(_sprites[0]);
             _scoreDisplayer.Update();
+
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Escape))
+            {
+                GameState pauseMenu = new PauseMenu(Game, _graphicsDevice, _graphicsDeviceManager);
+                GameStateManager.Instance.ChangeState(pauseMenu);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

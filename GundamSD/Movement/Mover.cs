@@ -24,7 +24,7 @@ namespace GundamSD.Movement
         private const float _gravity = 9.81f;
         private const float _frameSpeed = 0.15f;
 
-        private float _jumpHeight = 10f;
+        private float _jumpHeight = 12f;
         private Vector2 _jumpVelocity;
         private float gravity = -9.81f;
         private bool _isJumping;

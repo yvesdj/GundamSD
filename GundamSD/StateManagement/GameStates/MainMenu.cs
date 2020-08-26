@@ -12,6 +12,7 @@ namespace GundamSD.StateManagement.GameStates
 {
     public class MainMenu : GameState
     {
+        private Texture2D _background;
         private List<Button> _buttons;
 
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
@@ -25,13 +26,15 @@ namespace GundamSD.StateManagement.GameStates
 
         public override void LoadContent(ContentManager content)
         {
+            _background = content.Load<Texture2D>("UI/MainMenuBackground");
+
             Texture2D btnTexture = content.Load<Texture2D>("UI/Button");
             SpriteFont font = content.Load<SpriteFont>("Font");
 
-            Button startGameBtn = new Button(btnTexture, font, "Start", new Vector2(750, 200));
+            Button startGameBtn = new Button(btnTexture, font, "Start", new Vector2(750, 300));
             startGameBtn.Click += StartGameBtn_Click;
 
-            Button quitBtn = new Button(btnTexture, font, "Quit", new Vector2(750, 300));
+            Button quitBtn = new Button(btnTexture, font, "Quit", new Vector2(750, 400));
             quitBtn.Click += QuitBtn_Click;
 
             _buttons = new List<Button>()
@@ -43,7 +46,7 @@ namespace GundamSD.StateManagement.GameStates
 
         public override void UnloadContent()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -58,6 +61,8 @@ namespace GundamSD.StateManagement.GameStates
         {
             spriteBatch.Begin();
 
+            spriteBatch.Draw(_background, new Rectangle(0, 0, 1600, 800), Color.DimGray);
+
             foreach (Button btn in _buttons)
             {
                 btn.Draw(spriteBatch);
@@ -69,6 +74,9 @@ namespace GundamSD.StateManagement.GameStates
         private void StartGameBtn_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Start Game");
+            GameState TutorialLvl = new TutorialLevel(Game, _graphicsDevice, _graphicsDeviceManager);
+
+            GameStateManager.Instance.ChangeState(TutorialLvl);
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)

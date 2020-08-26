@@ -86,6 +86,7 @@ namespace GundamSD.StateManagement
 
         public void UnloadContent()
         {
+            _content.Unload();
             foreach (GameState gameState in _states)
             {
                 gameState.UnloadContent();

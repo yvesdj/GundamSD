@@ -31,6 +31,7 @@ namespace GundamSD.StateManagement.GameStates
 
         public override void Initialize()
         {
+            Game.IsMouseVisible = false;
         }
 
         public override void LoadContent(ContentManager content)

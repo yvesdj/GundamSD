@@ -53,10 +53,8 @@ namespace GundamSD
 
             GameStateManager.Instance.SetContent(Content);
 
-            //GameState testState = new TutorialLevel(GraphicsDevice, _graphicsManager);
             GameState MainMenu = new MainMenu(this, GraphicsDevice, _graphicsManager);
 
-            //GameStateManager.Instance.AddState(testState);
             GameStateManager.Instance.AddState(MainMenu);
 
             // TODO: use this.Content to load your game content here

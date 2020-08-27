@@ -14,7 +14,7 @@ using TiledSharp;
 
 namespace GundamSD.StateManagement.GameStates
 {
-    public class TutorialLevel : GameState
+    public class Level1 : GameState
     {
         private List<ISprite> _sprites;
 
@@ -26,7 +26,7 @@ namespace GundamSD.StateManagement.GameStates
         private PlayerCamera _camera;
         private ScoreDisplayer _scoreDisplayer;
 
-        public TutorialLevel(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
+        public Level1(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
         {
         }
 
@@ -40,14 +40,14 @@ namespace GundamSD.StateManagement.GameStates
             #region PlayerInstantiation
             //AtlasTest
             Texture2D playerAtlas = content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
+            //Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
 
-            List<int> wayPointIndexes = new List<int>() { 0, 1 };
-            ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes);
+            //List<int> wayPointIndexes = new List<int>() { 0, 1 };
+            //ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes);
 
-            ISprite gruntRanged = new GruntRanged(gruntAtlas);
+            //ISprite gruntRanged = new GruntRanged(gruntAtlas);
 
             _font = content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(_graphicsDeviceManager);
@@ -58,14 +58,19 @@ namespace GundamSD.StateManagement.GameStates
             _sprites = new List<ISprite>
             {
                 player,
-                gruntMelee,
-                gruntRanged
+                //gruntMelee,
+                //gruntRanged
             };
 
-            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
-            _tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+            _tutorialMap = new TmxMap("Maps/Tiled/Level1.tmx");
+            List<Texture2D> tileSets = new List<Texture2D>();
+            foreach (TmxTileset tileset in _tutorialMap.Tilesets)
+            {
+                tileSets.Add(content.Load<Texture2D>("maps/Tilesets/" + tileset.Name.ToString()));
+            }
+            //_tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
             // multiple tilesets test
-            List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
+            //List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
             Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
             _mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);            // end test
 

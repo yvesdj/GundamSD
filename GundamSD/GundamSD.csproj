@@ -92,6 +92,7 @@
     <Compile Include="StateManagement\GameStates\GameState.cs" />
     <Compile Include="StateManagement\GameStateManager.cs" />
     <Compile Include="StateManagement\GameStates\IGameState.cs" />
+    <Compile Include="StateManagement\GameStates\Level1.cs" />
     <Compile Include="StateManagement\GameStates\MainMenu.cs" />
     <Compile Include="StateManagement\GameStates\PauseMenu.cs" />
     <Compile Include="StateManagement\GameStates\TutorialLevel.cs" />

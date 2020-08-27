@@ -14,7 +14,10 @@ namespace GundamSD.Maps
     public class MapManager
     {
         private TmxMap _map;
+
         private Texture2D _tileSet;
+        private List<Texture2D> _tileSets;
+
         private Texture2D _background;
         public List<ISprite> Sprites { get; set; }
 
@@ -40,6 +43,22 @@ namespace GundamSD.Maps
 
             _tilesetTilesWide = _tileSet.Width / _tileWidth;
             _tilesetTilesHigh = _tileSet.Height / _tileHeight;
+        }
+
+        public MapManager(TmxMap map, List<Texture2D> tileSets, Texture2D background, List<ISprite> sprites)
+        {
+            _map = map;
+            _tileSets = tileSets;
+            _background = background;
+
+            Sprites = sprites;
+            SetSpriteSpawns();
+
+            _tileWidth = _map.Tilesets[0].TileWidth;
+            _tileHeight = _map.Tilesets[0].TileHeight;
+
+            _tilesetTilesWide = _tileSets[0].Width / _tileWidth;
+            _tilesetTilesHigh = _tileSets[0].Height / _tileHeight;
         }
 
         public IHasScore GetPlayerScore()
@@ -71,10 +90,11 @@ namespace GundamSD.Maps
 
         public void DrawLayer(SpriteBatch spriteBatch, string layerName)
         {
-            
-            for (var i = 0; i <  _map.Layers[layerName].Tiles.Count; i++)
+            TmxLayer mapLayer = _map.Layers[layerName];
+
+            for (var i = 0; i < mapLayer.Tiles.Count; i++)
             {
-                int gid = _map.Layers[layerName].Tiles[i].Gid;
+                int gid = mapLayer.Tiles[i].Gid;
                 
                 // Empty tile, do nothing
                 if (gid == 0)
@@ -94,10 +114,25 @@ namespace GundamSD.Maps
                     Rectangle tilesetRec = new Rectangle(_tileWidth * column, _tileHeight * row, _tileWidth, _tileHeight);
                     Rectangle destination = new Rectangle((int)x, (int)y, _tileWidth, _tileHeight);
 
-                    spriteBatch.Draw(_tileSet,
+                    foreach (Texture2D tileSet in _tileSets)
+                    {
+                        mapLayer.Properties.TryGetValue("Tileset", out string setString);
+                        Console.WriteLine(setString);
+
+                        //if (tileSet.ToString == mapLayer.Properties.TryGetValue("Tileset", out )
+                        //{
+
+                        //}
+                        spriteBatch.Draw(tileSet,
                         destination,
                         tilesetRec,
                         Color.White);
+                    }
+
+                    //spriteBatch.Draw(_tileSet,
+                    //    destination,
+                    //    tilesetRec,
+                    //    Color.White);
                     //spriteBatch.Draw(_tileSet, destination, tilesetRec, Color.White, 0, Vector2.Zero, SpriteEffects.None, depth);
                 }
             }

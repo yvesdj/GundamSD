@@ -78,7 +78,7 @@ namespace GundamSD.StateManagement.GameStates
         {
             _mapManager.UpdateMap(gameTime);
 
-            _camera.Follow(_sprites[0]);
+            _camera.Follow(_sprites[0], _tutorialMap);
             _scoreDisplayer.Update();
 
             KeyboardState keyboardState = Keyboard.GetState();

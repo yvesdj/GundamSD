@@ -58,6 +58,19 @@ namespace GundamSD.StateManagement.GameStates
 
             ISprite gruntRanged0 = new GruntRanged(gruntAtlas);
 
+            List<int> wayPointIndexes2 = new List<int>() { 4, 5 };
+            ISprite gruntMelee2 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes2);
+            List<int> wayPointIndexes3 = new List<int>() { 6, 7 };
+            ISprite gruntMelee3 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes3);
+
+            ISprite gruntRanged1 = new GruntRanged(gruntAtlas);
+
+            List<int> wayPointIndexes4 = new List<int>() { 8, 9 };
+            ISprite gruntMelee4 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes4);
+            List<int> wayPointIndexes5 = new List<int>() { 10, 11 };
+            ISprite gruntMelee5 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes5);
+
+
             #endregion
 
             #region MapInstantiation
@@ -67,6 +80,11 @@ namespace GundamSD.StateManagement.GameStates
                 gruntMelee0,
                 gruntMelee1,
                 gruntRanged0,
+                gruntMelee2,
+                gruntMelee3,
+                gruntRanged1,
+                gruntMelee4,
+                gruntMelee5,
             };
             _map = new TmxMap("Maps/Tiled/Level1v2.tmx");
             List<Tileset> tileSets = new List<Tileset>();

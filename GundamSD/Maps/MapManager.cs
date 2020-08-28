@@ -186,7 +186,8 @@ namespace GundamSD.Maps
         {
             List<Rectangle> endPoints = GetMapRectangles("EndPoint");
             if (Sprites[0] is Player player && CollisionChecker.IsCollisionWithRectangle(player, endPoints[0]))
-                LevelComplete = true;
+                if (Sprites.Count == 1)
+                    LevelComplete = true;
             else
                 LevelComplete = false;
         }

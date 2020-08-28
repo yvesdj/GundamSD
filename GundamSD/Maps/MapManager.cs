@@ -153,16 +153,28 @@ namespace GundamSD.Maps
         public void DrawMap(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_background, new Rectangle(0, 0, _background.Width, _background.Height), Color.DimGray);
-            DrawLayer(spriteBatch, "BackgroundWall");
-            DrawLayer(spriteBatch, "BackgroundStuff");
-            DrawLayer(spriteBatch, "Walkable");
-
-            foreach (var sprite in Sprites)
+            foreach (TmxLayer layer in _map.Layers)
             {
-                sprite.Draw(spriteBatch);
+                if (layer.Name == "Foreground")
+                {
+                    foreach (var sprite in Sprites)
+                    {
+                        sprite.Draw(spriteBatch);
+                    }
+                    DrawLayer(spriteBatch, layer.Name);
+                }
+                DrawLayer(spriteBatch, layer.Name);
             }
+            //DrawLayer(spriteBatch, "BackgroundWall");
+            //DrawLayer(spriteBatch, "BackgroundStuff");
+            //DrawLayer(spriteBatch, "Walkable");
 
-            DrawLayer(spriteBatch, "Foreground");
+            //foreach (var sprite in Sprites)
+            //{
+            //    sprite.Draw(spriteBatch);
+            //}
+
+            //DrawLayer(spriteBatch, "Foreground");
         }
 
         public void UpdateMap(GameTime gameTime)

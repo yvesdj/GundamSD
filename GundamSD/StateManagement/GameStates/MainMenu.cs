@@ -79,7 +79,7 @@ namespace GundamSD.StateManagement.GameStates
             GameState Level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
 
 
-            GameStateManager.Instance.ChangeState(Level1);
+            GameStateManager.Instance.ChangeState(TutorialLvl);
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)

@@ -7,6 +7,21 @@ called **SD Gundam: Operation U.C.** for a small handheld console, the **WonderS
 Tilesets were found online for free, all sources are linked **below**.
 The game is build in the **Monogame** framework.
 
+## Controls
+* Movement:
+  - A = Move Left;
+  - D = Move Right;
+  - Space = Jump;
+  
+* Attacking/Blocking
+  - E = Melee Attack;
+  - R = Ranged Attack;
+  - F = Block;
+  
+* GameState
+  - Esc = Pause Game
+  
+
 ## Features
 ### Levels
 The game consists of 2 levels:

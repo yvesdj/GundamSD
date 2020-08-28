@@ -85,7 +85,6 @@ namespace GundamSD.StateManagement.GameStates
             _mapManager.UpdateMap(gameTime);
             CheckPlayerLives();
             CheckLevelCompletion();
-
             _camera.Follow(_sprites[0], _map);
             _scoreDisplayer.Update();
             OpenPauseMenu();

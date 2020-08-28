@@ -50,8 +50,8 @@ namespace GundamSD.Camera
 
             if (_positionX < 0)
                 _positionX = 0;
-            if (_positionX > mapWidth - (int)(_horizontalOffset * 2) - 100)
-                _positionX = mapWidth - (int)(_horizontalOffset * 2) - 100;
+            if (_positionX > mapWidth - (int)(_horizontalOffset * 2) - 70)
+                _positionX = mapWidth - (int)(_horizontalOffset * 2) - 70;
             if (_positionY < 0)
                 _positionY = 0;
             if (_positionY > 250f)

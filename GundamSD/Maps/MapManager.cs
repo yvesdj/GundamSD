@@ -23,8 +23,6 @@ namespace GundamSD.Maps
         private Texture2D _background;
         public List<ISprite> Sprites { get; set; }
 
-        //private List<Rectangle> _collisionBoxes => GetMapCollidables();
-
         private int _tileWidth;
         private int _tileHeight;
         private int _tilesetTilesWide;
@@ -34,9 +32,6 @@ namespace GundamSD.Maps
         {
             _map = map;
             _tilesets = tilesets;
-            //foreach (TmxTileset tileset in map.Tilesets)
-            //    _tmxTilesets.Add(tileset);
-
             _background = background;
 
             Sprites = sprites;
@@ -44,9 +39,6 @@ namespace GundamSD.Maps
 
             _tileWidth = _map.Tilesets[0].TileWidth;
             _tileHeight = _map.Tilesets[0].TileHeight;
-
-            //_tilesetTilesWide = _tileSetsTextures[0].Width / _tileWidth;
-            //_tilesetTilesHigh = _tileSetsTextures[0].Height / _tileHeight;
         }
 
         public MapManager(TmxMap map, Texture2D tileSet, Texture2D background, List<ISprite> sprites)
@@ -129,7 +121,6 @@ namespace GundamSD.Maps
 
                         int tileFrame = gid - 1;
                         int column = tileFrame % tileset.TilesWide;
-                        //int row = 3;
                         int row = (int)Math.Floor(((double)tileFrame - tileset.TmxTileset.FirstGid + 1) / (double)tileset.TilesWide);
 
                         float x = (i % _map.Width) * _map.TileWidth;
@@ -140,140 +131,19 @@ namespace GundamSD.Maps
 
                         mapLayer.Properties.TryGetValue("Tileset", out string tileSetName);
 
-
-
                         if (tileset.TileSetName == tileSetName)
                             spriteBatch.Draw(tileset.TileSetTexture,
                                         destination,
                                         tilesetRec,
                                         Color.White);
-                        else
-                            continue;
-
-
-                        //spriteBatch.Draw(tileset.TileSetTexture,
-                        //    destination,
-                        //    tilesetRec,
-                        //    Color.White);
-                        //spriteBatch.Draw(_tileSet, destination, tilesetRec, Color.White, 0, Vector2.Zero, SpriteEffects.None, depth);
                     }
                 }
             }
         }
 
-        //public void DrawLayer(SpriteBatch spriteBatch, string layerName)
-        //{
-        //    TmxLayer mapLayer = _map.Layers[layerName];
-
-        //    for (var i = 0; i < mapLayer.Tiles.Count; i++)
-        //    {
-        //        int gid = mapLayer.Tiles[i].Gid;
-
-        //        // Empty tile, do nothing
-        //        if (gid == 0)
-        //        {
-
-        //        }
-        //        else
-        //        {
-        //            foreach (Tileset tileset in _tilesets)
-        //            {
-        //                int tileFrame = gid - 1;
-        //                int column = tileFrame % tileset.TilesWide;
-        //                int row = (int)Math.Floor((double)tileFrame / (double)tileset.TilesWide);
-
-        //                float x = (i % _map.Width) * _map.TileWidth;
-        //                float y = (float)Math.Floor(i / (double)_map.Width) * _map.TileHeight;
-
-        //                Rectangle tilesetRec = new Rectangle(_tileWidth * column, _tileHeight * row, _tileWidth, _tileHeight);
-        //                Rectangle destination = new Rectangle((int)x, (int)y, _tileWidth, _tileHeight);
-
-        //                mapLayer.Properties.TryGetValue("Tileset", out string tileSetName);
-
-
-
-        //                if (tileset.TileSetName == tileSetName)
-        //                    spriteBatch.Draw(tileset.TileSetTexture,
-        //                                destination,
-        //                                tilesetRec,
-        //                                Color.White);
-        //                else
-        //                    continue;
-
-        //                //spriteBatch.Draw(tileset.TileSetTexture,
-        //                //                destination,
-        //                //                tilesetRec,
-        //                //                Color.White);
-
-
-        //                //spriteBatch.Draw(_tileSet,
-        //                //    destination,
-        //                //    tilesetRec,
-        //                //    Color.White);
-        //                //spriteBatch.Draw(_tileSet, destination, tilesetRec, Color.White, 0, Vector2.Zero, SpriteEffects.None, depth);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public void DrawLayer(SpriteBatch spriteBatch, string layerName)
-        //{
-        //    TmxLayer mapLayer = _map.Layers[layerName];
-
-        //    for (var i = 0; i < mapLayer.Tiles.Count; i++)
-        //    {
-        //        int gid = mapLayer.Tiles[i].Gid;
-
-        //        // Empty tile, do nothing
-        //        if (gid == 0)
-        //        {
-
-        //        }
-        //        else
-        //        {
-
-        //            int tileFrame = gid - 1;
-        //            int column = tileFrame % _tilesetTilesWide;
-        //            int row = (int)Math.Floor((double)tileFrame / (double)_tilesetTilesWide);
-
-        //            float x = (i % _map.Width) * _map.TileWidth;
-        //            float y = (float)Math.Floor(i / (double)_map.Width) * _map.TileHeight;
-
-        //            Rectangle tilesetRec = new Rectangle(_tileWidth * column, _tileHeight * row, _tileWidth, _tileHeight);
-        //            Rectangle destination = new Rectangle((int)x, (int)y, _tileWidth, _tileHeight);
-
-        //            //mapLayer.Properties.TryGetValue("Tileset", out string setString);
-
-        //            foreach (Texture2D tileSet in _tileSetsTextures)
-        //            {
-
-
-        //                //if (tileSet.ToString == mapLayer.Properties.TryGetValue("Tileset", out )
-        //                //{
-
-        //                //}
-        //                spriteBatch.Draw(tileSet,
-        //                destination,
-        //                tilesetRec,
-        //                Color.White);
-        //            }
-
-        //            //spriteBatch.Draw(_tileSet,
-        //            //    destination,
-        //            //    tilesetRec,
-        //            //    Color.White);
-        //            //spriteBatch.Draw(_tileSet, destination, tilesetRec, Color.White, 0, Vector2.Zero, SpriteEffects.None, depth);
-        //        }
-        //    }
-        //}
-
         public void SetSpriteSpawns()
         {
-            //first sprite will always be Player
-            //Sprites[0].Position = GetSpawnPoint(0);
-            //Sprites[1].Position = GetSpawnPoint(1);
-            //Sprites[2].Position = GetSpawnPoint(2);
-
+            //First sprite will always be Player, First spawnpoint belongs to player
             for (int i = 0; i < Sprites.Count; i++)
             {
                 Sprites[i].Position = GetSpawnPoint(i);

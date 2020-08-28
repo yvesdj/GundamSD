@@ -18,7 +18,7 @@ namespace GundamSD.StateManagement.GameStates
     {
         private List<ISprite> _sprites;
 
-        private TmxMap _tutorialMap;
+        private TmxMap _map;
         private Texture2D _tileset;
         private MapManager _mapManager;
 
@@ -62,28 +62,17 @@ namespace GundamSD.StateManagement.GameStates
                 gruntRanged
             };
 
-            //_tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
-            //_tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-            //// multiple tilesets test
-            //List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
-            //Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
-            //_mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);            // end test
-
-            ////_mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
-            ///
-            _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
+            _map = new TmxMap("Maps/Tiled/TutorialMap.tmx");
             List<Tileset> tileSets = new List<Tileset>();
-            foreach (TmxTileset tileset in _tutorialMap.Tilesets)
+            foreach (TmxTileset tileset in _map.Tilesets)
             {
-                Texture2D tileSetTexture = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-                //Texture2D tileSetTexture = content.Load<Texture2D>("maps/Tilesets/" + tileset.Name.ToString());
+                Texture2D tileSetTexture = content.Load<Texture2D>("maps/Tilesets/" + tileset.Name.ToString());
                 tileSets.Add(new Tileset(tileSetTexture, tileset));
             }
 
             Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
-            _mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);
+            _mapManager = new MapManager(_map, tileSets, background, _sprites);
 
-            //_mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
         }
 
@@ -95,7 +84,7 @@ namespace GundamSD.StateManagement.GameStates
         {
             _mapManager.UpdateMap(gameTime);
 
-            _camera.Follow(_sprites[0], _tutorialMap);
+            _camera.Follow(_sprites[0], _map);
             _scoreDisplayer.Update();
 
             KeyboardState keyboardState = Keyboard.GetState();

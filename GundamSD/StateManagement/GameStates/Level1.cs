@@ -38,16 +38,9 @@ namespace GundamSD.StateManagement.GameStates
         public override void LoadContent(ContentManager content)
         {
             #region PlayerInstantiation
-            //AtlasTest
             Texture2D playerAtlas = content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
-            //Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
             ISprite player = Factory.CreatePlayer(playerAtlas);
-
-            //List<int> wayPointIndexes = new List<int>() { 0, 1 };
-            //ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes);
-
-            //ISprite gruntRanged = new GruntRanged(gruntAtlas);
 
             _font = content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(_graphicsDeviceManager);
@@ -58,8 +51,6 @@ namespace GundamSD.StateManagement.GameStates
             _sprites = new List<ISprite>
             {
                 player,
-                //gruntMelee,
-                //gruntRanged
             };
 
             _map = new TmxMap("Maps/Tiled/Level1v2.tmx");
@@ -69,13 +60,9 @@ namespace GundamSD.StateManagement.GameStates
                 Texture2D tileSetTexture = content.Load<Texture2D>("maps/Tilesets/" + tileset.Name.ToString());
                 tileSets.Add(new Tileset(tileSetTexture, tileset));
             }
-            //_tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-            // multiple tilesets test
-            //List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
             Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
             _mapManager = new MapManager(_map, tileSets, background, _sprites);
 
-            //_mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
         }
 

@@ -17,7 +17,7 @@ namespace GundamSD.StateManagement.GameStates
     public class TutorialLevel : GameState
     {
         private List<ISprite> _sprites;
-
+        private ISprite _player;
         private TmxMap _map;
         private Texture2D _tileset;
         private MapManager _mapManager;
@@ -42,7 +42,7 @@ namespace GundamSD.StateManagement.GameStates
             Texture2D playerAtlas = content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
             Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
 
-            ISprite player = Factory.CreatePlayer(playerAtlas);
+            _player = Factory.CreatePlayer(playerAtlas);
 
             List<int> wayPointIndexes = new List<int>() { 0, 1 };
             ISprite gruntMelee = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes);
@@ -57,7 +57,7 @@ namespace GundamSD.StateManagement.GameStates
 
             _sprites = new List<ISprite>
             {
-                player,
+                _player,
                 gruntMelee,
                 gruntRanged
             };
@@ -94,7 +94,7 @@ namespace GundamSD.StateManagement.GameStates
         {
             if (_mapManager.LevelComplete)
             {
-                GameState level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
+                GameState level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager, _player);
 
                 GameStateManager.Instance.AddState(level1);
             }

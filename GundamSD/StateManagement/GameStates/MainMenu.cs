@@ -75,7 +75,7 @@ namespace GundamSD.StateManagement.GameStates
             Console.WriteLine("Start Game");
             GameState TutorialLvl = new TutorialLevel(Game, _graphicsDevice, _graphicsDeviceManager);
             //TEST LEVEL 1
-            GameState Level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
+            //GameState Level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
 
 
             GameStateManager.Instance.ChangeState(TutorialLvl);

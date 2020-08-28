@@ -17,7 +17,7 @@ namespace GundamSD.StateManagement.GameStates
     public class Level1 : GameState
     {
         private List<ISprite> _sprites;
-
+        private ISprite _player;
         private TmxMap _map;
         private Texture2D _tileset;
         private MapManager _mapManager;
@@ -26,8 +26,9 @@ namespace GundamSD.StateManagement.GameStates
         private PlayerCamera _camera;
         private ScoreDisplayer _scoreDisplayer;
 
-        public Level1(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
+        public Level1(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager, ISprite player) : base(game, graphicsDevice, graphicsDeviceManager)
         {
+            _player = player;
         }
 
         public override void Initialize()
@@ -40,7 +41,7 @@ namespace GundamSD.StateManagement.GameStates
             #region PlayerInstantiation
             Texture2D playerAtlas = content.Load<Texture2D>("Models/ZetaGundam_Atlas_64");
 
-            ISprite player = Factory.CreatePlayer(playerAtlas);
+            //player = Factory.CreatePlayer(playerAtlas);
 
             _font = content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(_graphicsDeviceManager);
@@ -62,7 +63,7 @@ namespace GundamSD.StateManagement.GameStates
             #region MapInstantiation
             _sprites = new List<ISprite>
             {
-                player,
+                _player,
                 gruntMelee0,
                 gruntMelee1,
                 gruntRanged0,
@@ -97,7 +98,7 @@ namespace GundamSD.StateManagement.GameStates
         {
             if (_mapManager.LevelComplete)
             {
-                GameState level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
+                GameState level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager, _player);
 
                 GameStateManager.Instance.AddState(level1);
             }

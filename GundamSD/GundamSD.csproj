@@ -56,6 +56,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Maps\MapManager.cs" />
+    <Compile Include="Maps\Tileset.cs" />
     <Compile Include="Models\Enemies\GruntBase.cs" />
     <Compile Include="Models\Enemies\GruntMelee.cs" />
     <Compile Include="Models\Enemies\GruntRanged.cs" />
@@ -128,6 +129,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="Maps\Tiled\Level1v2.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Maps\Tiled\TutorialMap.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

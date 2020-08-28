@@ -62,12 +62,26 @@ namespace GundamSD.StateManagement.GameStates
                 gruntRanged
             };
 
+            //_tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
+            //_tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+            //// multiple tilesets test
+            //List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
+            //Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
+            //_mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);            // end test
+
+            ////_mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
+            ///
             _tutorialMap = new TmxMap("Maps/Tiled/TutorialMap.tmx");
-            _tileset = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
-            // multiple tilesets test
-            List<Texture2D> tileSets = new List<Texture2D>() { _tileset };
+            List<Tileset> tileSets = new List<Tileset>();
+            foreach (TmxTileset tileset in _tutorialMap.Tilesets)
+            {
+                Texture2D tileSetTexture = content.Load<Texture2D>(_tutorialMap.Tilesets[0].Name.ToString());
+                //Texture2D tileSetTexture = content.Load<Texture2D>("maps/Tilesets/" + tileset.Name.ToString());
+                tileSets.Add(new Tileset(tileSetTexture, tileset));
+            }
+
             Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
-            _mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);            // end test
+            _mapManager = new MapManager(_tutorialMap, tileSets, background, _sprites);
 
             //_mapManager = new MapManager(_tutorialMap, _tileset, background, _sprites);
             Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);

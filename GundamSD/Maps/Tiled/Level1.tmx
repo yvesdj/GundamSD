@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="-1" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="10">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="10">
  <tileset firstgid="1" name="industrial.v1_32" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="../../Content/maps/Tilesets/Industrial/industrial.v1_32.png" width="1024" height="1024"/>
  </tileset>
@@ -20,7 +20,7 @@
    <property name="Tileset" value="bulkhead-walls-back"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyckNgDAQBMF9OCjMZUz+QTFRgJCqpH51FQAAAAAAAABfWFpVT2va0p6OdKaRrjTT7b3yAID/ewBWJBoS
+   eAHt0rsNgDAMRVEXDMUvJLD/ULwhQGmOpVu5sHTkKkOAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECMwTWpWpLezrSmVq6Uk8j3elJdv+7zPgBNwkQIECAAIFvBV5WJBoS
   </data>
  </layer>
  <layer id="1" name="BackgroundStuff" width="100" height="25">
@@ -28,7 +28,7 @@
    <property name="Tileset" value="bulkhead-walls-back"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0TeSwkAARFECvPfe7uLtGswBsIu5/3X4AZECBEsxNUGr6kUtTUn6Ya/HE4EPfgQQROgmfGd/ZHO7z7m7nfnsea98g3N3e+7Z85z7f95JTd7bRD3UQz3UQz3UQz3UQz3UQz3UQz3UQz3UQz3UQz3U49H/GUUMcSSQRAppZJBFDnltRrYCiiihjAqqqKGOBppoaTOyfeATbXTQRQ99DDDECGNtRrYJppjhC9/4wS/mWGCJlTYjmy67rjVNNthihz0O+MMRJ5xx0WZkUw+7NvWwa1MPuzb1sGu7AvEbHMY=
+   eAHtmNdqxDAQRf2Quum992Q3vZcPSG///zs5hgi8F1mTgAV+mIXDstyZkTxFWtwZKIoxGIQhGIYRGP2lw3ed/hetjJOyUz1lW2pqb+3Zsk+tp77V3MT81N7am+oh77HYQbPWSPkGzYqhevCL9Uipqb0+l+r6W+1T66lv7proerpXS089S9CsGKoHP6+Hn1lWP/p89N9p5ezoPFk5tOxT86i+Xg+vR7UHtD+0F1O9FTQrhurBz+8Pvz+037RXqr0a6xu1t+I1rcf2FP4rB+2/ewx+Ph8+H1a/+nz4fV7tAeussc6W8l2LFUN1K6baWz1t2afWU99qbmJ+am/trWk9tie/P+rf+eWul9ej/11s7nxb8b0ezdZjnPN9AiZhCqZhBmZhDuZhARbBtfx5WSLPy7ACq7AG67ABm7AF27ADruXPyy553oN9OIAu9OAQjuAYTuAUXMuflzPyfA4XcAlXcA03cAt3cA8P4Fr+vBT+aVUGHun7J3iGF3iFN3iHD/iEL/gG1/LnxevRrn7zeng9/AysP/99Pto1Hz/xGxzG
   </data>
  </layer>
  <layer id="3" name="BackgroundWall" width="100" height="25">
@@ -36,7 +36,7 @@
    <property name="Tileset" value="cols"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyVdOQlEAANH3wf43QJUqSpGugkoHG0VFUViMs4qbvGQmOV8TRWZmZmZmZmZmZmYWx5KJKEohjQyyyOECeRRQRMkX5JVRwSWquMI1aqijgSZufEFeC2100EUPfQxwizvcY+gL8kZ4wCOeMMYEU8wwxwJLX5C3whrPeMEr3vCODbbYYe8L8j7wiS8c8I0fHPGLP5xw9gV5ZmZmFv/+AQckxPI=
+   eAHt1kdSgkEYBuF/wf0vQBIwoIgEQQkqIKgEyUo+jL31ALOgqqfqWb2br3o1UeSzgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGCBcywQj0VRAkmkkMYFMsgih0tcwS18l2s63yCPW9yhgHsU8YASynAL36VC5yoeUUMdT3hGA0200IZb+C4vdH7FGzroood39DHABz7hFr7LF52HGGGMCb4xxQxzLLCEW/guKzqv8YNfbLDFDnsccMQJbuG7nOOf0JstYAELWMACFvhf4A8HJMTy
   </data>
  </layer>
  <layer id="4" name="Foreground" width="100" height="25">
@@ -44,10 +44,13 @@
    <property name="Tileset" value="bulkhead-walls-platform"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlckKwkAUBF3yPLh7cPfg7v9/ofbBYBYhHobQSBVULgMzkDfds4gOGHFgHlYsmIcV5MML8uEF+fCCfHhBPrwgH16QDy/Ihxfkwwvy4UUb+Xhm+uicruzJvsxkyAH3oURb+RjpnLGcyKmcyXmQzyptvR8rnbOWG7mVO7kP3q8qKe7nL32Uz+Mir/L2ngf5KJPifwyjuY/yeRShr+qk6ItlNPfRt3nQV3UeCf7HUXuc5LnSR/f47J+vFymuAwAAAPwLL76lCyk=
+   eAHtmMsKwjAQRaO2Lny78O3Ct///hXqkhsxGFAxhCjdwYdpAk9zTO4XO66DhyIG9eDiiEcJcPFzxUD5c4VA+fOEIyocvIPp++OKhfPjioXz44qF8+OKhfPjioXz44qF8+OJRIh+PijPzX6aDuqiHKlSjPtJIDpTKxxDfR2iMJmiKZqjU+unEvqsS+Xg5sMT7FVqjDdqiHSq1vm8KaXc53s9f+lHkcYbBBV3fPHKsn07T/iqHHwO8/daPIg/rmPqVdaOpc/SLBTyi35/6UZy3O1C/sm409R0v/x0HnnFEJ2T70Y3r+Pw4b9ey8/a+ajkgB+SAHJADckAOtNmBJ76lCyk=
   </data>
  </layer>
  <objectgroup id="6" name="Collidable">
+  <properties>
+   <property name="TestPropertie" value="&quot;Test&quot;"/>
+  </properties>
   <object id="2" name="Floor" x="0" y="640" width="3200" height="32"/>
   <object id="6" name="Wall0" x="0" y="0" width="32" height="640"/>
   <object id="7" name="Roof" x="32" y="0" width="3168" height="32"/>

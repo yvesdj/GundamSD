@@ -49,7 +49,9 @@ namespace GundamSD.StateManagement.GameStates
 
         private void RestartBtn_Click(object sender, EventArgs e)
         {
-            GameStateManager.Instance.RemoveState();
+            GameState TutorialLvl = new TutorialLevel(Game, _graphicsDevice, _graphicsDeviceManager);
+            GameStateManager.Instance.ChangeState(TutorialLvl);
+            //GameStateManager.Instance.RemoveState();
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)

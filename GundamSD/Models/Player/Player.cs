@@ -59,7 +59,7 @@ namespace GundamSD.Models
             Inputs = Factory.CreateInput();
 
             MaxHealth = 100;
-            Lives = 3;
+            Lives = 1;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Green);
 
             List<int> attackFramesRight = new List<int>() { 31, 34, 37 };

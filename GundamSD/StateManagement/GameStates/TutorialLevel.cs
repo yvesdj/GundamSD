@@ -85,6 +85,8 @@ namespace GundamSD.StateManagement.GameStates
             _mapManager.UpdateMap(gameTime);
             if (_sprites[0] is Player player && player.GameOver)
             {
+                player.Lives = 3;
+                player.Score = 0;
                 GameState gameOver = new GameOver(Game, _graphicsDevice, _graphicsDeviceManager);
 
                 GameStateManager.Instance.AddState(gameOver);

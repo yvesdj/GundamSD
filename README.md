@@ -17,7 +17,7 @@ The levels were drawn in **Tiled**. **Tiled** is a general purpose **tile** map 
 It functions as a free tool to allow the easy creation of map layouts.
 These maps are generated into a **CSV** file, which in turn can be used in Monogame.
 Monogame.extended has a built in library for this purpose, if only it worked.
-Instead, I used **TiledSharp*, A .NET C# library for importing Tiled maps.
+Instead, I used **TiledSharp**, A .NET C# library for importing Tiled maps.
 **TiledSharp** does not render maps for you, it only reads the map as it is a parser.
 How I've done it is seen in the **MapManager** class. It can even render maps with **multiple tilesets**!
 

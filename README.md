@@ -31,6 +31,9 @@ All I had to do was to format them in GIMP. (So that they are situated in a 64x6
 * Animated attack sequences
 * Shooting
 * Simple AI
+* Hovering healthbars
+* Lives
+* Simple score system
 
 ## Resources/Credits
 - Skins: https://www.spriters-resource.com/

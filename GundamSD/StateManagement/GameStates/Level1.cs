@@ -116,9 +116,9 @@ namespace GundamSD.StateManagement.GameStates
         {
             if (_mapManager.LevelComplete)
             {
-                GameState level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager, _player);
+                GameState gameComplete = new GameComplete(Game, _graphicsDevice, _graphicsDeviceManager, _player);
 
-                GameStateManager.Instance.AddState(level1);
+                GameStateManager.Instance.AddState(gameComplete);
             }
         }
 

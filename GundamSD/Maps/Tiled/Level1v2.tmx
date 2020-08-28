@@ -253,6 +253,6 @@
   <object id="60" name="Platform3" x="2816" y="146" width="351.333" height="15.5"/>
  </objectgroup>
  <objectgroup id="9" name="EndPoint">
-  <object id="35" name="Exit" x="2944" y="576" width="32" height="64"/>
+  <object id="35" name="Exit" x="3121.33" y="78.6667" width="32" height="64"/>
  </objectgroup>
 </map>

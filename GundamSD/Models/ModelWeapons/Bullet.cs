@@ -49,6 +49,10 @@ namespace GundamSD.Models
             if (target is IHasHealth hasHealth)
             {
                 hasHealth.HealthHandler.TakeDamage(Damage);
+                if (ParentSprite is IHasScore hasScore)
+                {
+                    hasScore.Score += Damage;
+                }
                 IsExpired = true;
             }
             BulletTimer(gameTime);

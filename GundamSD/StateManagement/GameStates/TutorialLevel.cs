@@ -83,7 +83,12 @@ namespace GundamSD.StateManagement.GameStates
         public override void Update(GameTime gameTime)
         {
             _mapManager.UpdateMap(gameTime);
+            if (_sprites[0] is Player player && player.GameOver)
+            {
+                GameState gameOver = new GameOver(Game, _graphicsDevice, _graphicsDeviceManager);
 
+                GameStateManager.Instance.AddState(gameOver);
+            }
             _camera.Follow(_sprites[0], _map);
             _scoreDisplayer.Update();
             OpenPauseMenu();

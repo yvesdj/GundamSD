@@ -19,6 +19,14 @@ namespace GundamSD.Models
 
         public int MaxHealth { get; set; }
         public int Lives { get; set; }
+        public bool GameOver { get
+            {
+                if (Lives <= 0)
+                    return true;
+                else
+                    return false;
+            }
+        }
         public IHealthHandler HealthHandler { get; set; }
         public IInput Inputs { get; set; }
 

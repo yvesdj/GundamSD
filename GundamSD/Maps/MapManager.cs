@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
+using GundamSD.StateManagement;
+using GundamSD.StateManagement.GameStates;
 
 namespace GundamSD.Maps
 {

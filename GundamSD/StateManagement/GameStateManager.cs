@@ -68,6 +68,12 @@ namespace GundamSD.StateManagement
             AddState(gameState);
         }
 
+        public void ChangeToPreviousState()
+        {
+            GameState stateToChange = _states.Skip(1).First();
+            AddState(stateToChange);
+        }
+
         public void Update(GameTime gameTime)
         {
             if (_states.Count > 0)

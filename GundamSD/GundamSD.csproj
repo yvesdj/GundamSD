@@ -90,6 +90,7 @@
     <Compile Include="Movement\MoverBullet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateManagement\GameStates\GameOver.cs" />
     <Compile Include="StateManagement\GameStates\GameState.cs" />
     <Compile Include="StateManagement\GameStateManager.cs" />
     <Compile Include="StateManagement\GameStates\IGameState.cs" />

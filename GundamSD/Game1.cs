@@ -53,9 +53,9 @@ namespace GundamSD
 
             GameStateManager.Instance.SetContent(Content);
 
-            GameState MainMenu = new MainMenu(this, GraphicsDevice, _graphicsManager);
-
-            GameStateManager.Instance.AddState(MainMenu);
+            GameState mainMenu = new MainMenu(this, GraphicsDevice, _graphicsManager);
+            
+            GameStateManager.Instance.AddState(mainMenu);
 
             // TODO: use this.Content to load your game content here
         }

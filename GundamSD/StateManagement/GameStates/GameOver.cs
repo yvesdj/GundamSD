@@ -10,38 +10,51 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GundamSD.StateManagement.GameStates
 {
-    public class MainMenu : GameState
+    public class GameOver : GameState
     {
         private Texture2D _background;
         private List<Button> _buttons;
 
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
+        public GameOver(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
         {
         }
 
         public override void Initialize()
         {
-            Game.IsMouseVisible = true;
+            if (!Game.IsMouseVisible)
+            {
+                Game.IsMouseVisible = true;
+            }
         }
 
         public override void LoadContent(ContentManager content)
         {
-            _background = content.Load<Texture2D>("UI/MainMenuBackground");
+            _background = content.Load<Texture2D>("UI/GameOver");
 
             Texture2D btnTexture = content.Load<Texture2D>("UI/Button");
             SpriteFont font = content.Load<SpriteFont>("Font");
 
-            Button startGameBtn = new Button(btnTexture, font, "Start", new Vector2(750, 300));
-            startGameBtn.Click += StartGameBtn_Click;
+            Button restartBtn = new Button(btnTexture, font, "Restart", new Vector2(750, 300));
+            restartBtn.Click += RestartBtn_Click;
 
             Button quitBtn = new Button(btnTexture, font, "Quit", new Vector2(750, 400));
             quitBtn.Click += QuitBtn_Click;
 
             _buttons = new List<Button>()
             {
-                startGameBtn,
+                restartBtn,
                 quitBtn
             };
+        }
+
+        private void RestartBtn_Click(object sender, EventArgs e)
+        {
+            GameStateManager.Instance.RemoveState();
+        }
+
+        private void QuitBtn_Click(object sender, EventArgs e)
+        {
+            Game.Exit();
         }
 
         public override void UnloadContent()
@@ -68,22 +81,6 @@ namespace GundamSD.StateManagement.GameStates
             }
 
             spriteBatch.End();
-        }
-
-        private void StartGameBtn_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Start Game");
-            GameState TutorialLvl = new TutorialLevel(Game, _graphicsDevice, _graphicsDeviceManager);
-            //TEST LEVEL 1
-            GameState Level1 = new Level1(Game, _graphicsDevice, _graphicsDeviceManager);
-
-
-            GameStateManager.Instance.ChangeState(TutorialLvl);
-        }
-
-        private void QuitBtn_Click(object sender, EventArgs e)
-        {
-            Game.Exit();
         }
     }
 }

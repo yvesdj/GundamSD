@@ -45,14 +45,28 @@ namespace GundamSD.StateManagement.GameStates
             _font = content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(_graphicsDeviceManager);
             _scoreDisplayer = new ScoreDisplayer(_camera, _font);
+            #endregion
+
+            #region EnemyInstantiation
+            Texture2D gruntAtlas = content.Load<Texture2D>("Models/ZakuII_Atlas_64Flipped");
+
+            List<int> wayPointIndexes0 = new List<int>() { 0, 1 };
+            ISprite gruntMelee0 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes0);
+            List<int> wayPointIndexes1 = new List<int>() { 2, 3 };
+            ISprite gruntMelee1 = Factory.CreateGruntMelee(gruntAtlas, wayPointIndexes1);
+
+            ISprite gruntRanged0 = new GruntRanged(gruntAtlas);
 
             #endregion
 
+            #region MapInstantiation
             _sprites = new List<ISprite>
             {
                 player,
+                gruntMelee0,
+                gruntMelee1,
+                gruntRanged0,
             };
-
             _map = new TmxMap("Maps/Tiled/Level1v2.tmx");
             List<Tileset> tileSets = new List<Tileset>();
             foreach (TmxTileset tileset in _map.Tilesets)
@@ -62,8 +76,7 @@ namespace GundamSD.StateManagement.GameStates
             }
             Texture2D background = content.Load<Texture2D>("Backgrounds/LevelBackground1");
             _mapManager = new MapManager(_map, tileSets, background, _sprites);
-
-            Vector2 spawnPoint = _mapManager.GetSpawnPoint(0);
+            #endregion
         }
 
         public override void UnloadContent()
@@ -76,7 +89,11 @@ namespace GundamSD.StateManagement.GameStates
 
             _camera.Follow(_sprites[0], _map);
             _scoreDisplayer.Update();
+            OpenPauseMenu();
+        }
 
+        private void OpenPauseMenu()
+        {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Escape))
             {

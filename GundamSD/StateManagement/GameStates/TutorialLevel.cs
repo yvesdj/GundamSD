@@ -86,7 +86,11 @@ namespace GundamSD.StateManagement.GameStates
 
             _camera.Follow(_sprites[0], _map);
             _scoreDisplayer.Update();
+            OpenPauseMenu();
+        }
 
+        private void OpenPauseMenu()
+        {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Escape))
             {

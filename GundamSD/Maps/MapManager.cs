@@ -165,16 +165,6 @@ namespace GundamSD.Maps
                 }
                 DrawLayer(spriteBatch, layer.Name);
             }
-            //DrawLayer(spriteBatch, "BackgroundWall");
-            //DrawLayer(spriteBatch, "BackgroundStuff");
-            //DrawLayer(spriteBatch, "Walkable");
-
-            //foreach (var sprite in Sprites)
-            //{
-            //    sprite.Draw(spriteBatch);
-            //}
-
-            //DrawLayer(spriteBatch, "Foreground");
         }
 
         public void UpdateMap(GameTime gameTime)

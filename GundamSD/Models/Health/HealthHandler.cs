@@ -8,11 +8,30 @@ namespace GundamSD.Models
     {
         private ISprite _sprite;
         private Texture2D _healthBarText;
-        private int _currentHealth;
+        
         private int _maxHealth;
         private Color _color;
 
-        public bool IsDead { get { return _currentHealth <= 0; } }
+        private int _currentHealth;
+        public int CurrentHealth
+        {
+            get { return _currentHealth; }
+            set
+            {
+                if (IsDead)
+                {
+                    _currentHealth = value;
+                }
+            }
+        }
+
+        private bool _isDead;
+        public bool IsDead
+        {
+            get => _currentHealth <= 0;
+            set { _isDead = value; }
+        }
+
         public Rectangle HealthBar { get; set; }
 
         public HealthHandler(ISprite sprite, Color color)

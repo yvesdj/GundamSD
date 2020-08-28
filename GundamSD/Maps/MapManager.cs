@@ -173,8 +173,13 @@ namespace GundamSD.Maps
             {
                 if (Sprites[i] is IHasHealth hasHealth && hasHealth.HealthHandler.IsDead)
                 {
-                    Console.WriteLine("DEAD");
-                    Sprites.Remove(Sprites[i]);
+                    if (Sprites[i] is Player player)
+                    {
+                        RespawnIfPlayer(i, hasHealth, player);
+                    }
+
+                    else
+                        Sprites.Remove(Sprites[i]);
                 }
                 else if (Sprites[i] is Bullet bullet && bullet.IsExpired)
                 {
@@ -185,5 +190,12 @@ namespace GundamSD.Maps
             }
         }
 
+        private void RespawnIfPlayer(int i, IHasHealth hasHealth, Player player)
+        {
+            player.Lives--;
+            hasHealth.HealthHandler.CurrentHealth = player.MaxHealth;
+            hasHealth.HealthHandler.IsDead = false;
+            player.Position = GetSpawnPoint(i);
+        }
     }
 }

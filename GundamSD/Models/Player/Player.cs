@@ -18,6 +18,7 @@ namespace GundamSD.Models
         public Shield Shield { get; set; }
 
         public int MaxHealth { get; set; }
+        public int Lives { get; set; }
         public IHealthHandler HealthHandler { get; set; }
         public IInput Inputs { get; set; }
 
@@ -50,6 +51,7 @@ namespace GundamSD.Models
             Inputs = Factory.CreateInput();
 
             MaxHealth = 100;
+            Lives = 3;
             HealthHandler = Factory.CreateHealthHandler(this, Color.Green);
 
             List<int> attackFramesRight = new List<int>() { 31, 34, 37 };
@@ -71,7 +73,7 @@ namespace GundamSD.Models
             Shield.BlockDamage(mapManager);
             HealthHandler.Update();
 
-            //Console.WriteLine(Score);
+            Console.WriteLine(Lives);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

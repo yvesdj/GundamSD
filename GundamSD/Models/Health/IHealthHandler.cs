@@ -6,7 +6,8 @@ namespace GundamSD.Models
     public interface IHealthHandler
     {
         Rectangle HealthBar { get; set; }
-        bool IsDead { get; }
+        int CurrentHealth { get; set; }
+        bool IsDead { get; set; }
 
         void Draw(SpriteBatch spriteBatch);
         void TakeDamage(int amount);

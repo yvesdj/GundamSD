@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="35">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="36">
  <tileset firstgid="1" name="bulkhead-walls-back" tilewidth="32" tileheight="32" tilecount="77" columns="11">
   <image source="../../Content/maps/Tilesets/bulkhead-walls-files/layers/bulkhead-walls-back.png" width="352" height="224"/>
  </tileset>
@@ -197,5 +197,8 @@
   <object id="29" name="Platform3" x="1435" y="366.917" width="230" height="15.5"/>
   <object id="31" name="Obstacle2" x="1344.38" y="434.5" width="14.25" height="108.625" rotation="-270"/>
   <object id="33" name="Obstacle4" x="1332.5" y="547.625" width="16.75" height="110" rotation="-450"/>
+ </objectgroup>
+ <objectgroup id="9" name="EndPoint">
+  <object id="35" name="Exit" x="2944" y="576" width="32" height="64"/>
  </objectgroup>
 </map>

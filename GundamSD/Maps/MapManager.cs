@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TiledSharp;
 using GundamSD.StateManagement;
 using GundamSD.StateManagement.GameStates;
+using GundamSD.Movement;
 
 namespace GundamSD.Maps
 {
@@ -24,6 +25,7 @@ namespace GundamSD.Maps
 
         private Texture2D _background;
         public List<ISprite> Sprites { get; set; }
+        public bool LevelComplete { get; set; }
 
         private int _tileWidth;
         private int _tileHeight;
@@ -170,6 +172,21 @@ namespace GundamSD.Maps
         }
 
         public void UpdateMap(GameTime gameTime)
+        {
+            UpdateSprites(gameTime);
+            CheckIfLevelComplete();
+        }
+
+        private void CheckIfLevelComplete()
+        {
+            List<Rectangle> endPoints = GetMapRectangles("EndPoint");
+            if (Sprites[0] is Player player && CollisionChecker.IsCollisionWithRectangle(player, endPoints[0]))
+                LevelComplete = true;
+            else
+                LevelComplete = false;
+        }
+
+        private void UpdateSprites(GameTime gameTime)
         {
             for (int i = 0; i < Sprites.Count; i++)
             {

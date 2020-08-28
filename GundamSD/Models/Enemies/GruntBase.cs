@@ -11,6 +11,7 @@ namespace GundamSD.Models
         public int MaxHealth { get; set; }
         public IHealthHandler HealthHandler { get; set; }
         public Dictionary<string, IAnimationAtlasAction> Actions { get; set; }
+        public int Lives { get ; set; }
 
         public GruntBase(Texture2D atlasTexture) : base(atlasTexture)
         {
@@ -24,6 +25,8 @@ namespace GundamSD.Models
                 { "WalkRight", WalkRight },
                 { "Jump", Jump },
             };
+
+            Lives = 1;
 
             AtlasManager = Factory.CreateAnimAtlasManager(this, Actions);
             MaxHealth = 50;

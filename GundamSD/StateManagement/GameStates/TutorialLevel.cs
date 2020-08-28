@@ -24,7 +24,7 @@ namespace GundamSD.StateManagement.GameStates
 
         private SpriteFont _font;
         private PlayerCamera _camera;
-        private ScoreDisplayer _scoreDisplayer;
+        private HudDisplayer _scoreDisplayer;
 
         public TutorialLevel(Game1 game, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager) : base(game, graphicsDevice, graphicsDeviceManager)
         {
@@ -51,7 +51,7 @@ namespace GundamSD.StateManagement.GameStates
 
             _font = content.Load<SpriteFont>("Font");
             _camera = new PlayerCamera(_graphicsDeviceManager);
-            _scoreDisplayer = new ScoreDisplayer(_camera, _font);
+            _scoreDisplayer = new HudDisplayer(_camera, _font);
 
             #endregion
 

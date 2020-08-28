@@ -83,6 +83,11 @@ namespace GundamSD.Maps
             return Sprites[0] is IHasScore hasScore ? hasScore : null;
         }
 
+        public IHasHealth GetPlayerLives()
+        {
+            return Sprites[0] is IHasHealth hasHealth ? hasHealth : null;
+        }
+
         public Vector2 GetSpawnPoint(int spawnPointNumber)
         {
             TmxObject spawnPoint = _map.ObjectGroups["SpawnPoints"].Objects[spawnPointNumber];
